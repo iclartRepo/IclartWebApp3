@@ -10,4 +10,6 @@ if (module.hot) {
     module.hot.accept();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+window.onload = function () {
+    platformBrowserDynamic().bootstrapModule(AppModule);
+}

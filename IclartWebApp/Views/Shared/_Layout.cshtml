@@ -7,21 +7,29 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
-   
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/wwwroot/styles/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/wwwroot/styles/font-awesome.css" />
+    <link rel="stylesheet" href="~/wwwroot/styles/fonts.css" />
+    <link rel="stylesheet" href="~/wwwroot/styles/main.min.css" />
 
 </head>
 <body>
-   
-    <div class="container body-content">
+
+    @Html.Partial("~/Views/Shared/Header.cshtml")
+
+
+    <div class="container body-content content">
         @RenderBody()
-      
     </div>
 
+  
+    
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/wwwroot/js/polyfills.bundle.js"></script>
-    <script src="~/wwwroot/js/vendor.bundle.js"></script>
-    <script src="~/wwwroot/js/app.bundle.js"></script>
+    @RenderSection("scripts", required: false)
+
+  
 </body>
 </html>

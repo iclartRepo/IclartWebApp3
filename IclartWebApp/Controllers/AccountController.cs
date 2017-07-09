@@ -58,9 +58,17 @@ namespace IclartWebApp.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+
+            if (User.Identity.IsAuthenticated == true)
+            {
+                return RedirectToHomePage();
+            }
             return View();
         }
-
+        public ActionResult RedirectToHomePage()
+        {
+            return RedirectToAction("Index", "Home");
+        }
         //
         // POST: /Account/Login
         [HttpPost]
@@ -79,7 +87,7 @@ namespace IclartWebApp.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToHomePage();
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -392,7 +400,7 @@ namespace IclartWebApp.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //

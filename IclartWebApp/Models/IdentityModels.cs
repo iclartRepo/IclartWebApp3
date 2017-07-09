@@ -29,5 +29,16 @@ namespace IclartWebApp.Models
         {
             return new ApplicationDbContext();
         }
+        protected override void OnModelCreating(System.Data.Entity.DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<IdentityUser>().ToTable("Users");
+            modelBuilder.Entity<ApplicationUser>().ToTable("Users"); //this line needed!!
+            modelBuilder.Entity<IdentityRole>().ToTable("Roles");
+            modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles");
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins");
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
+        }
     }
 }
