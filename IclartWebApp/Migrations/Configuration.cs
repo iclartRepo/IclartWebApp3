@@ -77,6 +77,15 @@ namespace IclartWebApp.Migrations
                 userManager.Create(userToInsert, "adminIclart");
                 userManager.AddToRole(userToInsert.Id, "Admin");
             }
+
+            if (!context.Users.Any(u => u.UserName == "groselim@gmail.com"))
+            {
+                var userStore = new UserStore<ApplicationUser>(context);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                var userToInsert = new ApplicationUser { Email = "groselim@gmail.com", UserName = "groselim@gmail.com" };
+                userManager.Create(userToInsert, "Godisgood1");
+                userManager.AddToRole(userToInsert.Id, "Sales Manager");
+            }
         }
     }
 }

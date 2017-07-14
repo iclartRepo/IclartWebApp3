@@ -212,6 +212,10 @@
     <Compile Include="Migrations\201707080954093_initial.Designer.cs">
       <DependentUpon>201707080954093_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707141330327_adjustedseed.cs" />
+    <Compile Include="Migrations\201707141330327_adjustedseed.Designer.cs">
+      <DependentUpon>201707141330327_adjustedseed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -310,6 +314,8 @@
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="wwwroot\styles\header.scss" />
     <Content Include="wwwroot\styles\login\login.component.scss" />
+    <Content Include="wwwroot\styles\forgotPassword\forgotPassword.scss" />
+    <Content Include="wwwroot\styles\resetPassword\resetPassword.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -339,6 +345,15 @@
     <EmbeddedResource Include="Migrations\201707080954093_initial.resx">
       <DependentUpon>201707080954093_initial.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707141330327_adjustedseed.resx">
+      <DependentUpon>201707141330327_adjustedseed.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IclartWebApp.BLL\IclartWebApp.BLL.csproj">
+      <Project>{B476ACD0-AB28-4297-A642-53263FE1051F}</Project>
+      <Name>IclartWebApp.BLL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
