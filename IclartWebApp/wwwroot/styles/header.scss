@@ -9,10 +9,16 @@
     }
     .dropdown-menu {
         li {
+            form:hover {
+                background-color: lightgray;
+            }
             a {
+               margin-left: 10px;
                 color: #333 !important;
             }
-           
+           a:hover {
+               text-decoration: none;
+           }
         }
     }
     .open {

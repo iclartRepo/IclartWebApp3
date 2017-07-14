@@ -52,6 +52,10 @@
     <Compile Include="DBContext.cs" />
     <Compile Include="GenericRepository.cs" />
     <Compile Include="Interfaces\IGenericRepository.cs" />
+    <Compile Include="Migrations\201707111249342_Initial.cs" />
+    <Compile Include="Migrations\201707111249342_Initial.Designer.cs">
+      <DependentUpon>201707111249342_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,6 +68,11 @@
       <Project>{86404919-78A5-491D-86CD-2C46B48B9965}</Project>
       <Name>IclartWebApp.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201707111249342_Initial.resx">
+      <DependentUpon>201707111249342_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

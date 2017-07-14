@@ -10,13 +10,19 @@ import { AppComponent } from './app.component';
 var AppModule = (function () {
     function AppModule() {
     }
+    AppModule.prototype.ngDoBootstrap = function (appRef) {
+        try {
+            appRef.bootstrap(AppComponent);
+        }
+        catch (e) { }
+    };
     return AppModule;
 }());
 AppModule = __decorate([
     NgModule({
         imports: [BrowserModule],
         declarations: [AppComponent],
-        bootstrap: [AppComponent]
+        entryComponents: [AppComponent]
     })
 ], AppModule);
 export { AppModule };

@@ -5,8 +5,13 @@
   color: white !important; }
   .navbar .navbar-brand, .navbar a {
     color: white !important; }
+  .navbar .dropdown-menu li form:hover {
+    background-color: lightgray; }
   .navbar .dropdown-menu li a {
+    margin-left: 10px;
     color: #333 !important; }
+  .navbar .dropdown-menu li a:hover {
+    text-decoration: none; }
   .navbar .open a {
     color: #333 !important; }
   .navbar a {
@@ -28,6 +33,36 @@ body {
 
 .inline-block {
   display: inline-block; }
+
+#login p {
+  text-align: center;
+  color: red; }
+
+#login form {
+  text-align: center; }
+
+#login .login {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 100px !important;
+  border-color: #142b3d; }
+  #login .login .panel-heading {
+    background-color: #142b3d;
+    border-color: #142b3d;
+    font-size: 20px; }
+  #login .login .btn {
+    width: 150px;
+    font-size: 15px;
+    margin-bottom: 10px; }
+
+#login .loginForm-action-buttons {
+  text-align: center; }
+
+#login sup {
+  color: red; }
+
+#login small {
+  color: red; }
 
 /*@import "wwwroot/src/clientLandingPage/clientList/clientList.component.scss";
 @import "wwwroot/src/clientLandingPage/clientForm/clientForm.component.scss";

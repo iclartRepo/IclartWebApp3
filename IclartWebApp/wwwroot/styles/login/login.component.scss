@@ -1,0 +1,35 @@
+﻿#login {
+    p {
+        text-align:center;
+        color:red;
+    }
+    form {
+        text-align:center;
+    }
+    .login {
+        width:50%;
+        margin: 0 auto;
+        margin-top: 100px !important;
+        border-color: #142b3d;
+        .panel-heading {
+            background-color: #142b3d;
+            border-color: #142b3d;
+            font-size:20px;
+        }
+        .btn {
+            width:150px;
+            font-size:15px;
+            margin-bottom:10px;
+        }
+    }
+    .loginForm-action-buttons {
+        text-align:center;
+    }
+    sup {
+        color: red;
+    }
+    small {
+        color:red;
+    }
+
+}
