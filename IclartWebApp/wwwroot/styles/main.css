@@ -64,6 +64,60 @@ body {
 #login small {
   color: red; }
 
+#forgotPassword p {
+  text-align: center;
+  color: red; }
+
+#forgotPassword .forgot-password {
+  width: 45%;
+  margin: 0 auto;
+  margin-top: 100px !important;
+  border-color: #142b3d; }
+  #forgotPassword .forgot-password .panel-heading {
+    background-color: #142b3d;
+    border-color: #142b3d;
+    font-size: 20px; }
+  #forgotPassword .forgot-password .btn {
+    width: 100px;
+    font-size: 15px;
+    margin-bottom: 10px; }
+
+#forgotPassword .forgotPassword-action-buttons {
+  text-align: center; }
+
+#forgotPassword sup {
+  color: red; }
+
+#forgotPassword small {
+  color: red; }
+
+#resetPassword p {
+  text-align: center;
+  color: red; }
+
+#resetPassword .reset-password {
+  width: 55%;
+  margin: 0 auto;
+  margin-top: 100px !important;
+  border-color: #142b3d; }
+  #resetPassword .reset-password .panel-heading {
+    background-color: #142b3d;
+    border-color: #142b3d;
+    font-size: 20px; }
+  #resetPassword .reset-password .btn {
+    width: 100px;
+    font-size: 15px;
+    margin-bottom: 10px; }
+
+#resetPassword .resetPassword-action-buttons {
+  text-align: center; }
+
+#resetPassword sup {
+  color: red; }
+
+#resetPassword small {
+  color: red; }
+
 /*@import "wwwroot/src/clientLandingPage/clientList/clientList.component.scss";
 @import "wwwroot/src/clientLandingPage/clientForm/clientForm.component.scss";
 @import "wwwroot/src/clientLandingPage/viewClient/viewClient.component.scss";
