@@ -110,4 +110,11 @@ namespace IclartWebApp.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+    public class UsersModel
+    {
+        public List<string> Users { get; set; }
+    }
+
+  
 }

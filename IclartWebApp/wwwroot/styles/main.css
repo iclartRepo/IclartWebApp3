@@ -8,7 +8,6 @@
   .navbar .dropdown-menu li form:hover {
     background-color: lightgray; }
   .navbar .dropdown-menu li a {
-    margin-left: 10px;
     color: #333 !important; }
   .navbar .dropdown-menu li a:hover {
     text-decoration: none; }
@@ -117,6 +116,67 @@ body {
 
 #resetPassword small {
   color: red; }
+
+#changePassword {
+  margin-top: -20px; }
+  #changePassword .changePassword-group {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 100px !important;
+    border-color: #142b3d; }
+    #changePassword .changePassword-group .panel-heading {
+      background-color: #142b3d;
+      border-color: #142b3d;
+      font-size: 20px; }
+    #changePassword .changePassword-group .changePassword-action-buttons {
+      text-align: center; }
+  #changePassword .form-control {
+    width: 100%; }
+  #changePassword sup {
+    color: red; }
+  #changePassword small {
+    color: red; }
+
+#accountLandingPage a {
+  cursor: pointer; }
+
+#accountLandingPage .add-account {
+  float: right; }
+
+#accountLandingPage .account-filter {
+  float: left;
+  width: 50%; }
+
+#accountLandingPage .panel {
+  position: relative;
+  top: 50px; }
+
+#accountLandingPage .header-fixed {
+  width: 100%; }
+
+#accountLandingPage .header-fixed > thead,
+#accountLandingPage .header-fixed > tbody,
+#accountLandingPage .header-fixed > thead > tr,
+#accountLandingPage .header-fixed > tbody > tr,
+#accountLandingPage .header-fixed > thead > tr > th,
+#accountLandingPage .header-fixed > tbody > tr > td {
+  display: block; }
+
+#accountLandingPage .header-fixed > tbody > tr:after,
+#accountLandingPage .header-fixed > thead > tr:after {
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  clear: both; }
+
+#accountLandingPage .header-fixed > tbody {
+  overflow-y: auto;
+  height: 400px; }
+
+#accountLandingPage .header-fixed > tbody > tr > td,
+#accountLandingPage .header-fixed > thead > tr > th {
+  width: 50%;
+  float: left; }
 
 /*@import "wwwroot/src/clientLandingPage/clientList/clientList.component.scss";
 @import "wwwroot/src/clientLandingPage/clientForm/clientForm.component.scss";

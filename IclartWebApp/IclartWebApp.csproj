@@ -238,10 +238,7 @@
     <Content Include="package.json" />
     <Content Include="webpack.config.js" />
     <Content Include="webpack.helpers.js" />
-    <Content Include="wwwroot\js\app.bundle.js" />
-    <Content Include="wwwroot\js\polyfills.bundle.js" />
-    <Content Include="wwwroot\js\vendor.bundle.js" />
-    <Content Include="wwwroot\src\app\app.component.html" />
+    <Content Include="wwwroot\src\loginManagement\manageLogins.component.html" />
     <Content Include="wwwroot\styles\bootstrap.min.css" />
     <Content Include="wwwroot\styles\font-awesome.css" />
     <Content Include="wwwroot\styles\fonts.css" />
@@ -316,6 +313,9 @@
     <Content Include="wwwroot\styles\login\login.component.scss" />
     <Content Include="wwwroot\styles\forgotPassword\forgotPassword.scss" />
     <Content Include="wwwroot\styles\resetPassword\resetPassword.scss" />
+    <Content Include="wwwroot\styles\changePassword\changePassword.scss" />
+    <Content Include="Views\Account\ManageAccount.cshtml" />
+    <Content Include="wwwroot\styles\accountManagement\accountManagement.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -331,9 +331,11 @@
   <ItemGroup>
     <TypeScriptCompile Include="wwwroot\js\polyfills.ts" />
     <TypeScriptCompile Include="wwwroot\js\vendor.ts" />
-    <TypeScriptCompile Include="wwwroot\src\app\app.component.ts" />
-    <TypeScriptCompile Include="wwwroot\src\app\app.module.ts" />
+    <TypeScriptCompile Include="wwwroot\src\interfaces\messageResult.interface.ts" />
+    <TypeScriptCompile Include="wwwroot\src\loginManagement\manageLogins.component.ts" />
+    <TypeScriptCompile Include="wwwroot\src\app.module.ts" />
     <TypeScriptCompile Include="wwwroot\src\main.ts" />
+    <TypeScriptCompile Include="wwwroot\src\services\account.service.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -353,6 +355,10 @@
     <ProjectReference Include="..\IclartWebApp.BLL\IclartWebApp.BLL.csproj">
       <Project>{B476ACD0-AB28-4297-A642-53263FE1051F}</Project>
       <Name>IclartWebApp.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IclartWebApp.Common\IclartWebApp.Common.csproj">
+      <Project>{86404919-78A5-491D-86CD-2C46B48B9965}</Project>
+      <Name>IclartWebApp.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

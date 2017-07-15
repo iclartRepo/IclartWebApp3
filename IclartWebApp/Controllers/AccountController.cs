@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using IclartWebApp.Models;
 using IclartWebApp.BLL;
+using IclartWebApp.Common.Models;
 
 namespace IclartWebApp.Controllers
 {
@@ -52,7 +53,62 @@ namespace IclartWebApp.Controllers
                 _userManager = value;
             }
         }
+        [HttpGet]
+        public ActionResult ManageAccount()
+        {
+            var usersModel = new UsersModel()
+            {
+                Users = UserManager.Users.Select(x => x.UserName).ToList()
+            };
 
+
+            return View(usersModel);
+        }
+
+        [HttpGet]
+        public ActionResult GetUsers()
+        {
+            var users = UserManager.Users.Select(x => x.UserName).ToList();
+            var message = new MessageResult<string>
+            {
+                isError = false,
+                ResultList = users,
+                Message = "Success",
+                Result = null
+            };
+            return Json(message, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteUser(string id)
+        {
+            var currentUser = User.Identity.GetUserName();
+            var user = UserManager.FindById(id);
+            if (user.UserName == currentUser)
+            {
+                var errorMessage = new MessageResult<string>
+                {
+                    isError = true,
+                    ResultList = null,
+                    Message = "Account is being used.",
+                    Result = null
+                };
+                return Json(errorMessage, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                UserManager.Delete(user);
+                var message = new MessageResult<string>
+                {
+                    isError = false,
+                    ResultList = null,
+                    Message = "Success",
+                    Result = null
+                };
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+        }
         //
         // GET: /Account/Login
         [AllowAnonymous]
