@@ -65,7 +65,8 @@ namespace IclartWebApp.Controllers
             return View(usersModel);
         }
 
-        [HttpGet]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult GetUsers()
         {
             var users = UserManager.Users.Select(x => x.UserName).ToList();
@@ -84,7 +85,7 @@ namespace IclartWebApp.Controllers
         public ActionResult DeleteUser(string id)
         {
             var currentUser = User.Identity.GetUserName();
-            var user = UserManager.FindById(id);
+            var user = UserManager.FindByEmail(id);
             if (user.UserName == currentUser)
             {
                 var errorMessage = new MessageResult<string>

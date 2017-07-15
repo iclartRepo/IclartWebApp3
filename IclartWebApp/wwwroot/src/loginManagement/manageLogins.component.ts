@@ -3,7 +3,6 @@
 import { IMessageResult } from '../interfaces/messageResult.interface';
 
 import { AccountService } from '../services/account.service';
-
 @Component({
     selector: 'login-accounts',
     template: require('./manageLogins.component.html')
@@ -14,7 +13,8 @@ export class ManageLoginComponent {
     accountToDelete: string;
     errorMessage: string;
     constructor(private elementRef: ElementRef, private _authService: AccountService) {
-        this.currentUsers = this.elementRef.nativeElement.getAttribute('users');
+        this.currentUsers = JSON.parse(this.elementRef.nativeElement.getAttribute('users'));
+        console.log(this.currentUsers);
     }
 
     result: IMessageResult = {

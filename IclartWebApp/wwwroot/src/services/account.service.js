@@ -17,34 +17,34 @@ import 'rxjs/add/observable/throw';
 var AccountService = (function () {
     function AccountService(_http) {
         this._http = _http;
-        this.baseUrl = "/Account/";
-        this.antiForgeryToken = document.getElementsByName("__RequestVerificationToken")[0];
+        this.baseUrl = '/Account/';
+        this.antiForgeryToken = document.getElementsByName('__RequestVerificationToken')[0];
     }
     AccountService.prototype.getUsers = function () {
         var postedData = {
-            "__RequestVerificationToken": this.antiForgeryToken.value
+            '__RequestVerificationToken': this.antiForgeryToken.value
         };
         var headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest'
         });
         var options = new RequestOptions({ headers: headers });
         var params = this.serialize(postedData);
-        return this._http.post(this.baseUrl + "GetUsers", params, options)
+        return this._http.post(this.baseUrl + 'GetUsers', params, options)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     AccountService.prototype.deleteUser = function (id) {
         var postedData = {
-            "__RequestVerificationToken": this.antiForgeryToken.value,
-            "id": id
+            '__RequestVerificationToken': this.antiForgeryToken.value,
+            'id': id
         };
         var headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest'
         });
         var options = new RequestOptions({ headers: headers });
         var params = this.serialize(postedData);
-        return this._http.post(this.baseUrl + "DeleteUser", params, options)
+        return this._http.post(this.baseUrl + 'DeleteUser', params, options)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);

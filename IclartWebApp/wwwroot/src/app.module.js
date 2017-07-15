@@ -6,6 +6,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 import { ManageLoginComponent } from './loginManagement/manageLogins.component';
 import { AccountService } from './services/account.service';
 var AppModule = (function () {
@@ -16,14 +18,13 @@ var AppModule = (function () {
             appRef.bootstrap(ManageLoginComponent);
         }
         catch (e) {
-            console.log(e);
         }
     };
     return AppModule;
 }());
 AppModule = __decorate([
     NgModule({
-        imports: [BrowserModule],
+        imports: [BrowserModule, HttpModule, FormsModule],
         declarations: [ManageLoginComponent],
         entryComponents: [ManageLoginComponent],
         providers: [AccountService]

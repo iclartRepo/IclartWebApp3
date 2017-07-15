@@ -25,7 +25,8 @@ var ManageLoginComponent = (function () {
             ResultList: null,
             Message: ''
         };
-        this.currentUsers = this.elementRef.nativeElement.getAttribute('users');
+        this.currentUsers = JSON.parse(this.elementRef.nativeElement.getAttribute('users'));
+        console.log(this.currentUsers);
     }
     ManageLoginComponent.prototype.setUser = function (id) {
         this.accountToDelete = id;

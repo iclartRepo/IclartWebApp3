@@ -12,38 +12,38 @@ import { IMessageResult } from '../interfaces/messageResult.interface';
 @Injectable()
 
 export class AccountService {
-    private baseUrl: string = "/Account/";
+    private baseUrl = '/Account/';
     antiForgeryToken: any;
     constructor(private _http: Http) {
-        this.antiForgeryToken = document.getElementsByName("__RequestVerificationToken")[0];
+        this.antiForgeryToken = document.getElementsByName('__RequestVerificationToken')[0];
     }
 
     getUsers(): Observable<IMessageResult> {
-        var postedData = {
-            "__RequestVerificationToken": this.antiForgeryToken.value
+        let postedData = {
+            '__RequestVerificationToken': this.antiForgeryToken.value
         };
         let headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest'
         });
         let options = new RequestOptions({ headers: headers });
         let params: URLSearchParams = this.serialize(postedData);
-        return this._http.post(this.baseUrl + "GetUsers", params, options)
+        return this._http.post(this.baseUrl + 'GetUsers', params, options)
             .map((response: Response) => <IMessageResult>response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     deleteUser(id: string): Observable<IMessageResult> {
-        var postedData = {
-            "__RequestVerificationToken": this.antiForgeryToken.value,
-            "id": id
+        let postedData = {
+            '__RequestVerificationToken': this.antiForgeryToken.value,
+            'id': id
         };
         let headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest'
         });
         let options = new RequestOptions({ headers: headers });
         let params: URLSearchParams = this.serialize(postedData);
-        return this._http.post(this.baseUrl + "DeleteUser", params, options)
+        return this._http.post(this.baseUrl + 'DeleteUser', params, options)
             .map((response: Response) => <IMessageResult>response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
@@ -51,10 +51,10 @@ export class AccountService {
 
     serialize(obj: any) {
         let params: URLSearchParams = new URLSearchParams();
-        for (var key in obj) {
+        for (let key in obj) {
 
             if (obj.hasOwnProperty(key)) {
-                var element = obj[key];
+                let element = obj[key];
 
                 params.set(key, element);
             }
