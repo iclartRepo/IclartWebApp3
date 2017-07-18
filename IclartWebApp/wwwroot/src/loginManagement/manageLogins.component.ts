@@ -11,6 +11,7 @@ import { AccountService } from '../services/account.service';
 export class ManageLoginComponent {
     currentUsers: any;
     accountToDelete: string;
+    accountSearch: string;
     errorMessage: string;
     constructor(private elementRef: ElementRef, private _authService: AccountService) {
         this.currentUsers = JSON.parse(this.elementRef.nativeElement.getAttribute('users'));
@@ -51,6 +52,15 @@ export class ManageLoginComponent {
                 if (this.resultDeletion.isError == false) {
                     this.retrieveAccounts();
                 }
+            },
+            error => this.errorMessage = <any>error);
+    }
+
+    searchAccount(): void {
+        this._authService.searchUser(this.accountSearch)
+            .subscribe(users => {
+                this.result = users;
+                this.currentUsers = this.result.ResultList;
             },
             error => this.errorMessage = <any>error);
     }

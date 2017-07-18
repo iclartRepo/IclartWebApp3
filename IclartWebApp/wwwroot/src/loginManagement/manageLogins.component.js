@@ -49,6 +49,14 @@ var ManageLoginComponent = (function () {
             }
         }, function (error) { return _this.errorMessage = error; });
     };
+    ManageLoginComponent.prototype.searchAccount = function () {
+        var _this = this;
+        this._authService.searchUser(this.accountSearch)
+            .subscribe(function (users) {
+            _this.result = users;
+            _this.currentUsers = _this.result.ResultList;
+        }, function (error) { return _this.errorMessage = error; });
+    };
     return ManageLoginComponent;
 }());
 ManageLoginComponent = __decorate([

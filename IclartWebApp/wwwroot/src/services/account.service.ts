@@ -33,6 +33,22 @@ export class AccountService {
             .catch(this.handleError);
     }
 
+    searchUser(userName: string): Observable<IMessageResult> {
+        var postedData = {
+            "__RequestVerificationToken": this.antiForgeryToken.value,
+            "userName": userName
+        };
+        let headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest'
+        });
+        let options = new RequestOptions({ headers: headers });
+        let params: URLSearchParams = this.serialize(postedData);
+        return this._http.post(this.baseUrl + "SearchUsers", params, options)
+            .map((response: Response) => <IMessageResult>response.json())
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
     deleteUser(id: string): Observable<IMessageResult> {
         let postedData = {
             '__RequestVerificationToken': this.antiForgeryToken.value,

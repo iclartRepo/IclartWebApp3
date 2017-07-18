@@ -5,6 +5,8 @@
 }
 
 @Html.AntiForgeryToken()
+<div>
+    <login-accounts users="@Json.Encode(Model.Users).ToString()"></login-accounts>
+</div>
 
-<login-accounts users="@Json.Encode(Model.Users).ToString()"></login-accounts>
 

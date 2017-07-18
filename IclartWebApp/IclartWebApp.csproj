@@ -316,6 +316,7 @@
     <Content Include="wwwroot\styles\changePassword\changePassword.scss" />
     <Content Include="Views\Account\ManageAccount.cshtml" />
     <Content Include="wwwroot\styles\accountManagement\accountManagement.scss" />
+    <Content Include="wwwroot\styles\registerAccount\registerAccount.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,39 +2,80 @@
 @{
     ViewBag.Title = "Register";
 }
+<div id="accountRegister">
+    <div class="panel panel-primary register">
+        <div class="panel-heading">Add Account</div>
+        <div class="panel-body">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Role, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        <select class="form-control" name="Role">
+                            <option selected disabled>Please Select Role</option>
+                            @foreach (var x in ViewBag.UserRoles)
+                {
+                                <option value="@x">@x</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="register-action-buttons">
+                    <div class="inline-block">
+                        <a class="btn btn-default" href="/accounts">Cancel</a>
+                    </div>
+                    <div class="inline-block">
+                        <input type="submit" class="btn btn-success" value="Register" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+        @*<h3 class="accountRegister-label">Add Account</h3>
+        <div class="productForm-group">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Role, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        <select class="form-control" name="Role">
+                            <option selected disabled>Please Select Role</option>
+                            @foreach (var x in ViewBag.UserRoles)
+                {
+                                <option value="@x">@x</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="inline-block">
+                        <a class="btn btn-default" href="/accounts">Cancel</a>
+                    </div>
+                    <div class="inline-block">
+                        <input type="submit" class="btn btn-success" value="Register" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>*@
 
-<h2>@ViewBag.Title.</h2>
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

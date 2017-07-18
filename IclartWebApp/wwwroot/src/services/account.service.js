@@ -34,6 +34,21 @@ var AccountService = (function () {
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
+    AccountService.prototype.searchUser = function (userName) {
+        var postedData = {
+            "__RequestVerificationToken": this.antiForgeryToken.value,
+            "userName": userName
+        };
+        var headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest'
+        });
+        var options = new RequestOptions({ headers: headers });
+        var params = this.serialize(postedData);
+        return this._http.post(this.baseUrl + "SearchUsers", params, options)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
     AccountService.prototype.deleteUser = function (id) {
         var postedData = {
             '__RequestVerificationToken': this.antiForgeryToken.value,

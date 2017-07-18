@@ -6753,6 +6753,21 @@ var AccountService = (function () {
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
+    AccountService.prototype.searchUser = function (userName) {
+        var postedData = {
+            "__RequestVerificationToken": this.antiForgeryToken.value,
+            "userName": userName
+        };
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({
+            'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest'
+        });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: headers });
+        var params = this.serialize(postedData);
+        return this._http.post(this.baseUrl + "SearchUsers", params, options)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
     AccountService.prototype.deleteUser = function (id) {
         var postedData = {
             '__RequestVerificationToken': this.antiForgeryToken.value,
@@ -41229,6 +41244,14 @@ var ManageLoginComponent = (function () {
             }
         }, function (error) { return _this.errorMessage = error; });
     };
+    ManageLoginComponent.prototype.searchAccount = function () {
+        var _this = this;
+        this._authService.searchUser(this.accountSearch)
+            .subscribe(function (users) {
+            _this.result = users;
+            _this.currentUsers = _this.result.ResultList;
+        }, function (error) { return _this.errorMessage = error; });
+    };
     return ManageLoginComponent;
 }());
 ManageLoginComponent = __decorate([
@@ -56260,7 +56283,7 @@ function transition$$1(stateChangeExpr, steps) {
 /***/ 410:
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"accountLandingPage\">\r\n    <!--<div>\r\n        <div class=\"account-filter\">\r\n            <div class=\"input-group\">\r\n                <input type=\"text\" class=\"form-control\" name=\"searchAccount\" placeholder=\"Search for account...\" [(ngModel)]=\"accountSearch\" (keyup.enter)=\"searchAccount()\">\r\n                <span class=\"input-group-btn\">\r\n                    <button class=\"btn btn-primary\" type=\"button\" (click)=\"searchAccount()\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\r\n                </span>\r\n            </div>\r\n        </div>\r\n        <div class=\"add-account\">\r\n            <a class=\"btn btn-primary\" routerLink=\"/add-account\">Add Account</a>\r\n        </div>\r\n    </div>-->\r\n    <div class=\"accountLandingPage-table panel panel-primary\">\r\n        <div class=\"panel-body\">\r\n            <table class=\"table header-fixed\">\r\n                <thead>\r\n                    <tr>\r\n                        <th>User Accounts</th>\r\n                        <th>Delete</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let user of currentUsers\">\r\n                        <td>{{user}}</td>\r\n                        <td><button class=\"btn btn-danger btn-sm\" (click)=\"setUser(user)\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n    <!-- Modal -->\r\n    <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Delete Confirmation</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <p>Are you sure you want to delete the selected item?</p>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\r\n                    <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\" (click)=\"deleteAccount()\">Delete</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div id=\"accountLandingPage\">\r\n    <div>\r\n        <div class=\"account-filter\">\r\n            <div class=\"input-group\">\r\n                <input type=\"text\" class=\"form-control\" name=\"searchAccount\" placeholder=\"Search for account...\" [(ngModel)]=\"accountSearch\" (keyup.enter)=\"searchAccount()\">\r\n                <span class=\"input-group-btn\">\r\n                    <button class=\"btn btn-primary\" type=\"button\" (click)=\"searchAccount()\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\r\n                </span>\r\n            </div>\r\n        </div>\r\n        <div class=\"add-account\">\r\n            <a class=\"btn btn-primary\" href=\"/Account/Register\">Add Account</a>\r\n        </div>\r\n    </div>\r\n    <div class=\"accountLandingPage-table panel panel-primary\">\r\n        <div class=\"panel-body\">\r\n            <table class=\"table header-fixed\">\r\n                <thead>\r\n                    <tr>\r\n                        <th>User Accounts</th>\r\n                        <th>Delete</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let user of currentUsers\">\r\n                        <td>{{user}}</td>\r\n                        <td><button class=\"btn btn-danger btn-sm\" (click)=\"setUser(user)\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n    <!-- Modal -->\r\n    <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Delete Confirmation</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <p>Are you sure you want to delete the selected item?</p>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\r\n                    <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\" (click)=\"deleteAccount()\">Delete</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 

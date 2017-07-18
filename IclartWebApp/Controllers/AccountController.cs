@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using IclartWebApp.Models;
 using IclartWebApp.BLL;
 using IclartWebApp.Common.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IclartWebApp.Controllers
 {
@@ -52,6 +53,22 @@ namespace IclartWebApp.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SearchUsers(string userName)
+        {
+
+            var users = UserManager.Users.Where(x => x.UserName.Contains(userName)).Select(x => x.Email).ToList();
+            var message = new MessageResult<string>
+            {
+                isError = false,
+                ResultList = users,
+                Message = "Success",
+                Result = null
+            };
+            return Json(message, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult ManageAccount()
@@ -205,6 +222,9 @@ namespace IclartWebApp.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+            var roles = roleManager.Roles.Select(x => x.Name).ToList();
+            ViewBag.UserRoles = roles;
             return View();
         }
 
@@ -218,18 +238,21 @@ namespace IclartWebApp.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var randomPassword = CreateRandomPassword(8);
+                var result = await UserManager.CreateAsync(user, randomPassword);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    // await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    UserManager.AddToRole(user.Id, model.Role);
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    var emailHelper = new EmailHelper();
+                    emailHelper.EmailNewAccount(model.Email, randomPassword);
+                    return RedirectToAction("ManageAccount", "Account");
                 }
                 AddErrors(result);
             }
@@ -237,7 +260,19 @@ namespace IclartWebApp.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        private static string CreateRandomPassword(int passwordLength)
+        {
+            string allowedChars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-";
+            char[] chars = new char[passwordLength];
+            Random rd = new Random();
 
+            for (int i = 0; i < passwordLength; i++)
+            {
+                chars[i] = allowedChars[rd.Next(0, allowedChars.Length)];
+            }
+
+            return new string(chars);
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
