@@ -171,6 +171,9 @@ body {
   #changePassword small {
     color: red; }
 
+#accountLandingPage .modal-dialog {
+  left: 0px !important; }
+
 #accountLandingPage a {
   cursor: pointer; }
 
