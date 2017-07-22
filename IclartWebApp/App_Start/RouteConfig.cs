@@ -38,6 +38,20 @@ namespace IclartWebApp
             new { controller = "Account", action = "ManageAccount" }
              );
 
+            /* Client Management */
+
+            routes.MapRoute(
+           "ManageClient",
+           "clients",
+           new { controller = "Client", action = "Index" }
+            );
+
+            routes.MapRoute(
+         "AddClient",
+         "addclient",
+         new { controller = "Client", action = "AddClient" }
+          );
+
 
             routes.MapRoute(
                 name: "Default",

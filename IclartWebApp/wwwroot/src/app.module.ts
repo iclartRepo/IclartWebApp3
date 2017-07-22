@@ -4,14 +4,16 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { ManageLoginComponent } from './loginManagement/manageLogins.component';
+import { ManageClientsComponent } from './clientManagement/manageClients.component'
 
 import { AccountService } from './services/account.service';
+import { ClientService } from './services/client.service';
 
 @NgModule({
     imports: [BrowserModule, HttpModule, FormsModule],
-    declarations: [ManageLoginComponent],
-    entryComponents: [ManageLoginComponent],
-    providers: [AccountService]
+    declarations: [ManageLoginComponent, ManageClientsComponent],
+    entryComponents: [ManageLoginComponent, ManageClientsComponent],
+    providers: [AccountService, ClientService]
 })
 export class AppModule {
     ngDoBootstrap(appRef: ApplicationRef)
@@ -23,6 +25,13 @@ export class AppModule {
         catch (e)
         {
             
+        }   
+
+        try {
+            appRef.bootstrap(ManageClientsComponent);
+        }
+        catch (e) {
+            console.log(e);
         }         
       
     }
