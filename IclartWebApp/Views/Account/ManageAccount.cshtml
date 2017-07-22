@@ -1,0 +1,12 @@
+﻿@using IclartWebApp.Models
+@model UsersModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.AntiForgeryToken()
+<div>
+    <login-accounts users="@Json.Encode(Model.Users).ToString()"></login-accounts>
+</div>
+
+

@@ -19,11 +19,25 @@ namespace IclartWebApp
                  new {controller = "Home", action = "Index"}
            );
 
+            /* Account Management */
+            routes.MapRoute(
+                "ChangePassword",
+                "changepassword",
+                new { controller = "Manage", action = "ChangePassword" }
+            );
+
             routes.MapRoute(
               "ForgotPassword",
               "forgotpassword",
               new { controller = "Account", action = "ForgotPassword" }
               );
+
+            routes.MapRoute(
+            "ManageAccount",
+            "accounts",
+            new { controller = "Account", action = "ManageAccount" }
+             );
+
 
             routes.MapRoute(
                 name: "Default",
