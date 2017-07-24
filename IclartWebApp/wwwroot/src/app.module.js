@@ -9,7 +9,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { ManageLoginComponent } from './loginManagement/manageLogins.component';
+import { ManageClientsComponent } from './clientManagement/manageClients.component';
 import { AccountService } from './services/account.service';
+import { ClientService } from './services/client.service';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -19,15 +21,21 @@ var AppModule = (function () {
         }
         catch (e) {
         }
+        try {
+            appRef.bootstrap(ManageClientsComponent);
+        }
+        catch (e) {
+            console.log(e);
+        }
     };
     return AppModule;
 }());
 AppModule = __decorate([
     NgModule({
         imports: [BrowserModule, HttpModule, FormsModule],
-        declarations: [ManageLoginComponent],
-        entryComponents: [ManageLoginComponent],
-        providers: [AccountService]
+        declarations: [ManageLoginComponent, ManageClientsComponent],
+        entryComponents: [ManageLoginComponent, ManageClientsComponent],
+        providers: [AccountService, ClientService]
     })
 ], AppModule);
 export { AppModule };

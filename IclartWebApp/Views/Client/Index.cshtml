@@ -1,0 +1,8 @@
+﻿@using IclartWebApp.Models
+@model ClientViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<client-list clients="@Json.Encode(Model.ClientList).ToString()"></client-list>

@@ -1,0 +1,60 @@
+﻿<div id="clientList">
+    <div>
+        <div class="client-filter">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for client..." [(ngModel)]="clientName" (keyup.enter)="searchClient()">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" (click)="searchClient()"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="add-client">
+            <a class="btn btn-primary" href="/addclient">Add Client</a>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            <table class="table table-responsive header-fixed">
+                <thead>
+                    <tr>
+                        <th class="thead-name">Name</th>
+                        <th>Telephone Number</th>
+                        <th>Email</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let client of result.ResultList">
+                        <td><a>{{client.Name}}</a></td>
+                        <td>{{client.Telephone_Number}}</td>
+                        <td>{{client.Email}}</td>
+                        <td><a class="btn btn-success btn-sm" ><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                        <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Delete Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete the selected item?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteClient()">Delete</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -35,6 +35,7 @@ body {
 .inline-block {
   display: inline-block; }
 
+/*Account Management*/
 #accountRegister {
   margin-top: -20px; }
   #accountRegister .register {
@@ -217,6 +218,47 @@ body {
 #accountLandingPage .header-fixed > thead > tr > th {
   width: 50%;
   float: left; }
+
+/*Client Management*/
+#clientList {
+  /*overflow-y: scroll;
+    height: 100vh;*/ }
+  #clientList .input-group {
+    width: 100%; }
+  #clientList .add-client {
+    float: right; }
+  #clientList .show-columns {
+    float: left; }
+  #clientList .client-filter {
+    float: left;
+    width: 28%; }
+  #clientList table .thead-name {
+    width: 40%; }
+  #clientList .header-fixed {
+    width: 100%; }
+  #clientList .panel {
+    position: relative;
+    top: 50px; }
+  #clientList .header-fixed > thead,
+  #clientList .header-fixed > tbody,
+  #clientList .header-fixed > thead > tr,
+  #clientList .header-fixed > tbody > tr,
+  #clientList .header-fixed > thead > tr > th,
+  #clientList .header-fixed > tbody > tr > td {
+    display: block; }
+  #clientList .header-fixed > tbody > tr:after,
+  #clientList .header-fixed > thead > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both; }
+  #clientList .header-fixed > tbody {
+    overflow-y: auto;
+    height: 400px; }
+  #clientList .header-fixed > tbody > tr > td,
+  #clientList .header-fixed > thead > tr > th {
+    width: 20%;
+    float: left; }
 
 /*@import "wwwroot/src/clientLandingPage/clientList/clientList.component.scss";
 @import "wwwroot/src/clientLandingPage/clientForm/clientForm.component.scss";
