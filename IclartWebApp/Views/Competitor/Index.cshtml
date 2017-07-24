@@ -1,0 +1,9 @@
+﻿@using IclartWebApp.Models
+@model CompetitorViewModel
+@{
+    ViewBag.Title = "Competitors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<competitor-list competitors="@Json.Encode(Model.CompetitorList).ToString()"></competitor-list>

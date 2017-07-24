@@ -260,6 +260,46 @@ body {
     width: 20%;
     float: left; }
 
+/*Competitor Management*/
+#competitorAdmin .modal-dialog {
+  left: 0px !important; }
+
+#competitorAdmin .alert {
+  text-align: center;
+  width: 15%;
+  margin: 0 auto; }
+
+#competitorAdmin .competitorAdmin-display {
+  display: inline-block;
+  margin-bottom: 10px; }
+
+#competitorAdmin .header-fixed {
+  width: 100%; }
+
+#competitorAdmin .header-fixed > thead,
+#competitorAdmin .header-fixed > tbody,
+#competitorAdmin .header-fixed > thead > tr,
+#competitorAdmin .header-fixed > tbody > tr,
+#competitorAdmin .header-fixed > thead > tr > th,
+#competitorAdmin .header-fixed > tbody > tr > td {
+  display: block; }
+
+#competitorAdmin .header-fixed > tbody > tr:after,
+#competitorAdmin .header-fixed > thead > tr:after {
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  clear: both; }
+
+#competitorAdmin .header-fixed > tbody {
+  overflow-y: auto;
+  height: 400px; }
+
+#competitorAdmin .header-fixed > tbody > tr > td,
+#competitorAdmin .header-fixed > thead > tr > th {
+  width: 33%;
+  float: left; }
+
 /*@import "wwwroot/src/clientLandingPage/clientList/clientList.component.scss";
 @import "wwwroot/src/clientLandingPage/clientForm/clientForm.component.scss";
 @import "wwwroot/src/clientLandingPage/viewClient/viewClient.component.scss";

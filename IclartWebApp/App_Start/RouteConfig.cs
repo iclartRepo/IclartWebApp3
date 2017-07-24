@@ -52,6 +52,13 @@ namespace IclartWebApp
          new { controller = "Client", action = "AddClient" }
           );
 
+            /* Competitor Management */
+
+            routes.MapRoute(
+                 "ManageCompetitors",
+                 "competitors",
+                 new { controller = "Competitor", action = "Index" }
+                  );
 
             routes.MapRoute(
                 name: "Default",

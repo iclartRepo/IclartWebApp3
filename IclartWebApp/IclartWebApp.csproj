@@ -203,6 +203,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\CompetitorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -223,6 +224,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClientViewModel.cs" />
+    <Compile Include="Models\CompetitorViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -244,6 +246,7 @@
     <Content Include="webpack.config.js" />
     <Content Include="webpack.helpers.js" />
     <Content Include="wwwroot\src\clientManagement\manageClients.component.html" />
+    <Content Include="wwwroot\src\competitorManagement\competitorAdmin.component.html" />
     <Content Include="wwwroot\src\loginManagement\manageLogins.component.html" />
     <Content Include="wwwroot\styles\bootstrap.min.css" />
     <Content Include="wwwroot\styles\font-awesome.css" />
@@ -325,6 +328,8 @@
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="wwwroot\styles\clientManagement\clientManagement.scss" />
     <Content Include="Views\Client\AddClient.cshtml" />
+    <Content Include="Views\Competitor\Index.cshtml" />
+    <Content Include="wwwroot\styles\competitorManagement\competitorManagement.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -341,12 +346,14 @@
     <TypeScriptCompile Include="wwwroot\js\polyfills.ts" />
     <TypeScriptCompile Include="wwwroot\js\vendor.ts" />
     <TypeScriptCompile Include="wwwroot\src\clientManagement\manageClients.component.ts" />
+    <TypeScriptCompile Include="wwwroot\src\competitorManagement\competitorAdmin.component.ts" />
     <TypeScriptCompile Include="wwwroot\src\interfaces\client.interface.ts" />
     <TypeScriptCompile Include="wwwroot\src\interfaces\messageResult.interface.ts" />
     <TypeScriptCompile Include="wwwroot\src\loginManagement\manageLogins.component.ts" />
     <TypeScriptCompile Include="wwwroot\src\app.module.ts" />
     <TypeScriptCompile Include="wwwroot\src\main.ts" />
     <TypeScriptCompile Include="wwwroot\src\services\account.service.ts" />
+    <TypeScriptCompile Include="wwwroot\src\services\competitor.service.ts" />
     <TypeScriptCompile Include="wwwroot\src\services\client.service.ts" />
   </ItemGroup>
   <ItemGroup>
