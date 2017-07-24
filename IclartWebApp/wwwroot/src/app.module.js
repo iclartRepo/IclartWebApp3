@@ -10,8 +10,10 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { ManageLoginComponent } from './loginManagement/manageLogins.component';
 import { ManageClientsComponent } from './clientManagement/manageClients.component';
+import { CompetitorAdminComponent } from './competitorManagement/competitorAdmin.component';
 import { AccountService } from './services/account.service';
 import { ClientService } from './services/client.service';
+import { CompetitorService } from './services/competitor.service';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -25,7 +27,11 @@ var AppModule = (function () {
             appRef.bootstrap(ManageClientsComponent);
         }
         catch (e) {
-            console.log(e);
+        }
+        try {
+            appRef.bootstrap(CompetitorAdminComponent);
+        }
+        catch (e) {
         }
     };
     return AppModule;
@@ -33,9 +39,9 @@ var AppModule = (function () {
 AppModule = __decorate([
     NgModule({
         imports: [BrowserModule, HttpModule, FormsModule],
-        declarations: [ManageLoginComponent, ManageClientsComponent],
-        entryComponents: [ManageLoginComponent, ManageClientsComponent],
-        providers: [AccountService, ClientService]
+        declarations: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent],
+        entryComponents: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent],
+        providers: [AccountService, ClientService, CompetitorService]
     })
 ], AppModule);
 export { AppModule };
