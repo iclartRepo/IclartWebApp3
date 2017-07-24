@@ -132,6 +132,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="TinyMapper, Version=2.0.0.40, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TinyMapper.2.0.8\lib\net45\TinyMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -198,8 +202,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\CompetitorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -212,8 +217,14 @@
     <Compile Include="Migrations\201707080954093_initial.Designer.cs">
       <DependentUpon>201707080954093_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707141330327_adjustedseed.cs" />
+    <Compile Include="Migrations\201707141330327_adjustedseed.Designer.cs">
+      <DependentUpon>201707141330327_adjustedseed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ClientViewModel.cs" />
+    <Compile Include="Models\CompetitorViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -234,10 +245,9 @@
     <Content Include="package.json" />
     <Content Include="webpack.config.js" />
     <Content Include="webpack.helpers.js" />
-    <Content Include="wwwroot\js\app.bundle.js" />
-    <Content Include="wwwroot\js\polyfills.bundle.js" />
-    <Content Include="wwwroot\js\vendor.bundle.js" />
-    <Content Include="wwwroot\src\app\app.component.html" />
+    <Content Include="wwwroot\src\clientManagement\manageClients.component.html" />
+    <Content Include="wwwroot\src\competitorManagement\competitorAdmin.component.html" />
+    <Content Include="wwwroot\src\loginManagement\manageLogins.component.html" />
     <Content Include="wwwroot\styles\bootstrap.min.css" />
     <Content Include="wwwroot\styles\font-awesome.css" />
     <Content Include="wwwroot\styles\fonts.css" />
@@ -306,10 +316,20 @@
     <Content Include="wwwroot\fonts\fontawesome-webfont.woff2" />
     <Content Include="wwwroot\fonts\FontAwesome.otf" />
     <Content Include="wwwroot\fonts\Lato-Regular.ttf" />
-    <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="wwwroot\styles\header.scss" />
     <Content Include="wwwroot\styles\login\login.component.scss" />
+    <Content Include="wwwroot\styles\forgotPassword\forgotPassword.scss" />
+    <Content Include="wwwroot\styles\resetPassword\resetPassword.scss" />
+    <Content Include="wwwroot\styles\changePassword\changePassword.scss" />
+    <Content Include="Views\Account\ManageAccount.cshtml" />
+    <Content Include="wwwroot\styles\accountManagement\accountManagement.scss" />
+    <Content Include="wwwroot\styles\registerAccount\registerAccount.scss" />
+    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="wwwroot\styles\clientManagement\clientManagement.scss" />
+    <Content Include="Views\Client\AddClient.cshtml" />
+    <Content Include="Views\Competitor\Index.cshtml" />
+    <Content Include="wwwroot\styles\competitorManagement\competitorManagement.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -325,9 +345,16 @@
   <ItemGroup>
     <TypeScriptCompile Include="wwwroot\js\polyfills.ts" />
     <TypeScriptCompile Include="wwwroot\js\vendor.ts" />
-    <TypeScriptCompile Include="wwwroot\src\app\app.component.ts" />
-    <TypeScriptCompile Include="wwwroot\src\app\app.module.ts" />
+    <TypeScriptCompile Include="wwwroot\src\clientManagement\manageClients.component.ts" />
+    <TypeScriptCompile Include="wwwroot\src\competitorManagement\competitorAdmin.component.ts" />
+    <TypeScriptCompile Include="wwwroot\src\interfaces\client.interface.ts" />
+    <TypeScriptCompile Include="wwwroot\src\interfaces\messageResult.interface.ts" />
+    <TypeScriptCompile Include="wwwroot\src\loginManagement\manageLogins.component.ts" />
+    <TypeScriptCompile Include="wwwroot\src\app.module.ts" />
     <TypeScriptCompile Include="wwwroot\src\main.ts" />
+    <TypeScriptCompile Include="wwwroot\src\services\account.service.ts" />
+    <TypeScriptCompile Include="wwwroot\src\services\competitor.service.ts" />
+    <TypeScriptCompile Include="wwwroot\src\services\client.service.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -339,6 +366,23 @@
     <EmbeddedResource Include="Migrations\201707080954093_initial.resx">
       <DependentUpon>201707080954093_initial.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707141330327_adjustedseed.resx">
+      <DependentUpon>201707141330327_adjustedseed.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IclartWebApp.BLL\IclartWebApp.BLL.csproj">
+      <Project>{B476ACD0-AB28-4297-A642-53263FE1051F}</Project>
+      <Name>IclartWebApp.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IclartWebApp.Common\IclartWebApp.Common.csproj">
+      <Project>{86404919-78A5-491D-86CD-2C46B48B9965}</Project>
+      <Name>IclartWebApp.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IclartWebApp.DAL\IclartWebApp.DAL.csproj">
+      <Project>{49761F94-9029-46CD-9A02-88BB476A1E64}</Project>
+      <Name>IclartWebApp.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

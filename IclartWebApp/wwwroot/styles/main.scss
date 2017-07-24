@@ -3,7 +3,20 @@
 @import "body.scss";
 @import "universal.scss";
 
+/*Account Management*/
+@import "registerAccount/registerAccount.scss";
 @import "login/login.component.scss";
+@import "forgotPassword/forgotPassword.scss";
+@import "resetPassword/resetPassword.scss";
+@import "changePassword/changePassword.scss";
+@import "accountManagement/accountManagement.scss";
+
+/*Client Management*/
+@import "clientManagement/clientManagement.scss";
+
+/*Competitor Management*/
+@import "competitorManagement/competitorManagement.scss";
+
 /*@import "wwwroot/src/clientLandingPage/clientList/clientList.component.scss";
 @import "wwwroot/src/clientLandingPage/clientForm/clientForm.component.scss";
 @import "wwwroot/src/clientLandingPage/viewClient/viewClient.component.scss";

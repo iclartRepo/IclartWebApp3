@@ -1,0 +1,58 @@
+﻿#clientList {
+    /*overflow-y: scroll;
+    height: 100vh;*/
+
+    .input-group {
+        width: 100%;
+    }
+    .add-client {
+        float: right;
+    }
+    .show-columns {        
+        float: left;
+       
+    }
+    .client-filter {
+        float: left;
+        width: 28%;
+    }
+    table {
+        .thead-name {
+            width:40%;
+        }
+    }
+       .header-fixed {
+        width: 100% 
+    }
+    .panel {
+        position:relative;
+        top: 50px;
+    }
+    .header-fixed > thead,
+    .header-fixed > tbody,
+    .header-fixed > thead > tr,
+    .header-fixed > tbody > tr,
+    .header-fixed > thead > tr > th,
+    .header-fixed > tbody > tr > td {
+        display: block;
+    }
+
+    .header-fixed > tbody > tr:after,
+    .header-fixed > thead > tr:after {
+        content: ' ';
+        display: block;
+        visibility: hidden;
+        clear: both;
+    }
+
+    .header-fixed > tbody {
+        overflow-y: auto;
+        height: 400px;
+    }
+
+    .header-fixed > tbody > tr > td,
+    .header-fixed > thead > tr > th {
+        width: 20%;
+        float: left;
+    }
+}
