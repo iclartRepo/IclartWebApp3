@@ -26111,13 +26111,11 @@ var AppModule = (function () {
             appRef.bootstrap(__WEBPACK_IMPORTED_MODULE_6__clientManagement_clientForm_clientForm_component__["a" /* ClientFormComponent */]);
         }
         catch (e) {
-            console.log(e);
         }
         try {
             appRef.bootstrap(__WEBPACK_IMPORTED_MODULE_8__clientManagement_clientDetails_clientDetails_component__["a" /* ClientViewComponent */]);
         }
         catch (e) {
-            console.log(e);
         }
     };
     return AppModule;
@@ -54146,7 +54144,6 @@ var ClientFormComponent = (function () {
         var _this = this;
         this.returnUrl = this.elementRef.nativeElement.getAttribute('returnurl');
         this.flagUpdate = this.elementRef.nativeElement.getAttribute('flag');
-        console.log(this.flagUpdate);
         if (this.flagUpdate == "true") {
             this.result = JSON.parse(this.elementRef.nativeElement.getAttribute('client'));
             this.client = this.result.Result;

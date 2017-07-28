@@ -215,7 +215,7 @@ export class ClientFormComponent implements OnInit {
         
         this.returnUrl = this.elementRef.nativeElement.getAttribute('returnurl');
         this.flagUpdate = this.elementRef.nativeElement.getAttribute('flag');
-        console.log(this.flagUpdate)
+
 
 
         if (this.flagUpdate == "true")

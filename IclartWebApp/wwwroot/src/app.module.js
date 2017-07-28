@@ -39,13 +39,11 @@ var AppModule = (function () {
             appRef.bootstrap(ClientFormComponent);
         }
         catch (e) {
-            console.log(e);
         }
         try {
             appRef.bootstrap(ClientViewComponent);
         }
         catch (e) {
-            console.log(e);
         }
     };
     return AppModule;

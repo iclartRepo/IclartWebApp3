@@ -49,13 +49,13 @@ export class AppModule {
             appRef.bootstrap(ClientFormComponent);
         }
         catch (e) {
-            console.log(e);
+       
         }  
         try {
             appRef.bootstrap(ClientViewComponent);
         }
         catch (e) {
-            console.log(e);
+      
         }          
       
     }

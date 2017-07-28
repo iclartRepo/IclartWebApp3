@@ -193,7 +193,6 @@ var ClientFormComponent = (function () {
         var _this = this;
         this.returnUrl = this.elementRef.nativeElement.getAttribute('returnurl');
         this.flagUpdate = this.elementRef.nativeElement.getAttribute('flag');
-        console.log(this.flagUpdate);
         if (this.flagUpdate == "true") {
             this.result = JSON.parse(this.elementRef.nativeElement.getAttribute('client'));
             this.client = this.result.Result;
