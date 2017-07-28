@@ -6,5 +6,5 @@
 @*<h1>@Request.UrlReferrer</h1>
 <h2>Add/Edit Client</h2>*@
 
-<client-form clientid ="0" returnurl="@Request.UrlReferrer"></client-form>
+<client-form clientid ="0" returnurl="@Request.UrlReferrer" flag="false" client="@Json.Encode(null).ToString()"></client-form>
 

@@ -17,12 +17,14 @@
             <li [class.active]="tabNum == 2"><a (click)="setTab(2)"><i class="fa fa-money" aria-hidden="true"></i> <span class="hidden-xs">Financial Info</span></a></li>
             <li [class.active]="tabNum == 3"><a (click)="setTab(3)"><i class="fa fa-arrow-down" aria-hidden="true"></i> <span class="hidden-xs">Discount Schemes</span></a></li>
         </ul>
-        <div class="client-form">
-            <form #clientForm="ngForm" novalidate>
-                <div class="clientForm-action-buttons">
-                    <a class="btn btn-default" href="{{returnUrl}}">Cancel</a>
-                    <button class="btn btn-success" type="submit" [disabled]="!clientForm.form.valid" (click)="addClient()">Save</button>
-                </div>
+        <form #clientForm="ngForm" novalidate>
+            <div class="clientForm-action-buttons">
+                <a class="btn btn-default" href="{{returnUrl}}">Cancel</a>
+                <button class="btn btn-success" type="submit" [disabled]="!clientForm.form.valid" (click)="addClient()">Save</button>
+            </div>
+            <div class="client-form">
+
+
                 <div [hidden]="tabNum != 1">
                     <div class="form-group client-name">
                         <div class="name">
@@ -177,7 +179,8 @@
                         </tbody>
                     </table>
                 </div>
-            </form>
-        </div>
+
+            </div>
+        </form>
     </div>
 </div>

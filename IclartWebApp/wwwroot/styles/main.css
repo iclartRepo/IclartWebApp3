@@ -282,16 +282,16 @@ body {
     left: 45%;
     top: 55px; }
   #clientForm .clientForm-action-buttons {
-    position: absolute;
-    right: 15px;
-    top: 95px; }
+    float: right;
+    position: relative;
+    top: -50px; }
   #clientForm .clientForm-group ul a {
     cursor: pointer; }
   #clientForm .clientForm-group .client-form {
     overflow-x: hidden;
     overflow-y: scroll;
     height: 75vh;
-    padding-top: 15px; }
+    width: 100%; }
   #clientForm .client-name {
     width: 100%; }
     #clientForm .client-name .name {

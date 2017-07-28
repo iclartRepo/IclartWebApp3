@@ -17,6 +17,7 @@ export class ClientFormComponent implements OnInit {
 
     }
     returnUrl: string;
+    flagUpdate: string;
     /* Competitor Discount Schemes Variables */
     competitorDiscountSchemes: any[] = [];
     competitorDs: any = {};
@@ -211,12 +212,25 @@ export class ClientFormComponent implements OnInit {
 
     /* Initialize */
     ngOnInit(): void {
-        this.result = JSON.parse(this.elementRef.nativeElement.getAttribute('client'));
+        
         this.returnUrl = this.elementRef.nativeElement.getAttribute('returnurl');
+        this.flagUpdate = this.elementRef.nativeElement.getAttribute('flag');
+        console.log(this.flagUpdate)
 
-     
-        this.client = this.result.Result;
-        this.clientId = this.client.Id;
+
+        if (this.flagUpdate == "true")
+        {
+           
+            this.result = JSON.parse(this.elementRef.nativeElement.getAttribute('client'));
+            this.client = this.result.Result;
+            this.clientId = this.client.Id;
+        }
+        else
+        {
+            this.clientId = 0;
+        }
+
+      
      
        
 
@@ -225,19 +239,23 @@ export class ClientFormComponent implements OnInit {
             result => {
                 this.resultCompetitors = result;
                 this.realListCompetitors = result.ResultList;
-                var dsSchemes: any[] = this.result.Result.CompetitorDiscountSchemes;
-                for (let entry of dsSchemes) {
-                    this.editForm[entry.CompetitorId] = false;
-                    this.editFormData[entry.CompetitorId] = entry.DiscountScheme;
-                    var ds: any = {
-                        "CompetitorId": entry.CompetitorId,
-                        "Name": entry.CompetitorEntity.Name,
-                        "DiscountScheme": entry.DiscountScheme,
-                        "Competitor": entry.CompetitorEntity
+                if (this.flagUpdate == "true")
+                {
+                    var dsSchemes: any[] = this.result.Result.CompetitorDiscountSchemes;
+                    for (let entry of dsSchemes) {
+                        this.editForm[entry.CompetitorId] = false;
+                        this.editFormData[entry.CompetitorId] = entry.DiscountScheme;
+                        var ds: any = {
+                            "CompetitorId": entry.CompetitorId,
+                            "Name": entry.CompetitorEntity.Name,
+                            "DiscountScheme": entry.DiscountScheme,
+                            "Competitor": entry.CompetitorEntity
+                        }
+                        this.competitorDiscountSchemes.push(ds);
+                        this.removeFromCompetitorList(entry.CompetitorId);
                     }
-                    this.competitorDiscountSchemes.push(ds);
-                    this.removeFromCompetitorList(entry.CompetitorId);
                 }
+               
             },
             error => this.errorMessage = <any>error);
     }

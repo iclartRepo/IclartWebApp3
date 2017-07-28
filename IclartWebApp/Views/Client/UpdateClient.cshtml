@@ -5,5 +5,5 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<client-form client="@Json.Encode(Model.ClientInfo).ToString()" returnurl="@Request.UrlReferrer"></client-form>
+<client-form client="@Json.Encode(Model.ClientInfo).ToString()" flag="true" returnurl="@Request.UrlReferrer"></client-form>
 

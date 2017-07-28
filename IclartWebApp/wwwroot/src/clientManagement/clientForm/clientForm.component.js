@@ -191,27 +191,36 @@ var ClientFormComponent = (function () {
     };
     ClientFormComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.result = JSON.parse(this.elementRef.nativeElement.getAttribute('client'));
         this.returnUrl = this.elementRef.nativeElement.getAttribute('returnurl');
-        this.client = this.result.Result;
-        this.clientId = this.client.Id;
+        this.flagUpdate = this.elementRef.nativeElement.getAttribute('flag');
+        console.log(this.flagUpdate);
+        if (this.flagUpdate == "true") {
+            this.result = JSON.parse(this.elementRef.nativeElement.getAttribute('client'));
+            this.client = this.result.Result;
+            this.clientId = this.client.Id;
+        }
+        else {
+            this.clientId = 0;
+        }
         this._adminService.getCompetitors()
             .subscribe(function (result) {
             _this.resultCompetitors = result;
             _this.realListCompetitors = result.ResultList;
-            var dsSchemes = _this.result.Result.CompetitorDiscountSchemes;
-            for (var _i = 0, dsSchemes_1 = dsSchemes; _i < dsSchemes_1.length; _i++) {
-                var entry = dsSchemes_1[_i];
-                _this.editForm[entry.CompetitorId] = false;
-                _this.editFormData[entry.CompetitorId] = entry.DiscountScheme;
-                var ds = {
-                    "CompetitorId": entry.CompetitorId,
-                    "Name": entry.CompetitorEntity.Name,
-                    "DiscountScheme": entry.DiscountScheme,
-                    "Competitor": entry.CompetitorEntity
-                };
-                _this.competitorDiscountSchemes.push(ds);
-                _this.removeFromCompetitorList(entry.CompetitorId);
+            if (_this.flagUpdate == "true") {
+                var dsSchemes = _this.result.Result.CompetitorDiscountSchemes;
+                for (var _i = 0, dsSchemes_1 = dsSchemes; _i < dsSchemes_1.length; _i++) {
+                    var entry = dsSchemes_1[_i];
+                    _this.editForm[entry.CompetitorId] = false;
+                    _this.editFormData[entry.CompetitorId] = entry.DiscountScheme;
+                    var ds = {
+                        "CompetitorId": entry.CompetitorId,
+                        "Name": entry.CompetitorEntity.Name,
+                        "DiscountScheme": entry.DiscountScheme,
+                        "Competitor": entry.CompetitorEntity
+                    };
+                    _this.competitorDiscountSchemes.push(ds);
+                    _this.removeFromCompetitorList(entry.CompetitorId);
+                }
             }
         }, function (error) { return _this.errorMessage = error; });
     };

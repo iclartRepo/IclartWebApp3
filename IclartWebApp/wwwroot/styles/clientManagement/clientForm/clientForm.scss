@@ -30,9 +30,9 @@
     }
     margin-top: -20px;
     .clientForm-action-buttons {
-        position:absolute;
-        right:15px;
-        top: 95px;
+       float:right;
+       position:relative;
+       top: -50px;
     }
     .clientForm-group {
         ul {
@@ -44,7 +44,7 @@
             overflow-x:hidden;
             overflow-y:scroll;
             height:75vh;
-            padding-top: 15px;
+            width: 100%;
         }
     }
     .client-name {
