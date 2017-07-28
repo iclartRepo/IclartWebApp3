@@ -1,0 +1,76 @@
+﻿#clientForm {
+    .nav-tabs {
+        li {
+            text-align:center;
+        }
+    }
+    .form-inline {
+        .form-group {
+            padding-right: 10px;
+        }
+    }
+    .table {
+        input {
+            width:10%;
+            text-align:right;
+        }
+    }
+    sup {
+        color:red;
+    }
+    small {
+        color:red;
+    }
+    .alert {
+        width:15%;
+        text-align:center;
+        position:absolute;
+        left:45%;
+        top:55px;
+    }
+    margin-top: -20px;
+    .clientForm-action-buttons {
+        position:absolute;
+        right:15px;
+        top: 95px;
+    }
+    .clientForm-group {
+        ul {
+            a {
+                cursor: pointer;
+            }
+        }
+        .client-form {
+            overflow-x:hidden;
+            overflow-y:scroll;
+            height:75vh;
+            padding-top: 15px;
+        }
+    }
+    .client-name {
+        width:100%;
+        .name {
+            width:30%;
+            display:inline-block;
+        }
+        .dealer {
+            text-align:center;
+            width:5%;
+            display:inline-block;
+        }
+        .agent {
+            text-align:center;
+            width:5%;
+            display:inline-block;
+        }
+    }
+    .client-form-pagination {
+        text-align:center;
+        width: 100%;
+        a {
+            color: black;
+            cursor: pointer;
+        }
+       
+    }
+}

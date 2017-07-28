@@ -245,6 +245,8 @@
     <Content Include="package.json" />
     <Content Include="webpack.config.js" />
     <Content Include="webpack.helpers.js" />
+    <Content Include="wwwroot\src\clientManagement\clientDetails\clientDetails.component.html" />
+    <Content Include="wwwroot\src\clientManagement\clientForm\clientForm.component.html" />
     <Content Include="wwwroot\src\clientManagement\manageClients.component.html" />
     <Content Include="wwwroot\src\competitorManagement\competitorAdmin.component.html" />
     <Content Include="wwwroot\src\loginManagement\manageLogins.component.html" />
@@ -330,6 +332,10 @@
     <Content Include="Views\Client\AddClient.cshtml" />
     <Content Include="Views\Competitor\Index.cshtml" />
     <Content Include="wwwroot\styles\competitorManagement\competitorManagement.scss" />
+    <Content Include="wwwroot\styles\clientManagement\clientForm\clientForm.scss" />
+    <Content Include="Views\Client\UpdateClient.cshtml" />
+    <Content Include="wwwroot\styles\clientManagement\clientDetails\clientDetails.scss" />
+    <Content Include="Views\Client\ViewClient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -345,6 +351,8 @@
   <ItemGroup>
     <TypeScriptCompile Include="wwwroot\js\polyfills.ts" />
     <TypeScriptCompile Include="wwwroot\js\vendor.ts" />
+    <TypeScriptCompile Include="wwwroot\src\clientManagement\clientDetails\clientDetails.component.ts" />
+    <TypeScriptCompile Include="wwwroot\src\clientManagement\clientForm\clientForm.component.ts" />
     <TypeScriptCompile Include="wwwroot\src\clientManagement\manageClients.component.ts" />
     <TypeScriptCompile Include="wwwroot\src\competitorManagement\competitorAdmin.component.ts" />
     <TypeScriptCompile Include="wwwroot\src\interfaces\client.interface.ts" />

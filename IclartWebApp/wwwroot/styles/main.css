@@ -223,6 +223,8 @@ body {
 #clientList {
   /*overflow-y: scroll;
     height: 100vh;*/ }
+  #clientList .modal-dialog {
+    left: 0px !important; }
   #clientList .input-group {
     width: 100%; }
   #clientList .add-client {
@@ -259,6 +261,69 @@ body {
   #clientList .header-fixed > thead > tr > th {
     width: 20%;
     float: left; }
+
+#clientForm {
+  margin-top: -20px; }
+  #clientForm .nav-tabs li {
+    text-align: center; }
+  #clientForm .form-inline .form-group {
+    padding-right: 10px; }
+  #clientForm .table input {
+    width: 10%;
+    text-align: right; }
+  #clientForm sup {
+    color: red; }
+  #clientForm small {
+    color: red; }
+  #clientForm .alert {
+    width: 15%;
+    text-align: center;
+    position: absolute;
+    left: 45%;
+    top: 55px; }
+  #clientForm .clientForm-action-buttons {
+    position: absolute;
+    right: 15px;
+    top: 95px; }
+  #clientForm .clientForm-group ul a {
+    cursor: pointer; }
+  #clientForm .clientForm-group .client-form {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 75vh;
+    padding-top: 15px; }
+  #clientForm .client-name {
+    width: 100%; }
+    #clientForm .client-name .name {
+      width: 30%;
+      display: inline-block; }
+    #clientForm .client-name .dealer {
+      text-align: center;
+      width: 5%;
+      display: inline-block; }
+    #clientForm .client-name .agent {
+      text-align: center;
+      width: 5%;
+      display: inline-block; }
+  #clientForm .client-form-pagination {
+    text-align: center;
+    width: 100%; }
+    #clientForm .client-form-pagination a {
+      color: black;
+      cursor: pointer; }
+
+#viewClient ul a {
+  cursor: pointer; }
+
+#viewClient .client-name {
+  display: inline-block;
+  padding-right: 10px; }
+
+#viewClient .edit-button {
+  display: inline-block; }
+
+#viewClient .panel-body table {
+  width: 55%; }
 
 /*Competitor Management*/
 #competitorAdmin .modal-dialog {

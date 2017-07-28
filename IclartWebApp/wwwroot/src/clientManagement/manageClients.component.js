@@ -50,6 +50,9 @@ var ManageClientsComponent = (function () {
             _this.clientName = "";
         }, function (error) { return _this.errorMessage = error; });
     };
+    ManageClientsComponent.prototype.setClient = function (id) {
+        this.clientToDelete = id;
+    };
     ManageClientsComponent.prototype.ngOnInit = function () {
         this.result = JSON.parse(this.elementRef.nativeElement.getAttribute('clients'));
     };
