@@ -1,4 +1,5 @@
-﻿using IclartWebApp.Common.Entities;
+﻿using IclartWebApp.BLL;
+using IclartWebApp.Common.Entities;
 using IclartWebApp.Common.Models;
 using IclartWebApp.DAL;
 using IclartWebApp.Models;
@@ -30,7 +31,29 @@ namespace IclartWebApp.Controllers
         {
             return View();
         }
+        public ActionResult ViewClient(int id)
+        {
+            var client = GetClientInfo(id) as JsonResult;
 
+            var clientModel = new ClientViewModel
+            {
+                ClientList = null,
+                ClientInfo = client.Data as MessageResult<ClientModel>
+            };
+
+            return View(clientModel);
+        }
+        public ActionResult UpdateClient(int id)
+        {
+            var client = GetClientInfo(id) as JsonResult;
+
+            var clientModel = new ClientViewModel
+            {
+                ClientList = null,
+                ClientInfo = client.Data as MessageResult<ClientModel>
+            };
+            return View(clientModel);
+        }
         /// <summary>
         /// Get List of All Clients
         /// </summary>
@@ -146,6 +169,105 @@ namespace IclartWebApp.Controllers
                     isError = true,
                     ResultList = null,
                     Message = "Some error occured. Please contact the administrator.",
+                    Result = null
+                };
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+        }
+        /// <summary>
+        /// Add Client to Database
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult AddClient(ClientFormModel client)
+        {
+            try
+            {
+                var clientBll = new ClientBLL();
+                clientBll.AddClient(client);
+                var message = new MessageResult<ClientModel>
+                {
+                    isError = false,
+                    ResultList = null,
+                    Message = "Client added successfully!",
+                    Result = null
+                };
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                var message = new MessageResult<ClientModel>
+                {
+                    isError = true,
+                    ResultList = null,
+                    Message = ex.Message,
+                    Result = null
+                };
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+        }
+        /// <summary>
+        /// Update Client in DB
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public ActionResult UpdateClient(ClientFormModel client)
+        {
+            try
+            {
+                var clientBll = new ClientBLL();
+                clientBll.UpdateClient(client);
+                var message = new MessageResult<ClientModel>
+                {
+                    isError = false,
+                    ResultList = null,
+                    Message = "Client updated successfully!",
+                    Result = null
+                };
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                var message = new MessageResult<ClientModel>
+                {
+                    isError = true,
+                    ResultList = null,
+                    Message = ex.Message,
+                    Result = null
+                };
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+        }
+        /// <summary>
+        /// Soft Delete a client using its ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public ActionResult DeleteClient(int id)
+        {
+            try
+            {
+                var clientBll = new ClientBLL();
+                clientBll.DeleteClient(id);
+                var message = new MessageResult<ClientModel>
+                {
+                    isError = false,
+                    ResultList = null,
+                    Message = "Client updated successfully!",
+                    Result = null
+                };
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                var message = new MessageResult<ClientModel>
+                {
+                    isError = true,
+                    ResultList = null,
+                    Message = ex.Message,
                     Result = null
                 };
                 return Json(message, JsonRequestBehavior.AllowGet);

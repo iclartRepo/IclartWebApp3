@@ -5,7 +5,9 @@ import { FormsModule } from '@angular/forms';
 
 import { ManageLoginComponent } from './loginManagement/manageLogins.component';
 import { ManageClientsComponent } from './clientManagement/manageClients.component';
+import { ClientFormComponent } from './clientManagement/clientForm/clientForm.component';
 import { CompetitorAdminComponent } from './competitorManagement/competitorAdmin.component';
+import { ClientViewComponent } from './clientManagement/clientDetails/clientDetails.component';
 
 import { AccountService } from './services/account.service';
 import { ClientService } from './services/client.service';
@@ -13,8 +15,8 @@ import { CompetitorService } from './services/competitor.service';
 
 @NgModule({
     imports: [BrowserModule, HttpModule, FormsModule],
-    declarations: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent],
-    entryComponents: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent],
+    declarations: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent],
+    entryComponents: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent],
     providers: [AccountService, ClientService, CompetitorService]
 })
 export class AppModule {
@@ -41,6 +43,19 @@ export class AppModule {
         }
         catch (e) {
          
+        }   
+
+        try {
+            appRef.bootstrap(ClientFormComponent);
+        }
+        catch (e) {
+       
+        }  
+        try {
+            appRef.bootstrap(ClientViewComponent);
+        }
+        catch (e) {
+      
         }          
       
     }

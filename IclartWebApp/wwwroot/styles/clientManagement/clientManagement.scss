@@ -1,7 +1,9 @@
 ﻿#clientList {
     /*overflow-y: scroll;
     height: 100vh;*/
-
+    .modal-dialog {
+        left: 0px !important;
+    }
     .input-group {
         width: 100%;
     }

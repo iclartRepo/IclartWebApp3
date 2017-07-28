@@ -9,5 +9,7 @@ namespace IclartWebApp.Models
     public class ClientViewModel
     {
         public MessageResult<ClientModel> ClientList { get; set; }
+
+        public MessageResult<ClientModel> ClientInfo { get; set; }
     }
 }

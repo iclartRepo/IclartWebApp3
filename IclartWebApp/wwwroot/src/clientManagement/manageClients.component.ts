@@ -52,7 +52,9 @@ export class ManageClientsComponent implements OnInit {
             },
             error => this.errorMessage = <any>error);
     }
-   
+    setClient(id: number): void {
+        this.clientToDelete = id;
+    }
     /* Initialize Functions */
     ngOnInit(): void {
         //this._clientService.getClients()

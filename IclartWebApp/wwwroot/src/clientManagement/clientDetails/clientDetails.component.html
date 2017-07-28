@@ -1,0 +1,128 @@
+﻿<div id="viewClient">
+    <div class="panel panel-primary" *ngIf="result.Result != null">
+        <div class="panel-heading">
+            <div class="client-name">
+                {{result.Result.Name}}
+            </div>
+            <div class="edit-button">
+                <a class="btn btn-default btn-sm" href="/updateclient/{{result.Result.Id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <div class="panel-body">
+            <ul class="nav nav-tabs">
+                <li [class.active]="tabNum == 1"><a (click)="setTab(1)"><i class="fa fa-info-circle" aria-hidden="true"></i> Client Info</a></li>
+                <li [class.active]="tabNum == 2"><a (click)="setTab(2)">Financial Info</a></li>
+                <li [class.active]="tabNum == 3"><a (click)="setTab(3)">Discount Schemes</a></li>
+            </ul>
+            <div [hidden]="tabNum != 1">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td>Dealer:</td>
+                            <td>{{result.Result.Dealer ? "Yes" : "No"}}</td>
+                        </tr>
+                        <tr>
+                            <td>Agent:</td>
+                            <td>{{result.Result.Agent}}</td>
+                        </tr>
+                        <tr>
+                            <td>TIN:</td>
+                            <td>{{result.Result.TIN}}</td>
+                        </tr>
+                        <tr>
+                            <td>Office Address:</td>
+                            <td>{{result.Result.Office_Address}} </td>
+                        </tr>
+                        <tr>
+                            <td>Warehouse Address:</td>
+                            <td>{{result.Result.Warehouse_Address}}</td>
+                        </tr>
+                        <tr>
+                            <td>Telephone Number:</td>
+                            <td>{{result.Result.Telephone_Number}}</td>
+                        </tr>
+                        <tr>
+                            <td>Fax Number:</td>
+                            <td>{{result.Result.Fax_Number}}</td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td>{{result.Result.Email}}</td>
+                        </tr>
+                        <tr>
+                            <td>Usual Ordered Item:</td>
+                            <td>{{result.Result.Usual_Ordered_Item}}</td>
+                        </tr>
+                        <tr>
+                            <td>Collection Period:</td>
+                            <td>{{result.Result.Collection_Period}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div [hidden]="tabNum != 2">
+                <table class="table table-borderless fin-table">
+                    <tbody>
+                        <tr>
+                            <td>Accounts Receivables:</td>
+                            <td>{{result.Result.Account_Receivables ? result.Result.Account_Receivables : 0 | number: '1.2-2'}}</td>
+                        </tr>
+                        <tr>
+                            <td>Credit Limit:</td>
+                            <td>{{result.Result.Credit_Limit | number: '1.2-2'}}</td>
+                        </tr>
+                        <tr>
+                            <td>Credit Terms:</td>
+                            <td>{{result.Result.Credit_Terms}}</td>
+                        </tr>
+                        <tr>
+                            <td>Discount Scheme (%):</td>
+                            <td>{{result.Result.Discount_Scheme}}% </td>
+                        </tr>
+                        <tr>
+                            <td>Contact Persons from Sales:</td>
+                            <td>{{result.Result.Contacts_Order}}</td>
+                        </tr>
+                        <tr>
+                            <td>Contact Persons from Accounting:</td>
+                            <td>{{result.Result.Contacts_Accounting}}</td>
+                        </tr>
+                        <tr>
+                            <td>Witholding Tax (%):</td>
+                            <td>{{result.Result.Witholding_Tax}}</td>
+                        </tr>
+                        <tr>
+                            <td>Round Off Payments:</td>
+                            <td>{{result.Result.Rounded_Payment ? "Yes" : "No"}}</td>
+                        </tr>
+                        <tr>
+                            <td>VAT Exempt:</td>
+                            <td>{{result.Result.Vat_Exemption ? "Yes" : "No"}}</td>
+                        </tr>
+                        <tr>
+                            <td>Combine Items in Invoice:</td>
+                            <td>{{result.Result.Combine_Items ? "Yes" : "No"}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div [hidden]="tabNum != 3">
+                <table class="table table-borderless fin-table">
+                    <tbody>
+                        <tr>
+                            <td>Company Discount Scheme (%):</td>
+                            <td>{{result.Result.Discount_Scheme}}% </td>
+                        </tr>
+                        <tr *ngFor="let discountScheme of result.Result.CompetitorDiscountSchemes">
+                            <td>{{discountScheme.CompetitorEntity.Name}}'s Discount Scheme (%):</td>
+                            <td>{{discountScheme.DiscountScheme}}%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="view-client-button">
+        <a class="btn btn-primary" href="{{returnUrl}}">Back</a>
+    </div>
+</div>

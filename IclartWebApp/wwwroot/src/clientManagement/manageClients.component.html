@@ -26,11 +26,11 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let client of result.ResultList">
-                        <td><a>{{client.Name}}</a></td>
+                        <td><a href="/viewclient/{{client.Id}}">{{client.Name}}</a></td>
                         <td>{{client.Telephone_Number}}</td>
                         <td>{{client.Email}}</td>
-                        <td><a class="btn btn-success btn-sm" ><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-                        <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                        <td><a class="btn btn-success btn-sm" href="/updateclient/{{client.Id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                        <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" (click)="setClient(client.Id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
                     </tr>
                 </tbody>
             </table>

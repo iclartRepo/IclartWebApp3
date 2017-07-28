@@ -1,0 +1,186 @@
+﻿<div id="clientForm">
+    <h3 class="clientForm-label">Add/Edit Client</h3>
+    <div class="alert alert-danger" *ngIf="result.isError">{{result.Message}}</div>
+    <div class="clientForm-group">
+        <ul class="nav nav-tabs">
+            <li [class.active]="tabNum == 1">
+                <a (click)="setTab(1)">
+                    <div class="inline-block">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </div>
+                    <div class="inline-block hidden-xs">
+                        <span class="">Client Info</span>
+                    </div>
+                  
+                </a>
+            </li>
+            <li [class.active]="tabNum == 2"><a (click)="setTab(2)"><i class="fa fa-money" aria-hidden="true"></i> <span class="hidden-xs">Financial Info</span></a></li>
+            <li [class.active]="tabNum == 3"><a (click)="setTab(3)"><i class="fa fa-arrow-down" aria-hidden="true"></i> <span class="hidden-xs">Discount Schemes</span></a></li>
+        </ul>
+        <form #clientForm="ngForm" novalidate>
+            <div class="clientForm-action-buttons">
+                <a class="btn btn-default" href="{{returnUrl}}">Cancel</a>
+                <button class="btn btn-success" type="submit" [disabled]="!clientForm.form.valid" (click)="addClient()">Save</button>
+            </div>
+            <div class="client-form">
+
+
+                <div [hidden]="tabNum != 1">
+                    <div class="form-group client-name">
+                        <div class="name">
+                            <label for="clientName">Client Name<sup>*</sup></label>
+                            <input type="text" id="name" class="form-control"
+                                   required
+                                   placeholder="Client Name"
+                                   name="name" [(ngModel)]="client.Name">
+                        </div>
+                        <div class="dealer">
+                            <label for="dealer">Dealer</label><br />
+                            <input type="checkbox" name="dealer" [(ngModel)]="client.Dealer" />
+                        </div><br />
+                        <small [hidden]="!formErrors.name">
+                            {{formErrors.name}}
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="agent">Agent</label>
+                        <input type="text" name="agent" class="form-control" placeholder="Agent" [(ngModel)]="client.Agent" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tin">TIN</label>
+                        <input type="text" name="tin" class="form-control" placeholder="TIN" [(ngModel)]="client.TIN" />
+                    </div>
+                    <div class="form-group">
+                        <label for="officeAddress">Office Address</label>
+                        <textarea name="officeAddress" class="form-control" rows="2" placeholder="Office Address" [(ngModel)]="client.Office_Address"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="warehouseAddress">Warehouse Address</label>
+                        <textarea name="warehouseAddress" class="form-control" rows="2" placeholder="Warehouse Address" [(ngModel)]="client.Warehouse_Address"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="telNumber">Telephone Number<sup>*</sup></label>
+                        <input type="text" name="telephoneNumber" required class="form-control" placeholder="Telephone Number" [(ngModel)]="client.Telephone_Number" />
+                        <small [hidden]="!formErrors.telephoneNumber">
+                            {{formErrors.telephoneNumber}}
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="faxNumber">Fax Number</label>
+                        <input type="text" name="faxNumber" class="form-control" placeholder="Fax Number" [(ngModel)]="client.Fax_Number" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="Email" [(ngModel)]="client.Email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="usualOrderedItem">Usual Ordered item</label>
+                        <input type="text" name="usual" class="form-control" placeholder="Usual Ordered Item" [(ngModel)]="client.Usual_Ordered_Item" />
+                    </div>
+                    <div class="form-group">
+                        <label for="collectionPeriod">Collection Period</label>
+                        <input type="text" name="collectionPeriod" class="form-control" placeholder="Collection Period" [(ngModel)]="client.Collection_Period" />
+                    </div>
+                </div>
+                <div [hidden]="tabNum != 2">
+                    <div class="form-group">
+                        <label for="creditLimit">Credit Limit<sup>*</sup></label>
+                        <input type="number" name="creditLimit" required class="form-control" placeholder="Credit Limit" [(ngModel)]="client.Credit_Limit" />
+                        <small [hidden]="!formErrors.creditLimit">
+                            {{formErrors.creditLimit}}
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="creditTerms">Credit Terms</label>
+                        <input type="text" name="creditTerms" class="form-control" placeholder="Credit Terms" [(ngModel)]="client.Credit_Terms" />
+                    </div>
+                    <div class="form-group">
+                        <label for="contactsOrder">Contact Persons from Sales<sup>*</sup></label>
+                        <input type="text" name="contactsOrder" required class="form-control" placeholder="Contact Persons from Sales" [(ngModel)]="client.Contacts_Order" />
+                        <small [hidden]="!formErrors.contactsOrder">
+                            {{formErrors.contactsOrder}}
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactsAcctng">Contact Persons from Accounting</label>
+                        <input type="text" name="contactsAcctng" class="form-control" placeholder="Contact Persons from Accounting" [(ngModel)]="client.Contacts_Accounting" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roundPayment">Round Off Payments</label>
+                        <input type="checkbox" name="roundPayment" [(ngModel)]="client.Rounded_Payment" />
+                    </div>
+                    <div class="form-group">
+                        <label for="witholdingTax">Witholding Tax (%)</label>
+                        <input type="number" name="witholdingTax" class="form-control" placeholder="Witholding Tax (%)" [(ngModel)]="client.Witholding_Tax" />
+                    </div>
+                    <div class="form-group">
+                        <label for="vatExemption">VAT Exempted</label>
+                        <input type="checkbox" name="vatExemption" [(ngModel)]="client.Vat_Exemption" />
+                    </div>
+                    <div class="form-group">
+                        <label for="combineItems">Combine Items in Invoice</label>
+                        <input type="checkbox" name="combineItems" [(ngModel)]="client.Combine_Items" />
+                    </div>
+                </div>
+                <div [hidden]="tabNum != 3">
+                    <div class="form-group">
+                        <label for="discountScheme">Discount Scheme (%)<sup>*</sup></label>
+                        <input type="number" name="discountScheme" required class="form-control" placeholder="Discount Scheme" [(ngModel)]="client.Discount_Scheme" />
+                        <small [hidden]="!formErrors.discountScheme">
+                            {{formErrors.discountScheme}}
+                        </small>
+                    </div>
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label for="exampleInputName2">Competitor: </label>
+                            <select [(ngModel)]="selectedCompetitor" name="competitorSelect" class="form-control">
+                                <option *ngFor="let competitor of resultCompetitors.ResultList" [ngValue]="competitor">
+                                    {{competitor.Name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail2">Discount Scheme: </label>
+                            <input type="number" name="dsCompetitor" [(ngModel)]="selectedDs" class="form-control" id="exampleInputEmail2" placeholder="Discount Scheme">
+                        </div>
+                        <button class="btn btn-primary" (click)="addCompetitorDS()" [disabled]="this.selectedCompetitor == null || this.selectedDs == null">Add Discount Scheme</button>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Competitor Name</th>
+                                <th>Discount Scheme</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let ds of competitorDiscountSchemes">
+                                <td>{{ds.Name}}</td>
+                                <td>
+                                    <div *ngIf="editForm[ds.CompetitorId] == false">
+                                        {{editFormData[ds.CompetitorId]}}%
+                                    </div>
+                                    <div *ngIf="editForm[ds.CompetitorId] == true">
+                                        <input type="text" class="form-control" [(ngModel)]="editFormData[ds.CompetitorId]" name="editForm" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div *ngIf="editForm[ds.CompetitorId] == false">
+                                        <button class="btn btn-success btn-sm" (click)="edit(ds.CompetitorId)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    </div>
+                                    <div *ngIf="editForm[ds.CompetitorId] == true">
+                                        <button class="btn btn-success btn-sm" (click)="updateDs(ds.CompetitorId)" [disabled]="editFormData[ds.CompetitorId] == null"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                    </div>
+                                </td>
+                                <td><button class="btn btn-danger btn-sm" (click)="deleteCompetitorDS(ds.CompetitorId, ds.Competitor)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

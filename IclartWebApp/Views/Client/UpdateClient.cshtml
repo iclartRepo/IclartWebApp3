@@ -1,0 +1,9 @@
+﻿@using IclartWebApp.Models
+@model ClientViewModel
+@{
+    ViewBag.Title = "Update Client";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<client-form client="@Json.Encode(Model.ClientInfo).ToString()" flag="true" returnurl="@Request.UrlReferrer"></client-form>
+

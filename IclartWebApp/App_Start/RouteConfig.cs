@@ -52,6 +52,18 @@ namespace IclartWebApp
          new { controller = "Client", action = "AddClient" }
           );
 
+            routes.MapRoute(
+    "UpdateClient",
+    "updateclient/{id}",
+    new { controller = "Client", action = "UpdateClient", id = UrlParameter.Optional }
+     );
+
+            routes.MapRoute(
+     "ViewClient",
+     "viewclient/{id}",
+     new { controller = "Client", action = "ViewClient", id = UrlParameter.Optional }
+      );
+
             /* Competitor Management */
 
             routes.MapRoute(

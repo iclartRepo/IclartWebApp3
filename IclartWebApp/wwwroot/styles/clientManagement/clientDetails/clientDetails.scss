@@ -1,0 +1,19 @@
+﻿#viewClient {
+     ul {
+         a {
+             cursor:pointer;
+           }
+     }  
+     .client-name {
+         display:inline-block;
+         padding-right:10px;
+     }
+     .edit-button {
+         display:inline-block;
+     }
+     .panel-body {
+         table {
+             width: 55%;
+         }
+     }
+}
