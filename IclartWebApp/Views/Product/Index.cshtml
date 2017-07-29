@@ -1,0 +1,37 @@
+﻿@using IclartWebApp.Models
+@model ProductViewModel
+@{
+    ViewBag.Title = "Product Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="mainProductPage">
+    <ul class="nav nav-pills">
+        @if (ViewBag.ViewProductId == 1)
+        {
+            <li class="active"><a>Product Categories</a></li>
+        }
+        else
+        {
+            <li><a href="/productadmin/1">Product Categories</a></li>
+        }
+        @if (ViewBag.ViewProductId == 2)
+        {
+            <li class="active"><a>Product List</a></li>
+        }
+        else
+        {
+            <li><a href="/productadmin/2">Product List</a></li>
+        }
+    </ul>
+    @if (ViewBag.ViewProductId == 1)
+    {
+        <div id="category">
+            <product-category categories="@Json.Encode(Model.ProductCategories).ToString()" returnurl="@Request.UrlReferrer"></product-category>
+        </div>
+    }
+
+    @*<div id="products">
+        <web-product-list></web-product-list>
+    </div>*@
+</div>

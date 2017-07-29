@@ -206,6 +206,7 @@
     <Compile Include="Controllers\CompetitorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -227,6 +228,7 @@
     <Compile Include="Models\CompetitorViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -250,6 +252,7 @@
     <Content Include="wwwroot\src\clientManagement\manageClients.component.html" />
     <Content Include="wwwroot\src\competitorManagement\competitorAdmin.component.html" />
     <Content Include="wwwroot\src\loginManagement\manageLogins.component.html" />
+    <Content Include="wwwroot\src\productManagement\productCategory\productCategory.component.html" />
     <Content Include="wwwroot\styles\bootstrap.min.css" />
     <Content Include="wwwroot\styles\font-awesome.css" />
     <Content Include="wwwroot\styles\fonts.css" />
@@ -336,6 +339,9 @@
     <Content Include="Views\Client\UpdateClient.cshtml" />
     <Content Include="wwwroot\styles\clientManagement\clientDetails\clientDetails.scss" />
     <Content Include="Views\Client\ViewClient.cshtml" />
+    <Content Include="wwwroot\styles\productManagement\productCategory\productCategory.scss" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="wwwroot\styles\productManagement\mainProductPage.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -360,9 +366,11 @@
     <TypeScriptCompile Include="wwwroot\src\loginManagement\manageLogins.component.ts" />
     <TypeScriptCompile Include="wwwroot\src\app.module.ts" />
     <TypeScriptCompile Include="wwwroot\src\main.ts" />
+    <TypeScriptCompile Include="wwwroot\src\productManagement\productCategory\productCategory.component.ts" />
     <TypeScriptCompile Include="wwwroot\src\services\account.service.ts" />
     <TypeScriptCompile Include="wwwroot\src\services\competitor.service.ts" />
     <TypeScriptCompile Include="wwwroot\src\services\client.service.ts" />
+    <TypeScriptCompile Include="wwwroot\src\services\product.service.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

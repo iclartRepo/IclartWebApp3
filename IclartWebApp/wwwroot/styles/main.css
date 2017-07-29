@@ -365,23 +365,43 @@ body {
   width: 33%;
   float: left; }
 
-/*@import "wwwroot/src/clientLandingPage/clientList/clientList.component.scss";
-@import "wwwroot/src/clientLandingPage/clientForm/clientForm.component.scss";
-@import "wwwroot/src/clientLandingPage/viewClient/viewClient.component.scss";
-@import "wwwroot/src/adminLandingPage/competitorAdmin/competitorAdmin.component.scss";
-@import "wwwroot/src/productLandingPage/mainProductPage/mainProductPage.component.scss";
-@import "wwwroot/src/productLandingPage/productCategory/productCategory.component.scss";
-@import "wwwroot/src/productLandingPage/productList/productList.component.scss";
-@import "wwwroot/src/productLandingPage/productForm/productForm.component.scss";
-@import "wwwroot/src/productLandingPage/viewProduct/viewProduct.component.scss";
-@import "wwwroot/src/login/login.component.scss";
-@import "wwwroot/src/accountManagement/accountLandingPage/account.component.scss";
-@import "wwwroot/src/accountManagement/rolesList/rolesList.component.scss";
-@import "wwwroot/src/accountManagement/accountRegisterForm/accountRegisterForm.component.scss";
-@import "wwwroot/src/accountManagement/accountChangePassword/accountChangePassword.component.scss";
-@import "wwwroot/src/accountManagement/accountForgotPassword/accountForgotPassword.component.scss";
-@import "wwwroot/src/accountManagement/accountResetPassword/accountResetPassword.component.scss";
-@import "wwwroot/src/accountManagement/accountResetExpired/accountResetExpired.component.scss";
-@import "wwwroot/src/sosLandingPage/sosList/sosList.component.scss";
-@import "wwwroot/src/sosLandingPage/sosForm/sosForm.component.scss";*/
+/*Product Management*/
+#productCategory .modal-dialog {
+  left: 0px !important; }
+
+#productCategory .productCategory-display {
+  display: inline-block;
+  margin-bottom: 10px; }
+
+#productCategory .header-fixed {
+  width: 100%; }
+
+#productCategory .header-fixed > thead,
+#productCategory .header-fixed > tbody,
+#productCategory .header-fixed > thead > tr,
+#productCategory .header-fixed > tbody > tr,
+#productCategory .header-fixed > thead > tr > th,
+#productCategory .header-fixed > tbody > tr > td {
+  display: block; }
+
+#productCategory .header-fixed > tbody > tr:after,
+#productCategory .header-fixed > thead > tr:after {
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  clear: both; }
+
+#productCategory .header-fixed > tbody {
+  overflow-y: auto;
+  height: 300px; }
+
+#productCategory .header-fixed > tbody > tr > td,
+#productCategory .header-fixed > thead > tr > th {
+  width: 33%;
+  float: left; }
+
+#mainProductPage ul {
+  margin-bottom: 15px; }
+  #mainProductPage ul a {
+    cursor: pointer; }
 
