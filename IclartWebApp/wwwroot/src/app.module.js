@@ -14,6 +14,7 @@ import { ClientFormComponent } from './clientManagement/clientForm/clientForm.co
 import { CompetitorAdminComponent } from './competitorManagement/competitorAdmin.component';
 import { ClientViewComponent } from './clientManagement/clientDetails/clientDetails.component';
 import { ProductCategoryComponent } from './productManagement/productCategory/productCategory.component';
+import { ProductListComponent } from './productManagement/productList/productList.component';
 import { AccountService } from './services/account.service';
 import { ClientService } from './services/client.service';
 import { CompetitorService } from './services/competitor.service';
@@ -52,14 +53,19 @@ var AppModule = (function () {
         }
         catch (e) {
         }
+        try {
+            appRef.bootstrap(ProductListComponent);
+        }
+        catch (e) {
+        }
     };
     return AppModule;
 }());
 AppModule = __decorate([
     NgModule({
         imports: [BrowserModule, HttpModule, FormsModule],
-        declarations: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent],
-        entryComponents: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent],
+        declarations: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent, ProductListComponent],
+        entryComponents: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent, ProductListComponent],
         providers: [AccountService, ClientService, CompetitorService, ProductService]
     })
 ], AppModule);

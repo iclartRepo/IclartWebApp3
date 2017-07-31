@@ -9,6 +9,7 @@ import { ClientFormComponent } from './clientManagement/clientForm/clientForm.co
 import { CompetitorAdminComponent } from './competitorManagement/competitorAdmin.component';
 import { ClientViewComponent } from './clientManagement/clientDetails/clientDetails.component';
 import { ProductCategoryComponent } from './productManagement/productCategory/productCategory.component';
+import { ProductListComponent } from './productManagement/productList/productList.component';
 
 import { AccountService } from './services/account.service';
 import { ClientService } from './services/client.service';
@@ -17,8 +18,8 @@ import { ProductService } from './services/product.service';
 
 @NgModule({
     imports: [BrowserModule, HttpModule, FormsModule],
-    declarations: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent],
-    entryComponents: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent],
+    declarations: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent, ProductListComponent],
+    entryComponents: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent, ProductListComponent],
     providers: [AccountService, ClientService, CompetitorService, ProductService]
 })
 export class AppModule {
@@ -62,6 +63,13 @@ export class AppModule {
 
         try {
             appRef.bootstrap(ProductCategoryComponent);
+        }
+        catch (e) {
+
+        }   
+
+        try {
+            appRef.bootstrap(ProductListComponent);
         }
         catch (e) {
 

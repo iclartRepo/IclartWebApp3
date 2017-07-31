@@ -405,3 +405,45 @@ body {
   #mainProductPage ul a {
     cursor: pointer; }
 
+#productList {
+  /*height:100vh;
+    overflow-y: scroll;*/ }
+  #productList .modal-dialog {
+    left: 0px !important; }
+  #productList .add-product {
+    float: right; }
+  #productList .product-filter {
+    float: left;
+    width: 50%; }
+    #productList .product-filter .input-group {
+      width: 56%; }
+  #productList .product-category-filter {
+    clear: both;
+    padding-top: 15px;
+    margin-bottom: 10px; }
+  #productList .inline-block label {
+    padding-left: 10px;
+    cursor: pointer; }
+  #productList .header-fixed {
+    width: 100%; }
+  #productList .header-fixed > thead,
+  #productList .header-fixed > tbody,
+  #productList .header-fixed > thead > tr,
+  #productList .header-fixed > tbody > tr,
+  #productList .header-fixed > thead > tr > th,
+  #productList .header-fixed > tbody > tr > td {
+    display: block; }
+  #productList .header-fixed > tbody > tr:after,
+  #productList .header-fixed > thead > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both; }
+  #productList .header-fixed > tbody {
+    overflow-y: auto;
+    height: 300px; }
+  #productList .header-fixed > tbody > tr > td,
+  #productList .header-fixed > thead > tr > th {
+    width: 25%;
+    float: left; }
+

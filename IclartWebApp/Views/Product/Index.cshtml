@@ -9,25 +9,31 @@
     <ul class="nav nav-pills">
         @if (ViewBag.ViewProductId == 1)
         {
-            <li class="active"><a>Product Categories</a></li>
-        }
-        else
-        {
-            <li><a href="/productadmin/1">Product Categories</a></li>
-        }
-        @if (ViewBag.ViewProductId == 2)
-        {
             <li class="active"><a>Product List</a></li>
         }
         else
         {
-            <li><a href="/productadmin/2">Product List</a></li>
+            <li><a href="/productadmin/1">Product List</a></li>
+        }
+        @if (ViewBag.ViewProductId == 2)
+        {
+            <li class="active"><a>Product Categories</a></li>
+        }
+        else
+        {
+            <li><a href="/productadmin/2">Product Categories</a></li>
         }
     </ul>
-    @if (ViewBag.ViewProductId == 1)
+    @if (ViewBag.ViewProductId == 2)
     {
         <div id="category">
             <product-category categories="@Json.Encode(Model.ProductCategories).ToString()" returnurl="@Request.UrlReferrer"></product-category>
+        </div>
+    }
+    @if (ViewBag.ViewProductId == 1)
+    {
+        <div id="products">
+            <product-list products="@Json.Encode(Model.Products).ToString()"></product-list>
         </div>
     }
 

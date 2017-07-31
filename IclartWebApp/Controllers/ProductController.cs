@@ -20,17 +20,23 @@ namespace IclartWebApp.Controllers
             ViewBag.ViewProductId = id;
             if (id == 1)
             {
+                var products = GetProducts() as JsonResult;
+
+                var productViewModel = new ProductViewModel
+                {
+                    Products = products.Data as MessageResult<ProductModel>
+                };
+                return View(productViewModel);
+              
+            }
+            else
+            {
                 var productCategories = GetProductCategories() as JsonResult;
 
                 var productViewModel = new ProductViewModel
                 {
                     ProductCategories = productCategories.Data as MessageResult<ProductCategoryModel>
                 };
-                return View(productViewModel);
-            }
-            else
-            {
-                var productViewModel = new ProductViewModel{};
                 return View(productViewModel);
             }
           

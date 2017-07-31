@@ -201,11 +201,11 @@ webpackJsonp([1],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_merge__ = __webpack_require__(438);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_merge__ = __webpack_require__(440);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_merge___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_merge__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share__ = __webpack_require__(445);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share__ = __webpack_require__(447);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__);
 
 /**
@@ -5910,7 +5910,7 @@ var SystemJsNgModuleLoader = (function () {
         if (exportName === undefined) {
             exportName = 'default';
         }
-        return __webpack_require__(128)(module)
+        return __webpack_require__(129)(module)
             .then(function (module) { return module[exportName]; })
             .then(function (type) { return checkNotEmpty(type, module, exportName); })
             .then(function (type) { return _this._compiler.compileModuleAsync(type); });
@@ -5926,7 +5926,7 @@ var SystemJsNgModuleLoader = (function () {
             exportName = 'default';
             factoryClassSuffix = '';
         }
-        return __webpack_require__(128)(this._config.factoryPathPrefix + module + this._config.factoryPathSuffix)
+        return __webpack_require__(129)(this._config.factoryPathPrefix + module + this._config.factoryPathSuffix)
             .then(function (module) { return module[exportName + factoryClassSuffix]; })
             .then(function (factory) { return checkNotEmpty(factory, module, exportName); });
     };
@@ -14995,7 +14995,7 @@ function transition$$1(stateChangeExpr, steps) {
 
 /***/ }),
 
-/***/ 123:
+/***/ 124:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15032,7 +15032,7 @@ exports.OuterSubscriber = OuterSubscriber;
 
 /***/ }),
 
-/***/ 124:
+/***/ 125:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15045,9 +15045,9 @@ var __extends = (this && this.__extends) || function (d, b) {
 var Observable_1 = __webpack_require__(8);
 var Subscriber_1 = __webpack_require__(47);
 var Subscription_1 = __webpack_require__(80);
-var ObjectUnsubscribedError_1 = __webpack_require__(447);
-var SubjectSubscription_1 = __webpack_require__(429);
-var rxSubscriber_1 = __webpack_require__(125);
+var ObjectUnsubscribedError_1 = __webpack_require__(449);
+var SubjectSubscription_1 = __webpack_require__(431);
+var rxSubscriber_1 = __webpack_require__(126);
 /**
  * @class SubjectSubscriber<T>
  */
@@ -15207,7 +15207,7 @@ exports.AnonymousSubject = AnonymousSubject;
 
 /***/ }),
 
-/***/ 125:
+/***/ 126:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15224,18 +15224,18 @@ exports.$$rxSubscriber = exports.rxSubscriber;
 
 /***/ }),
 
-/***/ 126:
+/***/ 127:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var root_1 = __webpack_require__(55);
-var isArrayLike_1 = __webpack_require__(449);
-var isPromise_1 = __webpack_require__(450);
+var isArrayLike_1 = __webpack_require__(451);
+var isPromise_1 = __webpack_require__(452);
 var isObject_1 = __webpack_require__(203);
 var Observable_1 = __webpack_require__(8);
-var iterator_1 = __webpack_require__(446);
-var InnerSubscriber_1 = __webpack_require__(428);
+var iterator_1 = __webpack_require__(448);
+var InnerSubscriber_1 = __webpack_require__(430);
 var observable_1 = __webpack_require__(199);
 function subscribeToResult(outerSubscriber, result, outerValue, outerIndex) {
     var destination = new InnerSubscriber_1.InnerSubscriber(outerSubscriber, outerValue, outerIndex);
@@ -15309,7 +15309,7 @@ exports.subscribeToResult = subscribeToResult;
 
 /***/ }),
 
-/***/ 127:
+/***/ 128:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19304,7 +19304,7 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["c" /* Version */]
 
 /***/ }),
 
-/***/ 128:
+/***/ 129:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -19313,11 +19313,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 128;
+webpackEmptyAsyncContext.id = 129;
 
 /***/ }),
 
-/***/ 129:
+/***/ 130:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19394,9 +19394,9 @@ webpackEmptyAsyncContext.id = 128;
 /* unused harmony export ɵr */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_forkJoin__ = __webpack_require__(436);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_forkJoin__ = __webpack_require__(438);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_forkJoin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_forkJoin__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_fromPromise__ = __webpack_require__(437);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_fromPromise__ = __webpack_require__(439);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_observable_fromPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_map__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operator_map__);
@@ -25421,7 +25421,7 @@ ReactiveFormsModule.ctorParameters = function () { return []; };
 
 /***/ }),
 
-/***/ 130:
+/***/ 131:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25524,127 +25524,6 @@ AccountService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* Injectable */])(),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]])
 ], AccountService);
-
-
-
-/***/ }),
-
-/***/ 131:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_observable_throw__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_observable_throw__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var ProductService = (function () {
-    function ProductService(_http) {
-        this._http = _http;
-        this.baseUrl = "/Product/";
-    }
-    ProductService.prototype.getProductCategories = function () {
-        return this._http.get(this.baseUrl + "GetProductCategories")
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    ProductService.prototype.getPrice = function (clientId, productId) {
-        return this._http.get(this.baseUrl + "GetPrice?clientId=" + clientId + "&productId=" + productId)
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    ProductService.prototype.addProductCategory = function (name) {
-        return this._http.post(this.baseUrl + "AddProductCategory", { name: name })
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
-            .catch(this.handleError);
-    };
-    ProductService.prototype.updateProductCategory = function (id, name) {
-        return this._http.put(this.baseUrl + "UpdateProductCategory", { id: id, name: name })
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
-            .catch(this.handleError);
-    };
-    ProductService.prototype.deleteProductCategory = function (id) {
-        return this._http.delete(this.baseUrl + "DeleteProductCategory?id=" + id)
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
-            .catch(this.handleError);
-    };
-    ProductService.prototype.getProducts = function () {
-        return this._http.get(this.baseUrl + "GetProducts")
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    ProductService.prototype.getProduct = function (id) {
-        return this._http.get(this.baseUrl + "GetProduct?id=" + id)
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    ProductService.prototype.searchProduct = function (name) {
-        return this._http.get(this.baseUrl + "SearchProduct?name=" + name)
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    ProductService.prototype.filterProducts = function (name) {
-        return this._http.get(this.baseUrl + "FilterProducts?name=" + name)
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    ProductService.prototype.addProduct = function (product) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
-        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: headers });
-        return this._http.post(this.baseUrl + "AddProduct", { newProduct: product }, options)
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
-            .catch(this.handleError);
-    };
-    ProductService.prototype.updateProduct = function (id, product) {
-        return this._http.put(this.baseUrl + "UpdateProduct", { id: id, product: product })
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
-            .catch(this.handleError);
-    };
-    ProductService.prototype.deleteProduct = function (id) {
-        return this._http.delete(this.baseUrl + "DeleteProduct?id=" + id)
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
-            .catch(this.handleError);
-    };
-    ProductService.prototype.handleError = function (error) {
-        console.error(error);
-        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].throw(error.json().error || 'Server error');
-    };
-    return ProductService;
-}());
-ProductService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]])
-], ProductService);
 
 
 
@@ -25952,7 +25831,7 @@ exports.isScheduler = isScheduler;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_compiler__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(67);
 
 /**
@@ -26132,23 +26011,25 @@ var platformBrowserDynamic = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__loginManagement_manageLogins_component__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__clientManagement_manageClients_component__ = __webpack_require__(235);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__clientManagement_clientForm_clientForm_component__ = __webpack_require__(234);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__competitorManagement_competitorAdmin_component__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__clientManagement_clientDetails_clientDetails_component__ = __webpack_require__(233);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__productManagement_productCategory_productCategory_component__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_account_service__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_client_service__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_competitor_service__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_product_service__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__productManagement_productList_productList_component__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_account_service__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_client_service__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_competitor_service__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_product_service__ = __webpack_require__(86);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -26197,15 +26078,20 @@ var AppModule = (function () {
         }
         catch (e) {
         }
+        try {
+            appRef.bootstrap(__WEBPACK_IMPORTED_MODULE_10__productManagement_productList_productList_component__["a" /* ProductListComponent */]);
+        }
+        catch (e) {
+        }
     };
     return AppModule;
 }());
 AppModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         imports: [__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* HttpModule */], __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormsModule */]],
-        declarations: [__WEBPACK_IMPORTED_MODULE_4__loginManagement_manageLogins_component__["a" /* ManageLoginComponent */], __WEBPACK_IMPORTED_MODULE_5__clientManagement_manageClients_component__["a" /* ManageClientsComponent */], __WEBPACK_IMPORTED_MODULE_7__competitorManagement_competitorAdmin_component__["a" /* CompetitorAdminComponent */], __WEBPACK_IMPORTED_MODULE_6__clientManagement_clientForm_clientForm_component__["a" /* ClientFormComponent */], __WEBPACK_IMPORTED_MODULE_8__clientManagement_clientDetails_clientDetails_component__["a" /* ClientViewComponent */], __WEBPACK_IMPORTED_MODULE_9__productManagement_productCategory_productCategory_component__["a" /* ProductCategoryComponent */]],
-        entryComponents: [__WEBPACK_IMPORTED_MODULE_4__loginManagement_manageLogins_component__["a" /* ManageLoginComponent */], __WEBPACK_IMPORTED_MODULE_5__clientManagement_manageClients_component__["a" /* ManageClientsComponent */], __WEBPACK_IMPORTED_MODULE_7__competitorManagement_competitorAdmin_component__["a" /* CompetitorAdminComponent */], __WEBPACK_IMPORTED_MODULE_6__clientManagement_clientForm_clientForm_component__["a" /* ClientFormComponent */], __WEBPACK_IMPORTED_MODULE_8__clientManagement_clientDetails_clientDetails_component__["a" /* ClientViewComponent */], __WEBPACK_IMPORTED_MODULE_9__productManagement_productCategory_productCategory_component__["a" /* ProductCategoryComponent */]],
-        providers: [__WEBPACK_IMPORTED_MODULE_10__services_account_service__["a" /* AccountService */], __WEBPACK_IMPORTED_MODULE_11__services_client_service__["a" /* ClientService */], __WEBPACK_IMPORTED_MODULE_12__services_competitor_service__["a" /* CompetitorService */], __WEBPACK_IMPORTED_MODULE_13__services_product_service__["a" /* ProductService */]]
+        declarations: [__WEBPACK_IMPORTED_MODULE_4__loginManagement_manageLogins_component__["a" /* ManageLoginComponent */], __WEBPACK_IMPORTED_MODULE_5__clientManagement_manageClients_component__["a" /* ManageClientsComponent */], __WEBPACK_IMPORTED_MODULE_7__competitorManagement_competitorAdmin_component__["a" /* CompetitorAdminComponent */], __WEBPACK_IMPORTED_MODULE_6__clientManagement_clientForm_clientForm_component__["a" /* ClientFormComponent */], __WEBPACK_IMPORTED_MODULE_8__clientManagement_clientDetails_clientDetails_component__["a" /* ClientViewComponent */], __WEBPACK_IMPORTED_MODULE_9__productManagement_productCategory_productCategory_component__["a" /* ProductCategoryComponent */], __WEBPACK_IMPORTED_MODULE_10__productManagement_productList_productList_component__["a" /* ProductListComponent */]],
+        entryComponents: [__WEBPACK_IMPORTED_MODULE_4__loginManagement_manageLogins_component__["a" /* ManageLoginComponent */], __WEBPACK_IMPORTED_MODULE_5__clientManagement_manageClients_component__["a" /* ManageClientsComponent */], __WEBPACK_IMPORTED_MODULE_7__competitorManagement_competitorAdmin_component__["a" /* CompetitorAdminComponent */], __WEBPACK_IMPORTED_MODULE_6__clientManagement_clientForm_clientForm_component__["a" /* ClientFormComponent */], __WEBPACK_IMPORTED_MODULE_8__clientManagement_clientDetails_clientDetails_component__["a" /* ClientViewComponent */], __WEBPACK_IMPORTED_MODULE_9__productManagement_productCategory_productCategory_component__["a" /* ProductCategoryComponent */], __WEBPACK_IMPORTED_MODULE_10__productManagement_productList_productList_component__["a" /* ProductListComponent */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_11__services_account_service__["a" /* AccountService */], __WEBPACK_IMPORTED_MODULE_12__services_client_service__["a" /* ClientService */], __WEBPACK_IMPORTED_MODULE_13__services_competitor_service__["a" /* CompetitorService */], __WEBPACK_IMPORTED_MODULE_14__services_product_service__["a" /* ProductService */]]
     })
 ], AppModule);
 
@@ -54011,7 +53897,7 @@ var ClientViewComponent = (function () {
 ClientViewComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Component */])({
         selector: 'client-details',
-        template: __webpack_require__(422)
+        template: __webpack_require__(423)
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_client_service__["a" /* ClientService */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* ElementRef */]])
 ], ClientViewComponent);
@@ -54026,7 +53912,7 @@ ClientViewComponent = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClientFormComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_client_service__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_competitor_service__ = __webpack_require__(85);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -54284,7 +54170,7 @@ __decorate([
 ClientFormComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Component */])({
         selector: 'client-form',
-        template: __webpack_require__(423)
+        template: __webpack_require__(424)
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_client_service__["a" /* ClientService */], __WEBPACK_IMPORTED_MODULE_3__services_competitor_service__["a" /* CompetitorService */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* ElementRef */]])
 ], ClientFormComponent);
@@ -54363,7 +54249,7 @@ var ManageClientsComponent = (function () {
 ManageClientsComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Component */])({
         selector: 'client-list',
-        template: __webpack_require__(424)
+        template: __webpack_require__(425)
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* ElementRef */], __WEBPACK_IMPORTED_MODULE_1__services_client_service__["a" /* ClientService */]])
 ], ManageClientsComponent);
@@ -54482,7 +54368,7 @@ var CompetitorAdminComponent = (function () {
 CompetitorAdminComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Component */])({
         selector: 'competitor-list',
-        template: __webpack_require__(425)
+        template: __webpack_require__(426)
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_competitor_service__["a" /* CompetitorService */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* ElementRef */]])
 ], CompetitorAdminComponent);
@@ -54497,7 +54383,7 @@ CompetitorAdminComponent = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ManageLoginComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_account_service__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_account_service__ = __webpack_require__(131);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -54562,7 +54448,7 @@ var ManageLoginComponent = (function () {
 ManageLoginComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Component */])({
         selector: 'login-accounts',
-        template: __webpack_require__(426)
+        template: __webpack_require__(427)
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* ElementRef */], __WEBPACK_IMPORTED_MODULE_1__services_account_service__["a" /* AccountService */]])
 ], ManageLoginComponent);
@@ -54596,7 +54482,7 @@ window.onload = function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductCategoryComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_product_service__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_product_service__ = __webpack_require__(86);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -54697,7 +54583,7 @@ var ProductCategoryComponent = (function () {
 ProductCategoryComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Component */])({
         selector: 'product-category',
-        template: __webpack_require__(427)
+        template: __webpack_require__(428)
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_product_service__["a" /* ProductService */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* ElementRef */]])
 ], ProductCategoryComponent);
@@ -54706,49 +54592,171 @@ ProductCategoryComponent = __decorate([
 
 /***/ }),
 
-/***/ 422:
-/***/ (function(module, exports) {
+/***/ 240:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<div id=\"viewClient\">\r\n    <div class=\"panel panel-primary\" *ngIf=\"result.Result != null\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"client-name\">\r\n                {{result.Result.Name}}\r\n            </div>\r\n            <div class=\"edit-button\">\r\n                <a class=\"btn btn-default btn-sm\" href=\"/updateclient/{{result.Result.Id}}\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></a>\r\n            </div>\r\n        </div>\r\n        <div class=\"panel-body\">\r\n            <ul class=\"nav nav-tabs\">\r\n                <li [class.active]=\"tabNum == 1\"><a (click)=\"setTab(1)\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> Client Info</a></li>\r\n                <li [class.active]=\"tabNum == 2\"><a (click)=\"setTab(2)\">Financial Info</a></li>\r\n                <li [class.active]=\"tabNum == 3\"><a (click)=\"setTab(3)\">Discount Schemes</a></li>\r\n            </ul>\r\n            <div [hidden]=\"tabNum != 1\">\r\n                <table class=\"table table-borderless\">\r\n                    <tbody>\r\n                        <tr>\r\n                            <td>Dealer:</td>\r\n                            <td>{{result.Result.Dealer ? \"Yes\" : \"No\"}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Agent:</td>\r\n                            <td>{{result.Result.Agent}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>TIN:</td>\r\n                            <td>{{result.Result.TIN}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Office Address:</td>\r\n                            <td>{{result.Result.Office_Address}} </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Warehouse Address:</td>\r\n                            <td>{{result.Result.Warehouse_Address}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Telephone Number:</td>\r\n                            <td>{{result.Result.Telephone_Number}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Fax Number:</td>\r\n                            <td>{{result.Result.Fax_Number}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Email:</td>\r\n                            <td>{{result.Result.Email}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Usual Ordered Item:</td>\r\n                            <td>{{result.Result.Usual_Ordered_Item}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Collection Period:</td>\r\n                            <td>{{result.Result.Collection_Period}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n            <div [hidden]=\"tabNum != 2\">\r\n                <table class=\"table table-borderless fin-table\">\r\n                    <tbody>\r\n                        <tr>\r\n                            <td>Accounts Receivables:</td>\r\n                            <td>{{result.Result.Account_Receivables ? result.Result.Account_Receivables : 0 | number: '1.2-2'}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Credit Limit:</td>\r\n                            <td>{{result.Result.Credit_Limit | number: '1.2-2'}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Credit Terms:</td>\r\n                            <td>{{result.Result.Credit_Terms}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Discount Scheme (%):</td>\r\n                            <td>{{result.Result.Discount_Scheme}}% </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Contact Persons from Sales:</td>\r\n                            <td>{{result.Result.Contacts_Order}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Contact Persons from Accounting:</td>\r\n                            <td>{{result.Result.Contacts_Accounting}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Witholding Tax (%):</td>\r\n                            <td>{{result.Result.Witholding_Tax}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Round Off Payments:</td>\r\n                            <td>{{result.Result.Rounded_Payment ? \"Yes\" : \"No\"}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>VAT Exempt:</td>\r\n                            <td>{{result.Result.Vat_Exemption ? \"Yes\" : \"No\"}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Combine Items in Invoice:</td>\r\n                            <td>{{result.Result.Combine_Items ? \"Yes\" : \"No\"}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n            <div [hidden]=\"tabNum != 3\">\r\n                <table class=\"table table-borderless fin-table\">\r\n                    <tbody>\r\n                        <tr>\r\n                            <td>Company Discount Scheme (%):</td>\r\n                            <td>{{result.Result.Discount_Scheme}}% </td>\r\n                        </tr>\r\n                        <tr *ngFor=\"let discountScheme of result.Result.CompetitorDiscountSchemes\">\r\n                            <td>{{discountScheme.CompetitorEntity.Name}}'s Discount Scheme (%):</td>\r\n                            <td>{{discountScheme.DiscountScheme}}%</td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"view-client-button\">\r\n        <a class=\"btn btn-primary\" href=\"{{returnUrl}}\">Back</a>\r\n    </div>\r\n</div>"
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductListComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_product_service__ = __webpack_require__(86);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ProductListComponent = (function () {
+    function ProductListComponent(_service, elementRef) {
+        this._service = _service;
+        this.elementRef = elementRef;
+        this.productName = "";
+        this.categoryFilter = "Select Product Category";
+        this.categories = [];
+        this.result = {
+            isError: false,
+            Result: null,
+            ResultList: null,
+            Message: ''
+        };
+        this.resultDeletion = {
+            isError: false,
+            Result: null,
+            ResultList: null,
+            Message: ''
+        };
+    }
+    ProductListComponent.prototype.searchProduct = function () {
+        var _this = this;
+        this.categoryFilter = "Select Product Category";
+        this._service.searchProduct(this.productName)
+            .subscribe(function (product) {
+            _this.result = product;
+            _this.productName = "";
+        }, function (error) { return _this.errorMessage = error; });
+    };
+    ProductListComponent.prototype.setProduct = function (id) {
+        this.productToDelete = id;
+    };
+    ProductListComponent.prototype.deleteProduct = function () {
+        var _this = this;
+        this._service.deleteProduct(this.productToDelete)
+            .subscribe(function (products) { _this.getProducts(); }, function (error) { return _this.errorMessage = error; });
+    };
+    ProductListComponent.prototype.getProducts = function () {
+        var _this = this;
+        this._service.getProducts()
+            .subscribe(function (products) { return _this.result = products; }, function (error) { return _this.errorMessage = error; });
+    };
+    ProductListComponent.prototype.clearFilter = function () {
+        this.categoryFilter = "Select Product Category";
+        this.getProducts();
+    };
+    ProductListComponent.prototype.filterProducts = function () {
+        var _this = this;
+        if (this.categoryFilter == "Select Product Category") {
+            this.getProducts();
+        }
+        else {
+            this._service.filterProducts(this.categoryFilter)
+                .subscribe(function (products) { return _this.result = products; }, function (error) { return _this.errorMessage = error; });
+        }
+    };
+    ProductListComponent.prototype.checkIfExists = function (name) {
+        if (this.categories.length == 0) {
+            return false;
+        }
+        else {
+            var exists = false;
+            for (var _i = 0, _a = this.categories; _i < _a.length; _i++) {
+                var entry = _a[_i];
+                if (entry == name) {
+                    exists = true;
+                }
+            }
+            return exists;
+        }
+    };
+    ProductListComponent.prototype.ngOnInit = function () {
+        this.result = JSON.parse(this.elementRef.nativeElement.getAttribute('products'));
+        if (this.result.ResultList != null) {
+            for (var _i = 0, _a = this.result.ResultList; _i < _a.length; _i++) {
+                var entry = _a[_i];
+                var exists = this.checkIfExists(entry.ProductCategory.Name);
+                if (exists == false) {
+                    this.categories.push(entry.ProductCategory.Name);
+                }
+            }
+        }
+    };
+    return ProductListComponent;
+}());
+ProductListComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Component */])({
+        selector: 'product-list',
+        template: __webpack_require__(429)
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_product_service__["a" /* ProductService */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* ElementRef */]])
+], ProductListComponent);
+
+
 
 /***/ }),
 
 /***/ 423:
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"clientForm\">\r\n    <h3 class=\"clientForm-label\">Add/Edit Client</h3>\r\n    <div class=\"alert alert-danger\" *ngIf=\"result.isError\">{{result.Message}}</div>\r\n    <div class=\"clientForm-group\">\r\n        <ul class=\"nav nav-tabs\">\r\n            <li [class.active]=\"tabNum == 1\">\r\n                <a (click)=\"setTab(1)\">\r\n                    <div class=\"inline-block\">\r\n                        <i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i>\r\n                    </div>\r\n                    <div class=\"inline-block hidden-xs\">\r\n                        <span class=\"\">Client Info</span>\r\n                    </div>\r\n                  \r\n                </a>\r\n            </li>\r\n            <li [class.active]=\"tabNum == 2\"><a (click)=\"setTab(2)\"><i class=\"fa fa-money\" aria-hidden=\"true\"></i> <span class=\"hidden-xs\">Financial Info</span></a></li>\r\n            <li [class.active]=\"tabNum == 3\"><a (click)=\"setTab(3)\"><i class=\"fa fa-arrow-down\" aria-hidden=\"true\"></i> <span class=\"hidden-xs\">Discount Schemes</span></a></li>\r\n        </ul>\r\n        <form #clientForm=\"ngForm\" novalidate>\r\n            <div class=\"clientForm-action-buttons\">\r\n                <a class=\"btn btn-default\" href=\"{{returnUrl}}\">Cancel</a>\r\n                <button class=\"btn btn-success\" type=\"submit\" [disabled]=\"!clientForm.form.valid\" (click)=\"addClient()\">Save</button>\r\n            </div>\r\n            <div class=\"client-form\">\r\n\r\n\r\n                <div [hidden]=\"tabNum != 1\">\r\n                    <div class=\"form-group client-name\">\r\n                        <div class=\"name\">\r\n                            <label for=\"clientName\">Client Name<sup>*</sup></label>\r\n                            <input type=\"text\" id=\"name\" class=\"form-control\"\r\n                                   required\r\n                                   placeholder=\"Client Name\"\r\n                                   name=\"name\" [(ngModel)]=\"client.Name\">\r\n                        </div>\r\n                        <div class=\"dealer\">\r\n                            <label for=\"dealer\">Dealer</label><br />\r\n                            <input type=\"checkbox\" name=\"dealer\" [(ngModel)]=\"client.Dealer\" />\r\n                        </div><br />\r\n                        <small [hidden]=\"!formErrors.name\">\r\n                            {{formErrors.name}}\r\n                        </small>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"agent\">Agent</label>\r\n                        <input type=\"text\" name=\"agent\" class=\"form-control\" placeholder=\"Agent\" [(ngModel)]=\"client.Agent\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"tin\">TIN</label>\r\n                        <input type=\"text\" name=\"tin\" class=\"form-control\" placeholder=\"TIN\" [(ngModel)]=\"client.TIN\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"officeAddress\">Office Address</label>\r\n                        <textarea name=\"officeAddress\" class=\"form-control\" rows=\"2\" placeholder=\"Office Address\" [(ngModel)]=\"client.Office_Address\"></textarea>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"warehouseAddress\">Warehouse Address</label>\r\n                        <textarea name=\"warehouseAddress\" class=\"form-control\" rows=\"2\" placeholder=\"Warehouse Address\" [(ngModel)]=\"client.Warehouse_Address\"></textarea>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"telNumber\">Telephone Number<sup>*</sup></label>\r\n                        <input type=\"text\" name=\"telephoneNumber\" required class=\"form-control\" placeholder=\"Telephone Number\" [(ngModel)]=\"client.Telephone_Number\" />\r\n                        <small [hidden]=\"!formErrors.telephoneNumber\">\r\n                            {{formErrors.telephoneNumber}}\r\n                        </small>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"faxNumber\">Fax Number</label>\r\n                        <input type=\"text\" name=\"faxNumber\" class=\"form-control\" placeholder=\"Fax Number\" [(ngModel)]=\"client.Fax_Number\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"email\">Email</label>\r\n                        <input type=\"email\" name=\"email\" class=\"form-control\" placeholder=\"Email\" [(ngModel)]=\"client.Email\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"usualOrderedItem\">Usual Ordered item</label>\r\n                        <input type=\"text\" name=\"usual\" class=\"form-control\" placeholder=\"Usual Ordered Item\" [(ngModel)]=\"client.Usual_Ordered_Item\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"collectionPeriod\">Collection Period</label>\r\n                        <input type=\"text\" name=\"collectionPeriod\" class=\"form-control\" placeholder=\"Collection Period\" [(ngModel)]=\"client.Collection_Period\" />\r\n                    </div>\r\n                </div>\r\n                <div [hidden]=\"tabNum != 2\">\r\n                    <div class=\"form-group\">\r\n                        <label for=\"creditLimit\">Credit Limit<sup>*</sup></label>\r\n                        <input type=\"number\" name=\"creditLimit\" required class=\"form-control\" placeholder=\"Credit Limit\" [(ngModel)]=\"client.Credit_Limit\" />\r\n                        <small [hidden]=\"!formErrors.creditLimit\">\r\n                            {{formErrors.creditLimit}}\r\n                        </small>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"creditTerms\">Credit Terms</label>\r\n                        <input type=\"text\" name=\"creditTerms\" class=\"form-control\" placeholder=\"Credit Terms\" [(ngModel)]=\"client.Credit_Terms\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"contactsOrder\">Contact Persons from Sales<sup>*</sup></label>\r\n                        <input type=\"text\" name=\"contactsOrder\" required class=\"form-control\" placeholder=\"Contact Persons from Sales\" [(ngModel)]=\"client.Contacts_Order\" />\r\n                        <small [hidden]=\"!formErrors.contactsOrder\">\r\n                            {{formErrors.contactsOrder}}\r\n                        </small>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"contactsAcctng\">Contact Persons from Accounting</label>\r\n                        <input type=\"text\" name=\"contactsAcctng\" class=\"form-control\" placeholder=\"Contact Persons from Accounting\" [(ngModel)]=\"client.Contacts_Accounting\" />\r\n                    </div>\r\n\r\n                    <div class=\"form-group\">\r\n                        <label for=\"roundPayment\">Round Off Payments</label>\r\n                        <input type=\"checkbox\" name=\"roundPayment\" [(ngModel)]=\"client.Rounded_Payment\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"witholdingTax\">Witholding Tax (%)</label>\r\n                        <input type=\"number\" name=\"witholdingTax\" class=\"form-control\" placeholder=\"Witholding Tax (%)\" [(ngModel)]=\"client.Witholding_Tax\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"vatExemption\">VAT Exempted</label>\r\n                        <input type=\"checkbox\" name=\"vatExemption\" [(ngModel)]=\"client.Vat_Exemption\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"combineItems\">Combine Items in Invoice</label>\r\n                        <input type=\"checkbox\" name=\"combineItems\" [(ngModel)]=\"client.Combine_Items\" />\r\n                    </div>\r\n                </div>\r\n                <div [hidden]=\"tabNum != 3\">\r\n                    <div class=\"form-group\">\r\n                        <label for=\"discountScheme\">Discount Scheme (%)<sup>*</sup></label>\r\n                        <input type=\"number\" name=\"discountScheme\" required class=\"form-control\" placeholder=\"Discount Scheme\" [(ngModel)]=\"client.Discount_Scheme\" />\r\n                        <small [hidden]=\"!formErrors.discountScheme\">\r\n                            {{formErrors.discountScheme}}\r\n                        </small>\r\n                    </div>\r\n                    <div class=\"form-inline\">\r\n                        <div class=\"form-group\">\r\n                            <label for=\"exampleInputName2\">Competitor: </label>\r\n                            <select [(ngModel)]=\"selectedCompetitor\" name=\"competitorSelect\" class=\"form-control\">\r\n                                <option *ngFor=\"let competitor of resultCompetitors.ResultList\" [ngValue]=\"competitor\">\r\n                                    {{competitor.Name}}\r\n                                </option>\r\n                            </select>\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"exampleInputEmail2\">Discount Scheme: </label>\r\n                            <input type=\"number\" name=\"dsCompetitor\" [(ngModel)]=\"selectedDs\" class=\"form-control\" id=\"exampleInputEmail2\" placeholder=\"Discount Scheme\">\r\n                        </div>\r\n                        <button class=\"btn btn-primary\" (click)=\"addCompetitorDS()\" [disabled]=\"this.selectedCompetitor == null || this.selectedDs == null\">Add Discount Scheme</button>\r\n                    </div>\r\n                    <table class=\"table\">\r\n                        <thead>\r\n                            <tr>\r\n                                <th>Competitor Name</th>\r\n                                <th>Discount Scheme</th>\r\n                                <th>Edit</th>\r\n                                <th>Delete</th>\r\n                            </tr>\r\n                        </thead>\r\n                        <tbody>\r\n                            <tr *ngFor=\"let ds of competitorDiscountSchemes\">\r\n                                <td>{{ds.Name}}</td>\r\n                                <td>\r\n                                    <div *ngIf=\"editForm[ds.CompetitorId] == false\">\r\n                                        {{editFormData[ds.CompetitorId]}}%\r\n                                    </div>\r\n                                    <div *ngIf=\"editForm[ds.CompetitorId] == true\">\r\n                                        <input type=\"text\" class=\"form-control\" [(ngModel)]=\"editFormData[ds.CompetitorId]\" name=\"editForm\" />\r\n                                    </div>\r\n                                </td>\r\n                                <td>\r\n                                    <div *ngIf=\"editForm[ds.CompetitorId] == false\">\r\n                                        <button class=\"btn btn-success btn-sm\" (click)=\"edit(ds.CompetitorId)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>\r\n                                    </div>\r\n                                    <div *ngIf=\"editForm[ds.CompetitorId] == true\">\r\n                                        <button class=\"btn btn-success btn-sm\" (click)=\"updateDs(ds.CompetitorId)\" [disabled]=\"editFormData[ds.CompetitorId] == null\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i></button>\r\n                                    </div>\r\n                                </td>\r\n                                <td><button class=\"btn btn-danger btn-sm\" (click)=\"deleteCompetitorDS(ds.CompetitorId, ds.Competitor)\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button></td>\r\n                            </tr>\r\n                        </tbody>\r\n                    </table>\r\n                </div>\r\n\r\n            </div>\r\n        </form>\r\n    </div>\r\n</div>"
+module.exports = "<div id=\"viewClient\">\r\n    <div class=\"panel panel-primary\" *ngIf=\"result.Result != null\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"client-name\">\r\n                {{result.Result.Name}}\r\n            </div>\r\n            <div class=\"edit-button\">\r\n                <a class=\"btn btn-default btn-sm\" href=\"/updateclient/{{result.Result.Id}}\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></a>\r\n            </div>\r\n        </div>\r\n        <div class=\"panel-body\">\r\n            <ul class=\"nav nav-tabs\">\r\n                <li [class.active]=\"tabNum == 1\"><a (click)=\"setTab(1)\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> Client Info</a></li>\r\n                <li [class.active]=\"tabNum == 2\"><a (click)=\"setTab(2)\">Financial Info</a></li>\r\n                <li [class.active]=\"tabNum == 3\"><a (click)=\"setTab(3)\">Discount Schemes</a></li>\r\n            </ul>\r\n            <div [hidden]=\"tabNum != 1\">\r\n                <table class=\"table table-borderless\">\r\n                    <tbody>\r\n                        <tr>\r\n                            <td>Dealer:</td>\r\n                            <td>{{result.Result.Dealer ? \"Yes\" : \"No\"}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Agent:</td>\r\n                            <td>{{result.Result.Agent}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>TIN:</td>\r\n                            <td>{{result.Result.TIN}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Office Address:</td>\r\n                            <td>{{result.Result.Office_Address}} </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Warehouse Address:</td>\r\n                            <td>{{result.Result.Warehouse_Address}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Telephone Number:</td>\r\n                            <td>{{result.Result.Telephone_Number}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Fax Number:</td>\r\n                            <td>{{result.Result.Fax_Number}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Email:</td>\r\n                            <td>{{result.Result.Email}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Usual Ordered Item:</td>\r\n                            <td>{{result.Result.Usual_Ordered_Item}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Collection Period:</td>\r\n                            <td>{{result.Result.Collection_Period}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n            <div [hidden]=\"tabNum != 2\">\r\n                <table class=\"table table-borderless fin-table\">\r\n                    <tbody>\r\n                        <tr>\r\n                            <td>Accounts Receivables:</td>\r\n                            <td>{{result.Result.Account_Receivables ? result.Result.Account_Receivables : 0 | number: '1.2-2'}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Credit Limit:</td>\r\n                            <td>{{result.Result.Credit_Limit | number: '1.2-2'}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Credit Terms:</td>\r\n                            <td>{{result.Result.Credit_Terms}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Discount Scheme (%):</td>\r\n                            <td>{{result.Result.Discount_Scheme}}% </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Contact Persons from Sales:</td>\r\n                            <td>{{result.Result.Contacts_Order}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Contact Persons from Accounting:</td>\r\n                            <td>{{result.Result.Contacts_Accounting}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Witholding Tax (%):</td>\r\n                            <td>{{result.Result.Witholding_Tax}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Round Off Payments:</td>\r\n                            <td>{{result.Result.Rounded_Payment ? \"Yes\" : \"No\"}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>VAT Exempt:</td>\r\n                            <td>{{result.Result.Vat_Exemption ? \"Yes\" : \"No\"}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>Combine Items in Invoice:</td>\r\n                            <td>{{result.Result.Combine_Items ? \"Yes\" : \"No\"}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n            <div [hidden]=\"tabNum != 3\">\r\n                <table class=\"table table-borderless fin-table\">\r\n                    <tbody>\r\n                        <tr>\r\n                            <td>Company Discount Scheme (%):</td>\r\n                            <td>{{result.Result.Discount_Scheme}}% </td>\r\n                        </tr>\r\n                        <tr *ngFor=\"let discountScheme of result.Result.CompetitorDiscountSchemes\">\r\n                            <td>{{discountScheme.CompetitorEntity.Name}}'s Discount Scheme (%):</td>\r\n                            <td>{{discountScheme.DiscountScheme}}%</td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"view-client-button\">\r\n        <a class=\"btn btn-primary\" href=\"{{returnUrl}}\">Back</a>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
 /***/ 424:
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"clientList\">\r\n    <div>\r\n        <div class=\"client-filter\">\r\n            <div class=\"input-group\">\r\n                <input type=\"text\" class=\"form-control\" placeholder=\"Search for client...\" [(ngModel)]=\"clientName\" (keyup.enter)=\"searchClient()\">\r\n                <span class=\"input-group-btn\">\r\n                    <button class=\"btn btn-primary\" type=\"button\" (click)=\"searchClient()\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\r\n                </span>\r\n            </div>\r\n        </div>\r\n        <div class=\"add-client\">\r\n            <a class=\"btn btn-primary\" href=\"/addclient\">Add Client</a>\r\n        </div>\r\n    </div>\r\n    <div class=\"panel panel-primary\">\r\n        <div class=\"panel-body\">\r\n            <table class=\"table table-responsive header-fixed\">\r\n                <thead>\r\n                    <tr>\r\n                        <th class=\"thead-name\">Name</th>\r\n                        <th>Telephone Number</th>\r\n                        <th>Email</th>\r\n                        <th>Edit</th>\r\n                        <th>Delete</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let client of result.ResultList\">\r\n                        <td><a href=\"/viewclient/{{client.Id}}\">{{client.Name}}</a></td>\r\n                        <td>{{client.Telephone_Number}}</td>\r\n                        <td>{{client.Email}}</td>\r\n                        <td><a class=\"btn btn-success btn-sm\" href=\"/updateclient/{{client.Id}}\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></a></td>\r\n                        <td><button class=\"btn btn-danger btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\" (click)=\"setClient(client.Id)\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n    <!-- Modal -->\r\n    <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Delete Confirmation</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <p>Are you sure you want to delete the selected item?</p>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\r\n                    <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\" (click)=\"deleteClient()\">Delete</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div id=\"clientForm\">\r\n    <h3 class=\"clientForm-label\">Add/Edit Client</h3>\r\n    <div class=\"alert alert-danger\" *ngIf=\"result.isError\">{{result.Message}}</div>\r\n    <div class=\"clientForm-group\">\r\n        <ul class=\"nav nav-tabs\">\r\n            <li [class.active]=\"tabNum == 1\">\r\n                <a (click)=\"setTab(1)\">\r\n                    <div class=\"inline-block\">\r\n                        <i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i>\r\n                    </div>\r\n                    <div class=\"inline-block hidden-xs\">\r\n                        <span class=\"\">Client Info</span>\r\n                    </div>\r\n                  \r\n                </a>\r\n            </li>\r\n            <li [class.active]=\"tabNum == 2\"><a (click)=\"setTab(2)\"><i class=\"fa fa-money\" aria-hidden=\"true\"></i> <span class=\"hidden-xs\">Financial Info</span></a></li>\r\n            <li [class.active]=\"tabNum == 3\"><a (click)=\"setTab(3)\"><i class=\"fa fa-arrow-down\" aria-hidden=\"true\"></i> <span class=\"hidden-xs\">Discount Schemes</span></a></li>\r\n        </ul>\r\n        <form #clientForm=\"ngForm\" novalidate>\r\n            <div class=\"clientForm-action-buttons\">\r\n                <a class=\"btn btn-default\" href=\"{{returnUrl}}\">Cancel</a>\r\n                <button class=\"btn btn-success\" type=\"submit\" [disabled]=\"!clientForm.form.valid\" (click)=\"addClient()\">Save</button>\r\n            </div>\r\n            <div class=\"client-form\">\r\n\r\n\r\n                <div [hidden]=\"tabNum != 1\">\r\n                    <div class=\"form-group client-name\">\r\n                        <div class=\"name\">\r\n                            <label for=\"clientName\">Client Name<sup>*</sup></label>\r\n                            <input type=\"text\" id=\"name\" class=\"form-control\"\r\n                                   required\r\n                                   placeholder=\"Client Name\"\r\n                                   name=\"name\" [(ngModel)]=\"client.Name\">\r\n                        </div>\r\n                        <div class=\"dealer\">\r\n                            <label for=\"dealer\">Dealer</label><br />\r\n                            <input type=\"checkbox\" name=\"dealer\" [(ngModel)]=\"client.Dealer\" />\r\n                        </div><br />\r\n                        <small [hidden]=\"!formErrors.name\">\r\n                            {{formErrors.name}}\r\n                        </small>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"agent\">Agent</label>\r\n                        <input type=\"text\" name=\"agent\" class=\"form-control\" placeholder=\"Agent\" [(ngModel)]=\"client.Agent\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"tin\">TIN</label>\r\n                        <input type=\"text\" name=\"tin\" class=\"form-control\" placeholder=\"TIN\" [(ngModel)]=\"client.TIN\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"officeAddress\">Office Address</label>\r\n                        <textarea name=\"officeAddress\" class=\"form-control\" rows=\"2\" placeholder=\"Office Address\" [(ngModel)]=\"client.Office_Address\"></textarea>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"warehouseAddress\">Warehouse Address</label>\r\n                        <textarea name=\"warehouseAddress\" class=\"form-control\" rows=\"2\" placeholder=\"Warehouse Address\" [(ngModel)]=\"client.Warehouse_Address\"></textarea>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"telNumber\">Telephone Number<sup>*</sup></label>\r\n                        <input type=\"text\" name=\"telephoneNumber\" required class=\"form-control\" placeholder=\"Telephone Number\" [(ngModel)]=\"client.Telephone_Number\" />\r\n                        <small [hidden]=\"!formErrors.telephoneNumber\">\r\n                            {{formErrors.telephoneNumber}}\r\n                        </small>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"faxNumber\">Fax Number</label>\r\n                        <input type=\"text\" name=\"faxNumber\" class=\"form-control\" placeholder=\"Fax Number\" [(ngModel)]=\"client.Fax_Number\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"email\">Email</label>\r\n                        <input type=\"email\" name=\"email\" class=\"form-control\" placeholder=\"Email\" [(ngModel)]=\"client.Email\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"usualOrderedItem\">Usual Ordered item</label>\r\n                        <input type=\"text\" name=\"usual\" class=\"form-control\" placeholder=\"Usual Ordered Item\" [(ngModel)]=\"client.Usual_Ordered_Item\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"collectionPeriod\">Collection Period</label>\r\n                        <input type=\"text\" name=\"collectionPeriod\" class=\"form-control\" placeholder=\"Collection Period\" [(ngModel)]=\"client.Collection_Period\" />\r\n                    </div>\r\n                </div>\r\n                <div [hidden]=\"tabNum != 2\">\r\n                    <div class=\"form-group\">\r\n                        <label for=\"creditLimit\">Credit Limit<sup>*</sup></label>\r\n                        <input type=\"number\" name=\"creditLimit\" required class=\"form-control\" placeholder=\"Credit Limit\" [(ngModel)]=\"client.Credit_Limit\" />\r\n                        <small [hidden]=\"!formErrors.creditLimit\">\r\n                            {{formErrors.creditLimit}}\r\n                        </small>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"creditTerms\">Credit Terms</label>\r\n                        <input type=\"text\" name=\"creditTerms\" class=\"form-control\" placeholder=\"Credit Terms\" [(ngModel)]=\"client.Credit_Terms\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"contactsOrder\">Contact Persons from Sales<sup>*</sup></label>\r\n                        <input type=\"text\" name=\"contactsOrder\" required class=\"form-control\" placeholder=\"Contact Persons from Sales\" [(ngModel)]=\"client.Contacts_Order\" />\r\n                        <small [hidden]=\"!formErrors.contactsOrder\">\r\n                            {{formErrors.contactsOrder}}\r\n                        </small>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"contactsAcctng\">Contact Persons from Accounting</label>\r\n                        <input type=\"text\" name=\"contactsAcctng\" class=\"form-control\" placeholder=\"Contact Persons from Accounting\" [(ngModel)]=\"client.Contacts_Accounting\" />\r\n                    </div>\r\n\r\n                    <div class=\"form-group\">\r\n                        <label for=\"roundPayment\">Round Off Payments</label>\r\n                        <input type=\"checkbox\" name=\"roundPayment\" [(ngModel)]=\"client.Rounded_Payment\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"witholdingTax\">Witholding Tax (%)</label>\r\n                        <input type=\"number\" name=\"witholdingTax\" class=\"form-control\" placeholder=\"Witholding Tax (%)\" [(ngModel)]=\"client.Witholding_Tax\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"vatExemption\">VAT Exempted</label>\r\n                        <input type=\"checkbox\" name=\"vatExemption\" [(ngModel)]=\"client.Vat_Exemption\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"combineItems\">Combine Items in Invoice</label>\r\n                        <input type=\"checkbox\" name=\"combineItems\" [(ngModel)]=\"client.Combine_Items\" />\r\n                    </div>\r\n                </div>\r\n                <div [hidden]=\"tabNum != 3\">\r\n                    <div class=\"form-group\">\r\n                        <label for=\"discountScheme\">Discount Scheme (%)<sup>*</sup></label>\r\n                        <input type=\"number\" name=\"discountScheme\" required class=\"form-control\" placeholder=\"Discount Scheme\" [(ngModel)]=\"client.Discount_Scheme\" />\r\n                        <small [hidden]=\"!formErrors.discountScheme\">\r\n                            {{formErrors.discountScheme}}\r\n                        </small>\r\n                    </div>\r\n                    <div class=\"form-inline\">\r\n                        <div class=\"form-group\">\r\n                            <label for=\"exampleInputName2\">Competitor: </label>\r\n                            <select [(ngModel)]=\"selectedCompetitor\" name=\"competitorSelect\" class=\"form-control\">\r\n                                <option *ngFor=\"let competitor of resultCompetitors.ResultList\" [ngValue]=\"competitor\">\r\n                                    {{competitor.Name}}\r\n                                </option>\r\n                            </select>\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"exampleInputEmail2\">Discount Scheme: </label>\r\n                            <input type=\"number\" name=\"dsCompetitor\" [(ngModel)]=\"selectedDs\" class=\"form-control\" id=\"exampleInputEmail2\" placeholder=\"Discount Scheme\">\r\n                        </div>\r\n                        <button class=\"btn btn-primary\" (click)=\"addCompetitorDS()\" [disabled]=\"this.selectedCompetitor == null || this.selectedDs == null\">Add Discount Scheme</button>\r\n                    </div>\r\n                    <table class=\"table\">\r\n                        <thead>\r\n                            <tr>\r\n                                <th>Competitor Name</th>\r\n                                <th>Discount Scheme</th>\r\n                                <th>Edit</th>\r\n                                <th>Delete</th>\r\n                            </tr>\r\n                        </thead>\r\n                        <tbody>\r\n                            <tr *ngFor=\"let ds of competitorDiscountSchemes\">\r\n                                <td>{{ds.Name}}</td>\r\n                                <td>\r\n                                    <div *ngIf=\"editForm[ds.CompetitorId] == false\">\r\n                                        {{editFormData[ds.CompetitorId]}}%\r\n                                    </div>\r\n                                    <div *ngIf=\"editForm[ds.CompetitorId] == true\">\r\n                                        <input type=\"text\" class=\"form-control\" [(ngModel)]=\"editFormData[ds.CompetitorId]\" name=\"editForm\" />\r\n                                    </div>\r\n                                </td>\r\n                                <td>\r\n                                    <div *ngIf=\"editForm[ds.CompetitorId] == false\">\r\n                                        <button class=\"btn btn-success btn-sm\" (click)=\"edit(ds.CompetitorId)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>\r\n                                    </div>\r\n                                    <div *ngIf=\"editForm[ds.CompetitorId] == true\">\r\n                                        <button class=\"btn btn-success btn-sm\" (click)=\"updateDs(ds.CompetitorId)\" [disabled]=\"editFormData[ds.CompetitorId] == null\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i></button>\r\n                                    </div>\r\n                                </td>\r\n                                <td><button class=\"btn btn-danger btn-sm\" (click)=\"deleteCompetitorDS(ds.CompetitorId, ds.Competitor)\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button></td>\r\n                            </tr>\r\n                        </tbody>\r\n                    </table>\r\n                </div>\r\n\r\n            </div>\r\n        </form>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
 /***/ 425:
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"competitorAdmin\">\r\n    <div class=\"alert alert-danger\" *ngIf=\"resultForm.isError\">{{resultForm.Message}}</div>\r\n    <div class=\"competitorAdmin-display\">\r\n        <label>New Competitor:</label>\r\n    </div>\r\n    <div class=\"competitorAdmin-display\">\r\n        <input type=\"text\" class=\"form-control\" [(ngModel)]=\"newCompetitor\" />\r\n    </div>\r\n    <div class=\"competitorAdmin-display\">\r\n        <button class=\"btn btn-primary\" (click)=\"addCompetitor()\" [disabled]=\"newCompetitor == ''\">Add Competitor</button>\r\n    </div>\r\n    <div class=\"competitorAdmin-table panel panel-primary\">\r\n        <div class=\"panel-body\">\r\n            <table class=\"table header-fixed\">\r\n                <thead>\r\n                    <tr>\r\n                        <th>Competitor Name</th>\r\n                        <th>Edit</th>\r\n                        <th>Delete</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let competitor of result.ResultList\">\r\n                        <td>\r\n                            <div *ngIf=\"editForm[competitor.Id] == false\">\r\n                                {{editFormData[competitor.Id]}}\r\n                            </div>\r\n                            <div *ngIf=\"editForm[competitor.Id] == true\">\r\n                                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"editFormData[competitor.Id]\" />\r\n                            </div>\r\n                        </td>\r\n                        <td>\r\n                            <div *ngIf=\"editForm[competitor.Id] == false\">\r\n                                <button class=\"btn btn-success btn-sm\" (click)=\"edit(competitor.Id)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>\r\n                            </div>\r\n                            <div *ngIf=\"editForm[competitor.Id] == true\">\r\n                                <button class=\"btn btn-success btn-sm\" [disabled]=\"editFormData[competitor.Id] == '' || checkIfExist(editFormData[competitor.Id], competitor.Id) == true\" (click)=\"updateCompetitor(competitor.Id)\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i></button>\r\n                            </div>\r\n                        </td>\r\n                        <td><button class=\"btn btn-danger btn-sm\" (click)=\"setCompetitor(competitor.Id)\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n    <!-- Modal -->\r\n    <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Delete Confirmation</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <p>Are you sure you want to delete the selected item?</p>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\r\n                    <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\" (click)=\"deleteCompetitor()\">Delete</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div id=\"clientList\">\r\n    <div>\r\n        <div class=\"client-filter\">\r\n            <div class=\"input-group\">\r\n                <input type=\"text\" class=\"form-control\" placeholder=\"Search for client...\" [(ngModel)]=\"clientName\" (keyup.enter)=\"searchClient()\">\r\n                <span class=\"input-group-btn\">\r\n                    <button class=\"btn btn-primary\" type=\"button\" (click)=\"searchClient()\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\r\n                </span>\r\n            </div>\r\n        </div>\r\n        <div class=\"add-client\">\r\n            <a class=\"btn btn-primary\" href=\"/addclient\">Add Client</a>\r\n        </div>\r\n    </div>\r\n    <div class=\"panel panel-primary\">\r\n        <div class=\"panel-body\">\r\n            <table class=\"table table-responsive header-fixed\">\r\n                <thead>\r\n                    <tr>\r\n                        <th class=\"thead-name\">Name</th>\r\n                        <th>Telephone Number</th>\r\n                        <th>Email</th>\r\n                        <th>Edit</th>\r\n                        <th>Delete</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let client of result.ResultList\">\r\n                        <td><a href=\"/viewclient/{{client.Id}}\">{{client.Name}}</a></td>\r\n                        <td>{{client.Telephone_Number}}</td>\r\n                        <td>{{client.Email}}</td>\r\n                        <td><a class=\"btn btn-success btn-sm\" href=\"/updateclient/{{client.Id}}\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></a></td>\r\n                        <td><button class=\"btn btn-danger btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\" (click)=\"setClient(client.Id)\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n    <!-- Modal -->\r\n    <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Delete Confirmation</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <p>Are you sure you want to delete the selected item?</p>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\r\n                    <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\" (click)=\"deleteClient()\">Delete</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
 /***/ 426:
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"accountLandingPage\">\r\n    <div>\r\n        <div class=\"account-filter\">\r\n            <div class=\"input-group\">\r\n                <input type=\"text\" class=\"form-control\" name=\"searchAccount\" placeholder=\"Search for account...\" [(ngModel)]=\"accountSearch\" (keyup.enter)=\"searchAccount()\">\r\n                <span class=\"input-group-btn\">\r\n                    <button class=\"btn btn-primary\" type=\"button\" (click)=\"searchAccount()\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\r\n                </span>\r\n            </div>\r\n        </div>\r\n        <div class=\"add-account\">\r\n            <a class=\"btn btn-primary\" href=\"/Account/Register\">Add Account</a>\r\n        </div>\r\n    </div>\r\n    <div class=\"accountLandingPage-table panel panel-primary\">\r\n        <div class=\"panel-body\">\r\n            <table class=\"table header-fixed\">\r\n                <thead>\r\n                    <tr>\r\n                        <th>User Accounts</th>\r\n                        <th>Delete</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let user of currentUsers\">\r\n                        <td>{{user}}</td>\r\n                        <td><button class=\"btn btn-danger btn-sm\" (click)=\"setUser(user)\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n    <!-- Modal -->\r\n    <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Delete Confirmation</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <p>Are you sure you want to delete the selected item?</p>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\r\n                    <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\" (click)=\"deleteAccount()\">Delete</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div id=\"competitorAdmin\">\r\n    <div class=\"alert alert-danger\" *ngIf=\"resultForm.isError\">{{resultForm.Message}}</div>\r\n    <div class=\"competitorAdmin-display\">\r\n        <label>New Competitor:</label>\r\n    </div>\r\n    <div class=\"competitorAdmin-display\">\r\n        <input type=\"text\" class=\"form-control\" [(ngModel)]=\"newCompetitor\" />\r\n    </div>\r\n    <div class=\"competitorAdmin-display\">\r\n        <button class=\"btn btn-primary\" (click)=\"addCompetitor()\" [disabled]=\"newCompetitor == ''\">Add Competitor</button>\r\n    </div>\r\n    <div class=\"competitorAdmin-table panel panel-primary\">\r\n        <div class=\"panel-body\">\r\n            <table class=\"table header-fixed\">\r\n                <thead>\r\n                    <tr>\r\n                        <th>Competitor Name</th>\r\n                        <th>Edit</th>\r\n                        <th>Delete</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let competitor of result.ResultList\">\r\n                        <td>\r\n                            <div *ngIf=\"editForm[competitor.Id] == false\">\r\n                                {{editFormData[competitor.Id]}}\r\n                            </div>\r\n                            <div *ngIf=\"editForm[competitor.Id] == true\">\r\n                                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"editFormData[competitor.Id]\" />\r\n                            </div>\r\n                        </td>\r\n                        <td>\r\n                            <div *ngIf=\"editForm[competitor.Id] == false\">\r\n                                <button class=\"btn btn-success btn-sm\" (click)=\"edit(competitor.Id)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>\r\n                            </div>\r\n                            <div *ngIf=\"editForm[competitor.Id] == true\">\r\n                                <button class=\"btn btn-success btn-sm\" [disabled]=\"editFormData[competitor.Id] == '' || checkIfExist(editFormData[competitor.Id], competitor.Id) == true\" (click)=\"updateCompetitor(competitor.Id)\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i></button>\r\n                            </div>\r\n                        </td>\r\n                        <td><button class=\"btn btn-danger btn-sm\" (click)=\"setCompetitor(competitor.Id)\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n    <!-- Modal -->\r\n    <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Delete Confirmation</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <p>Are you sure you want to delete the selected item?</p>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\r\n                    <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\" (click)=\"deleteCompetitor()\">Delete</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
 /***/ 427:
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"productCategory\">\r\n    <div class=\"productCategory-display\">\r\n        <label>New Product Category:</label>\r\n    </div>\r\n    <div class=\"productCategory-display\">\r\n        <input type=\"text\" class=\"form-control\" name=\"category\" [(ngModel)]=\"newCategory\" />\r\n    </div>\r\n    <div class=\"productCategory-display\">\r\n        <button class=\"btn btn-primary\" (click)=\"addCategory()\" [disabled]=\"newCategory == ''\">Add Product Category</button>\r\n    </div>\r\n    <div class=\"productCategory-display alert alert-danger\" *ngIf=\"resultForm.isError == true\">\r\n        {{resultForm.Message}}\r\n    </div>\r\n    <div class=\"productCategory-table panel panel-primary\">\r\n        <div class=\"panel-body\">\r\n            <table class=\"table header-fixed\">\r\n                <thead>\r\n                    <tr>\r\n                        <th>Product Category</th>\r\n                        <th>Edit</th>\r\n                        <th>Delete</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let category of result.ResultList\">\r\n                        <td>\r\n                            <div *ngIf=\"editForm[category.Id] == false\">\r\n                                {{editFormData[category.Id]}}\r\n                            </div>\r\n                            <div *ngIf=\"editForm[category.Id] == true\">\r\n                                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"editFormData[category.Id]\" />\r\n                            </div>\r\n                        </td>\r\n                        <td>\r\n                            <div *ngIf=\"editForm[category.Id] == false\">\r\n                                <button class=\"btn btn-success btn-sm\" (click)=\"edit(category.Id)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>\r\n                            </div>\r\n                            <div *ngIf=\"editForm[category.Id] == true\">\r\n                                <button class=\"btn btn-success btn-sm\" (click)=\"updateCategory(category.Id)\" [disabled]=\"editFormData[category.Id] == '' || checkIfExist(editFormData[category.Id], category.Id) == true\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i></button>\r\n                            </div>\r\n                        </td>\r\n                        <td><button class=\"btn btn-danger btn-sm\" (click)=\"setCategoryToDelete(category.Id)\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n    <!-- Modal -->\r\n    <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Delete Confirmation</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <p>Are you sure you want to delete the selected item?</p>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\r\n                    <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\" (click)=\"deleteProductCategory()\">Delete</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div id=\"accountLandingPage\">\r\n    <div>\r\n        <div class=\"account-filter\">\r\n            <div class=\"input-group\">\r\n                <input type=\"text\" class=\"form-control\" name=\"searchAccount\" placeholder=\"Search for account...\" [(ngModel)]=\"accountSearch\" (keyup.enter)=\"searchAccount()\">\r\n                <span class=\"input-group-btn\">\r\n                    <button class=\"btn btn-primary\" type=\"button\" (click)=\"searchAccount()\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\r\n                </span>\r\n            </div>\r\n        </div>\r\n        <div class=\"add-account\">\r\n            <a class=\"btn btn-primary\" href=\"/Account/Register\">Add Account</a>\r\n        </div>\r\n    </div>\r\n    <div class=\"accountLandingPage-table panel panel-primary\">\r\n        <div class=\"panel-body\">\r\n            <table class=\"table header-fixed\">\r\n                <thead>\r\n                    <tr>\r\n                        <th>User Accounts</th>\r\n                        <th>Delete</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let user of currentUsers\">\r\n                        <td>{{user}}</td>\r\n                        <td><button class=\"btn btn-danger btn-sm\" (click)=\"setUser(user)\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n    <!-- Modal -->\r\n    <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Delete Confirmation</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <p>Are you sure you want to delete the selected item?</p>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\r\n                    <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\" (click)=\"deleteAccount()\">Delete</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
 /***/ 428:
+/***/ (function(module, exports) {
+
+module.exports = "<div id=\"productCategory\">\r\n    <div class=\"productCategory-display\">\r\n        <label>New Product Category:</label>\r\n    </div>\r\n    <div class=\"productCategory-display\">\r\n        <input type=\"text\" class=\"form-control\" name=\"category\" [(ngModel)]=\"newCategory\" />\r\n    </div>\r\n    <div class=\"productCategory-display\">\r\n        <button class=\"btn btn-primary\" (click)=\"addCategory()\" [disabled]=\"newCategory == ''\">Add Product Category</button>\r\n    </div>\r\n    <div class=\"productCategory-display alert alert-danger\" *ngIf=\"resultForm.isError == true\">\r\n        {{resultForm.Message}}\r\n    </div>\r\n    <div class=\"productCategory-table panel panel-primary\">\r\n        <div class=\"panel-body\">\r\n            <table class=\"table header-fixed\">\r\n                <thead>\r\n                    <tr>\r\n                        <th>Product Category</th>\r\n                        <th>Edit</th>\r\n                        <th>Delete</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let category of result.ResultList\">\r\n                        <td>\r\n                            <div *ngIf=\"editForm[category.Id] == false\">\r\n                                {{editFormData[category.Id]}}\r\n                            </div>\r\n                            <div *ngIf=\"editForm[category.Id] == true\">\r\n                                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"editFormData[category.Id]\" />\r\n                            </div>\r\n                        </td>\r\n                        <td>\r\n                            <div *ngIf=\"editForm[category.Id] == false\">\r\n                                <button class=\"btn btn-success btn-sm\" (click)=\"edit(category.Id)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>\r\n                            </div>\r\n                            <div *ngIf=\"editForm[category.Id] == true\">\r\n                                <button class=\"btn btn-success btn-sm\" (click)=\"updateCategory(category.Id)\" [disabled]=\"editFormData[category.Id] == '' || checkIfExist(editFormData[category.Id], category.Id) == true\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i></button>\r\n                            </div>\r\n                        </td>\r\n                        <td><button class=\"btn btn-danger btn-sm\" (click)=\"setCategoryToDelete(category.Id)\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n    <!-- Modal -->\r\n    <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Delete Confirmation</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <p>Are you sure you want to delete the selected item?</p>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\r\n                    <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\" (click)=\"deleteProductCategory()\">Delete</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>"
+
+/***/ }),
+
+/***/ 429:
+/***/ (function(module, exports) {
+
+module.exports = "<div id=\"productList\">\r\n    <div class=\"product-filter\">\r\n        <div class=\"input-group\">\r\n            <input type=\"text\" class=\"form-control\" name=\"productName\" placeholder=\"Search for product...\" [(ngModel)]=\"productName\" (keyup.enter)=\"searchProduct()\">\r\n            <span class=\"input-group-btn\">\r\n                <button class=\"btn btn-primary\" type=\"button\" (click)=\"searchProduct()\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\r\n            </span>\r\n        </div>\r\n    </div>\r\n    <div class=\"add-product\">\r\n        <a class=\"btn btn-primary\">Add Product</a>\r\n    </div>\r\n    <div class=\"product-category-filter\">\r\n        <div class=\"inline-block\">\r\n            Filter:\r\n        </div>\r\n        <div class=\"inline-block\">\r\n            <select [(ngModel)]=\"categoryFilter\" name=\"productCategoryFilter\" class=\"form-control\" (ngModelChange)=\"filterProducts()\">\r\n                <option disabled>Select Product Category</option>\r\n                <option *ngFor=\"let category of categories\" [ngValue]=\"category\">\r\n                    {{category}}\r\n                </option>\r\n            </select>\r\n        </div>\r\n        <div class=\"inline-block\" *ngIf=\"categoryFilter != 'Select Product Category'\">\r\n            <label (click)=\"clearFilter()\">Clear Filter</label>\r\n        </div>\r\n    </div>\r\n    <div class=\"panel panel-primary\">\r\n        <div class=\"panel-body\">\r\n            <table class=\"table  table-responsive header-fixed\">\r\n                <thead>\r\n                    <tr>\r\n                        <th class=\"thead-name\">Name</th>\r\n                        <th>Product Category</th>\r\n                        <th>Edit</th>\r\n                        <th>Delete</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let product of result.ResultList\">\r\n                        <td><a>{{product.Name}}</a></td>\r\n                        <td>{{product.ProductCategory.Name}}</td>\r\n                        <td><a class=\"btn btn-success btn-sm\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></a></td>\r\n                        <td><button class=\"btn btn-danger btn-sm\" (click)=\"setProduct(product.Id)\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n    <!-- Modal -->\r\n    <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Delete Confirmation</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <p>Are you sure you want to delete the selected item?</p>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\r\n                    <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\" (click)=\"deleteProduct()\">Delete</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>"
+
+/***/ }),
+
+/***/ 430:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54791,7 +54799,7 @@ exports.InnerSubscriber = InnerSubscriber;
 
 /***/ }),
 
-/***/ 429:
+/***/ 431:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54838,7 +54846,7 @@ exports.SubjectSubscription = SubjectSubscription;
 
 /***/ }),
 
-/***/ 430:
+/***/ 432:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54849,7 +54857,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(8);
-var ScalarObservable_1 = __webpack_require__(435);
+var ScalarObservable_1 = __webpack_require__(437);
 var EmptyObservable_1 = __webpack_require__(197);
 var isScheduler_1 = __webpack_require__(204);
 /**
@@ -54967,7 +54975,7 @@ exports.ArrayObservable = ArrayObservable;
 
 /***/ }),
 
-/***/ 431:
+/***/ 433:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54977,7 +54985,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(124);
+var Subject_1 = __webpack_require__(125);
 var Observable_1 = __webpack_require__(8);
 var Subscriber_1 = __webpack_require__(47);
 var Subscription_1 = __webpack_require__(80);
@@ -55138,7 +55146,7 @@ var RefCountSubscriber = (function (_super) {
 
 /***/ }),
 
-/***/ 432:
+/***/ 434:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55227,7 +55235,7 @@ exports.ErrorObservable = ErrorObservable;
 
 /***/ }),
 
-/***/ 433:
+/***/ 435:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55240,8 +55248,8 @@ var __extends = (this && this.__extends) || function (d, b) {
 var Observable_1 = __webpack_require__(8);
 var EmptyObservable_1 = __webpack_require__(197);
 var isArray_1 = __webpack_require__(201);
-var subscribeToResult_1 = __webpack_require__(126);
-var OuterSubscriber_1 = __webpack_require__(123);
+var subscribeToResult_1 = __webpack_require__(127);
+var OuterSubscriber_1 = __webpack_require__(124);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -55346,7 +55354,7 @@ var ForkJoinSubscriber = (function (_super) {
 
 /***/ }),
 
-/***/ 434:
+/***/ 436:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55474,7 +55482,7 @@ function dispatchError(arg) {
 
 /***/ }),
 
-/***/ 435:
+/***/ 437:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55539,36 +55547,14 @@ exports.ScalarObservable = ScalarObservable;
 
 /***/ }),
 
-/***/ 436:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var ForkJoinObservable_1 = __webpack_require__(433);
-exports.forkJoin = ForkJoinObservable_1.ForkJoinObservable.create;
-//# sourceMappingURL=forkJoin.js.map
-
-/***/ }),
-
-/***/ 437:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var PromiseObservable_1 = __webpack_require__(434);
-exports.fromPromise = PromiseObservable_1.PromiseObservable.create;
-//# sourceMappingURL=fromPromise.js.map
-
-/***/ }),
-
 /***/ 438:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var merge_1 = __webpack_require__(442);
-exports.merge = merge_1.mergeStatic;
-//# sourceMappingURL=merge.js.map
+var ForkJoinObservable_1 = __webpack_require__(435);
+exports.forkJoin = ForkJoinObservable_1.ForkJoinObservable.create;
+//# sourceMappingURL=forkJoin.js.map
 
 /***/ }),
 
@@ -55577,13 +55563,35 @@ exports.merge = merge_1.mergeStatic;
 
 "use strict";
 
-var ErrorObservable_1 = __webpack_require__(432);
+var PromiseObservable_1 = __webpack_require__(436);
+exports.fromPromise = PromiseObservable_1.PromiseObservable.create;
+//# sourceMappingURL=fromPromise.js.map
+
+/***/ }),
+
+/***/ 440:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var merge_1 = __webpack_require__(444);
+exports.merge = merge_1.mergeStatic;
+//# sourceMappingURL=merge.js.map
+
+/***/ }),
+
+/***/ 441:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var ErrorObservable_1 = __webpack_require__(434);
 exports._throw = ErrorObservable_1.ErrorObservable.create;
 //# sourceMappingURL=throw.js.map
 
 /***/ }),
 
-/***/ 440:
+/***/ 442:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55593,8 +55601,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var OuterSubscriber_1 = __webpack_require__(123);
-var subscribeToResult_1 = __webpack_require__(126);
+var OuterSubscriber_1 = __webpack_require__(124);
+var subscribeToResult_1 = __webpack_require__(127);
 /**
  * Catches errors on the observable to be handled by returning a new observable or throwing an error.
  *
@@ -55706,7 +55714,7 @@ var CatchSubscriber = (function (_super) {
 
 /***/ }),
 
-/***/ 441:
+/***/ 443:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55826,14 +55834,14 @@ var DoSubscriber = (function (_super) {
 
 /***/ }),
 
-/***/ 442:
+/***/ 444:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(8);
-var ArrayObservable_1 = __webpack_require__(430);
-var mergeAll_1 = __webpack_require__(443);
+var ArrayObservable_1 = __webpack_require__(432);
+var mergeAll_1 = __webpack_require__(445);
 var isScheduler_1 = __webpack_require__(204);
 /* tslint:enable:max-line-length */
 /**
@@ -55978,7 +55986,7 @@ exports.mergeStatic = mergeStatic;
 
 /***/ }),
 
-/***/ 443:
+/***/ 445:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55988,8 +55996,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var OuterSubscriber_1 = __webpack_require__(123);
-var subscribeToResult_1 = __webpack_require__(126);
+var OuterSubscriber_1 = __webpack_require__(124);
+var subscribeToResult_1 = __webpack_require__(127);
 /**
  * Converts a higher-order Observable into a first-order Observable which
  * concurrently delivers all values that are emitted on the inner Observables.
@@ -56096,12 +56104,12 @@ exports.MergeAllSubscriber = MergeAllSubscriber;
 
 /***/ }),
 
-/***/ 444:
+/***/ 446:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ConnectableObservable_1 = __webpack_require__(431);
+var ConnectableObservable_1 = __webpack_require__(433);
 /* tslint:enable:max-line-length */
 /**
  * Returns an Observable that emits the results of invoking a specified selector on items
@@ -56160,13 +56168,13 @@ exports.MulticastOperator = MulticastOperator;
 
 /***/ }),
 
-/***/ 445:
+/***/ 447:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var multicast_1 = __webpack_require__(444);
-var Subject_1 = __webpack_require__(124);
+var multicast_1 = __webpack_require__(446);
+var Subject_1 = __webpack_require__(125);
 function shareSubjectFactory() {
     return new Subject_1.Subject();
 }
@@ -56191,7 +56199,7 @@ exports.share = share;
 
 /***/ }),
 
-/***/ 446:
+/***/ 448:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56236,7 +56244,7 @@ exports.$$iterator = exports.iterator;
 
 /***/ }),
 
-/***/ 447:
+/***/ 449:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56270,7 +56278,7 @@ exports.ObjectUnsubscribedError = ObjectUnsubscribedError;
 
 /***/ }),
 
-/***/ 448:
+/***/ 450:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56302,7 +56310,7 @@ exports.UnsubscriptionError = UnsubscriptionError;
 
 /***/ }),
 
-/***/ 449:
+/***/ 451:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56312,7 +56320,7 @@ exports.isArrayLike = (function (x) { return x && typeof x.length === 'number'; 
 
 /***/ }),
 
-/***/ 450:
+/***/ 452:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56325,13 +56333,13 @@ exports.isPromise = isPromise;
 
 /***/ }),
 
-/***/ 451:
+/***/ 453:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Subscriber_1 = __webpack_require__(47);
-var rxSubscriber_1 = __webpack_require__(125);
+var rxSubscriber_1 = __webpack_require__(126);
 var Observer_1 = __webpack_require__(196);
 function toSubscriber(nextOrObserver, error, complete) {
     if (nextOrObserver) {
@@ -56352,7 +56360,7 @@ exports.toSubscriber = toSubscriber;
 
 /***/ }),
 
-/***/ 452:
+/***/ 454:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56391,7 +56399,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 var isFunction_1 = __webpack_require__(202);
 var Subscription_1 = __webpack_require__(80);
 var Observer_1 = __webpack_require__(196);
-var rxSubscriber_1 = __webpack_require__(125);
+var rxSubscriber_1 = __webpack_require__(126);
 /**
  * Implements the {@link Observer} interface and extends the
  * {@link Subscription} class. While the {@link Observer} is the public API for
@@ -59130,7 +59138,7 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["c" /* Version */]
 /* unused harmony export ɵd */
 /* unused harmony export ɵe */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(10);
 
 /**
@@ -63684,7 +63692,7 @@ ClientService = __decorate([
 "use strict";
 
 var root_1 = __webpack_require__(55);
-var toSubscriber_1 = __webpack_require__(451);
+var toSubscriber_1 = __webpack_require__(453);
 var observable_1 = __webpack_require__(199);
 /**
  * A representation of any set of values over any amount of time. This the most basic building block
@@ -63835,9 +63843,9 @@ exports.Observable = Observable;
 var isArray_1 = __webpack_require__(201);
 var isObject_1 = __webpack_require__(203);
 var isFunction_1 = __webpack_require__(202);
-var tryCatch_1 = __webpack_require__(452);
+var tryCatch_1 = __webpack_require__(454);
 var errorObject_1 = __webpack_require__(200);
-var UnsubscriptionError_1 = __webpack_require__(448);
+var UnsubscriptionError_1 = __webpack_require__(450);
 /**
  * Represents a disposable resource, such as the execution of an Observable. A
  * Subscription has one important method, `unsubscribe`, that takes no argument
@@ -64033,7 +64041,7 @@ function flattenUnsubscriptionErrors(errors) {
 "use strict";
 
 var Observable_1 = __webpack_require__(8);
-var throw_1 = __webpack_require__(439);
+var throw_1 = __webpack_require__(441);
 Observable_1.Observable.throw = throw_1._throw;
 //# sourceMappingURL=throw.js.map
 
@@ -64045,7 +64053,7 @@ Observable_1.Observable.throw = throw_1._throw;
 "use strict";
 
 var Observable_1 = __webpack_require__(8);
-var catch_1 = __webpack_require__(440);
+var catch_1 = __webpack_require__(442);
 Observable_1.Observable.prototype.catch = catch_1._catch;
 Observable_1.Observable.prototype._catch = catch_1._catch;
 //# sourceMappingURL=catch.js.map
@@ -64058,7 +64066,7 @@ Observable_1.Observable.prototype._catch = catch_1._catch;
 "use strict";
 
 var Observable_1 = __webpack_require__(8);
-var do_1 = __webpack_require__(441);
+var do_1 = __webpack_require__(443);
 Observable_1.Observable.prototype.do = do_1._do;
 Observable_1.Observable.prototype._do = do_1._do;
 //# sourceMappingURL=do.js.map
@@ -64148,6 +64156,127 @@ CompetitorService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* Injectable */])(),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]])
 ], CompetitorService);
+
+
+
+/***/ }),
+
+/***/ 86:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_observable_throw__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_observable_throw__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var ProductService = (function () {
+    function ProductService(_http) {
+        this._http = _http;
+        this.baseUrl = "/Product/";
+    }
+    ProductService.prototype.getProductCategories = function () {
+        return this._http.get(this.baseUrl + "GetProductCategories")
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.getPrice = function (clientId, productId) {
+        return this._http.get(this.baseUrl + "GetPrice?clientId=" + clientId + "&productId=" + productId)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.addProductCategory = function (name) {
+        return this._http.post(this.baseUrl + "AddProductCategory", { name: name })
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.updateProductCategory = function (id, name) {
+        return this._http.put(this.baseUrl + "UpdateProductCategory", { id: id, name: name })
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.deleteProductCategory = function (id) {
+        return this._http.delete(this.baseUrl + "DeleteProductCategory?id=" + id)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.getProducts = function () {
+        return this._http.get(this.baseUrl + "GetProducts")
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.getProduct = function (id) {
+        return this._http.get(this.baseUrl + "GetProduct?id=" + id)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.searchProduct = function (name) {
+        return this._http.get(this.baseUrl + "SearchProduct?name=" + name)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.filterProducts = function (name) {
+        return this._http.get(this.baseUrl + "FilterProducts?name=" + name)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.addProduct = function (product) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: headers });
+        return this._http.post(this.baseUrl + "AddProduct", { newProduct: product }, options)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.updateProduct = function (id, product) {
+        return this._http.put(this.baseUrl + "UpdateProduct", { id: id, product: product })
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.deleteProduct = function (id) {
+        return this._http.delete(this.baseUrl + "DeleteProduct?id=" + id)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    ProductService.prototype.handleError = function (error) {
+        console.error(error);
+        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].throw(error.json().error || 'Server error');
+    };
+    return ProductService;
+}());
+ProductService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]])
+], ProductService);
 
 
 
