@@ -365,23 +365,117 @@ body {
   width: 33%;
   float: left; }
 
-/*@import "wwwroot/src/clientLandingPage/clientList/clientList.component.scss";
-@import "wwwroot/src/clientLandingPage/clientForm/clientForm.component.scss";
-@import "wwwroot/src/clientLandingPage/viewClient/viewClient.component.scss";
-@import "wwwroot/src/adminLandingPage/competitorAdmin/competitorAdmin.component.scss";
-@import "wwwroot/src/productLandingPage/mainProductPage/mainProductPage.component.scss";
-@import "wwwroot/src/productLandingPage/productCategory/productCategory.component.scss";
-@import "wwwroot/src/productLandingPage/productList/productList.component.scss";
-@import "wwwroot/src/productLandingPage/productForm/productForm.component.scss";
-@import "wwwroot/src/productLandingPage/viewProduct/viewProduct.component.scss";
-@import "wwwroot/src/login/login.component.scss";
-@import "wwwroot/src/accountManagement/accountLandingPage/account.component.scss";
-@import "wwwroot/src/accountManagement/rolesList/rolesList.component.scss";
-@import "wwwroot/src/accountManagement/accountRegisterForm/accountRegisterForm.component.scss";
-@import "wwwroot/src/accountManagement/accountChangePassword/accountChangePassword.component.scss";
-@import "wwwroot/src/accountManagement/accountForgotPassword/accountForgotPassword.component.scss";
-@import "wwwroot/src/accountManagement/accountResetPassword/accountResetPassword.component.scss";
-@import "wwwroot/src/accountManagement/accountResetExpired/accountResetExpired.component.scss";
-@import "wwwroot/src/sosLandingPage/sosList/sosList.component.scss";
-@import "wwwroot/src/sosLandingPage/sosForm/sosForm.component.scss";*/
+/*Product Management*/
+#productCategory .modal-dialog {
+  left: 0px !important; }
+
+#productCategory .productCategory-display {
+  display: inline-block;
+  margin-bottom: 10px; }
+
+#productCategory .header-fixed {
+  width: 100%; }
+
+#productCategory .header-fixed > thead,
+#productCategory .header-fixed > tbody,
+#productCategory .header-fixed > thead > tr,
+#productCategory .header-fixed > tbody > tr,
+#productCategory .header-fixed > thead > tr > th,
+#productCategory .header-fixed > tbody > tr > td {
+  display: block; }
+
+#productCategory .header-fixed > tbody > tr:after,
+#productCategory .header-fixed > thead > tr:after {
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  clear: both; }
+
+#productCategory .header-fixed > tbody {
+  overflow-y: auto;
+  height: 300px; }
+
+#productCategory .header-fixed > tbody > tr > td,
+#productCategory .header-fixed > thead > tr > th {
+  width: 33%;
+  float: left; }
+
+#mainProductPage ul {
+  margin-bottom: 15px; }
+  #mainProductPage ul a {
+    cursor: pointer; }
+
+#productList {
+  /*height:100vh;
+    overflow-y: scroll;*/ }
+  #productList .modal-dialog {
+    left: 0px !important; }
+  #productList .add-product {
+    float: right; }
+  #productList .product-filter {
+    float: left;
+    width: 50%; }
+    #productList .product-filter .input-group {
+      width: 56%; }
+  #productList .product-category-filter {
+    clear: both;
+    padding-top: 15px;
+    margin-bottom: 10px; }
+  #productList .inline-block label {
+    padding-left: 10px;
+    cursor: pointer; }
+  #productList .header-fixed {
+    width: 100%; }
+  #productList .header-fixed > thead,
+  #productList .header-fixed > tbody,
+  #productList .header-fixed > thead > tr,
+  #productList .header-fixed > tbody > tr,
+  #productList .header-fixed > thead > tr > th,
+  #productList .header-fixed > tbody > tr > td {
+    display: block; }
+  #productList .header-fixed > tbody > tr:after,
+  #productList .header-fixed > thead > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both; }
+  #productList .header-fixed > tbody {
+    overflow-y: auto;
+    height: 300px; }
+  #productList .header-fixed > tbody > tr > td,
+  #productList .header-fixed > thead > tr > th {
+    width: 25%;
+    float: left; }
+
+#viewProduct .product-name {
+  display: inline-block;
+  padding-right: 10px; }
+
+#viewProduct .edit-button {
+  display: inline-block; }
+
+#viewProduct .panel-body table {
+  width: 55%; }
+
+#viewProduct .panel-body .fin-table {
+  width: 32%; }
+
+#productForm {
+  margin-top: -20px; }
+  #productForm .alert {
+    width: 15%;
+    text-align: center;
+    position: absolute;
+    left: 45%;
+    top: 55px; }
+  #productForm .productForm-group .productForm-action-buttons {
+    float: right;
+    position: relative;
+    top: -30px; }
+  #productForm .productForm-group sup {
+    color: red; }
+  #productForm .productForm-group small {
+    color: red; }
+  #productForm .productForm-group .form-inline .form-group {
+    padding-right: 10px; }
 

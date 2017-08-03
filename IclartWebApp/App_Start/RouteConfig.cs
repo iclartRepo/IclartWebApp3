@@ -72,6 +72,32 @@ namespace IclartWebApp
                  new { controller = "Competitor", action = "Index" }
                   );
 
+            /* Product Management */
+
+            routes.MapRoute(
+              "ManageProducts",
+              "productadmin/{id}",
+              new { controller = "Product", action = "Index", id = 1 }
+               );
+
+            routes.MapRoute(
+           "ViewProduct",
+           "productdetails/{id}",
+           new { controller = "Product", action = "ViewProduct", id = UrlParameter.Optional  }
+            );
+
+            routes.MapRoute(
+         "AddProduct",
+         "addproduct",
+         new { controller = "Product", action = "AddProduct" }
+          );
+
+            routes.MapRoute(
+       "UpdateProduct",
+       "updateProduct/{id}",
+       new { controller = "Product", action = "UpdateProduct", id = UrlParameter.Optional }
+        );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

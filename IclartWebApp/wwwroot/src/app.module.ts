@@ -8,16 +8,21 @@ import { ManageClientsComponent } from './clientManagement/manageClients.compone
 import { ClientFormComponent } from './clientManagement/clientForm/clientForm.component';
 import { CompetitorAdminComponent } from './competitorManagement/competitorAdmin.component';
 import { ClientViewComponent } from './clientManagement/clientDetails/clientDetails.component';
+import { ProductCategoryComponent } from './productManagement/productCategory/productCategory.component';
+import { ProductListComponent } from './productManagement/productList/productList.component';
+import { ProductDetailsComponent } from './productManagement/productDetails/productDetails.component';
+import { ProductFormComponent } from './productManagement/productForm/productForm.component';
 
 import { AccountService } from './services/account.service';
 import { ClientService } from './services/client.service';
 import { CompetitorService } from './services/competitor.service';
+import { ProductService } from './services/product.service';
 
 @NgModule({
     imports: [BrowserModule, HttpModule, FormsModule],
-    declarations: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent],
-    entryComponents: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent],
-    providers: [AccountService, ClientService, CompetitorService]
+    declarations: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent, ProductListComponent, ProductDetailsComponent, ProductFormComponent],
+    entryComponents: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent, ProductListComponent, ProductDetailsComponent, ProductFormComponent],
+    providers: [AccountService, ClientService, CompetitorService, ProductService]
 })
 export class AppModule {
     ngDoBootstrap(appRef: ApplicationRef)
@@ -56,6 +61,33 @@ export class AppModule {
         }
         catch (e) {
       
+        }    
+
+        try {
+            appRef.bootstrap(ProductCategoryComponent);
+        }
+        catch (e) {
+
+        }   
+
+        try {
+            appRef.bootstrap(ProductListComponent);
+        }
+        catch (e) {
+
+        }    
+        try {
+            appRef.bootstrap(ProductDetailsComponent);
+        }
+        catch (e) {
+
+        }   
+
+        try {
+            appRef.bootstrap(ProductFormComponent);
+        }
+        catch (e) {
+
         }          
       
     }

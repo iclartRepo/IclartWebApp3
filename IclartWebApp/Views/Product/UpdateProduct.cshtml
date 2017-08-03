@@ -1,0 +1,8 @@
+﻿@using IclartWebApp.Models
+@model ProductViewModel
+@{
+    ViewBag.Title = "Update Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<product-form competitors="@Json.Encode(Model.Competitors).ToString()" categories="@Json.Encode(Model.ProductCategories).ToString()" productid="@ViewBag.ProductId" returnurl="@Request.UrlReferrer" product="@Json.Encode(Model.SingleProduct).ToString()"></product-form>

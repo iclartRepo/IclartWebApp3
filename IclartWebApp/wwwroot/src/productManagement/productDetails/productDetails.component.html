@@ -1,0 +1,37 @@
+﻿<div id="viewProduct">
+    <div class="panel panel-primary" *ngIf="result.Result != null">
+        <div class="panel-heading">
+            <div class="product-name">
+                {{result.Result.Name}}
+            </div>
+            <div class="edit-button">
+                <a class="btn btn-default btn-sm" href="/updateproduct/{{result.Result.Id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td>Product Name:</td>
+                        <td>{{result.Result.Name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Product Category:</td>
+                        <td>{{result.Result.ProductCategory.Name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Company Price:</td>
+                        <td>{{result.Result.CompanyPrice | number: '1.2-2'}}</td>
+                    </tr>
+                    <tr *ngFor="let competitor of result.Result.CompetitorPrices">
+                        <td>{{competitor.Competitor.Name}} Price:</td>
+                        <td>{{competitor.Price | number:'1.2-2'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="view-client-button">
+        <a class="btn btn-primary" href="{{returnUrl}}">Back</a>
+    </div>
+</div>
