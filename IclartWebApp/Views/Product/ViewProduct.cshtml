@@ -1,0 +1,9 @@
+﻿@using IclartWebApp.Models
+@model ProductViewModel
+@{
+    ViewBag.Title = "View Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<product-details product="@Json.Encode(Model.SingleProduct).ToString()" returnurl="/productadmin/1"></product-details>
+

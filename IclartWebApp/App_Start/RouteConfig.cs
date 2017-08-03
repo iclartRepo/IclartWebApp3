@@ -81,6 +81,24 @@ namespace IclartWebApp
                );
 
             routes.MapRoute(
+           "ViewProduct",
+           "productdetails/{id}",
+           new { controller = "Product", action = "ViewProduct", id = UrlParameter.Optional  }
+            );
+
+            routes.MapRoute(
+         "AddProduct",
+         "addproduct",
+         new { controller = "Product", action = "AddProduct" }
+          );
+
+            routes.MapRoute(
+       "UpdateProduct",
+       "updateProduct/{id}",
+       new { controller = "Product", action = "UpdateProduct", id = UrlParameter.Optional }
+        );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional }

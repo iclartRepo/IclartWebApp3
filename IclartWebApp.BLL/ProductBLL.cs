@@ -112,9 +112,10 @@ namespace IclartWebApp.BLL
             if (exists)
             {
                 var productEntity = _productRepository.Get(i => i.Id == product.Product.Id).First();
-                for (int i = 0; i < productEntity.CompetitorPrices.Count; i++)
+                var competitorPrices = productEntity.CompetitorPrices.ToList();
+                for (int i = 0; i < competitorPrices.Count; i++)
                 {
-                    var competitorPrice = productEntity.CompetitorPrices.ToList()[i];
+                    var competitorPrice = competitorPrices[i];
                     productEntity.CompetitorPrices.Remove(competitorPrice);
                     _competitorPricesRepository.HardDelete(competitorPrice);
                 }

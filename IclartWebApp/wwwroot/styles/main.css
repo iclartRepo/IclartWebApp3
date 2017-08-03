@@ -447,3 +447,35 @@ body {
     width: 25%;
     float: left; }
 
+#viewProduct .product-name {
+  display: inline-block;
+  padding-right: 10px; }
+
+#viewProduct .edit-button {
+  display: inline-block; }
+
+#viewProduct .panel-body table {
+  width: 55%; }
+
+#viewProduct .panel-body .fin-table {
+  width: 32%; }
+
+#productForm {
+  margin-top: -20px; }
+  #productForm .alert {
+    width: 15%;
+    text-align: center;
+    position: absolute;
+    left: 45%;
+    top: 55px; }
+  #productForm .productForm-group .productForm-action-buttons {
+    float: right;
+    position: relative;
+    top: -30px; }
+  #productForm .productForm-group sup {
+    color: red; }
+  #productForm .productForm-group small {
+    color: red; }
+  #productForm .productForm-group .form-inline .form-group {
+    padding-right: 10px; }
+

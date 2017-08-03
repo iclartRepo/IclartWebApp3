@@ -1,0 +1,29 @@
+﻿#productForm {
+    margin-top:-20px;
+     .alert {
+        width:15%;
+        text-align:center;
+        position:absolute;
+        left:45%;
+        top:55px;
+    }
+    .productForm-group {
+        .productForm-action-buttons {
+            float:right;
+            position:relative;
+            top: -30px;
+        }
+        sup {
+            color:red;
+        }
+        small {
+            color: red;
+        }
+        .form-inline {
+            .form-group {
+                padding-right: 10px;
+            }
+        }
+    }
+   
+}

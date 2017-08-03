@@ -10,5 +10,7 @@ namespace IclartWebApp.Models
     {
         public MessageResult<ProductCategoryModel> ProductCategories { get; set; }
         public MessageResult<ProductModel> Products { get; set; }
+        public MessageResult<ProductModel> SingleProduct { get; set; }
+        public MessageResult<CompetitorModel> Competitors { get; set; }
     }
 }

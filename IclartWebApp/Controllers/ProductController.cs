@@ -42,6 +42,53 @@ namespace IclartWebApp.Controllers
           
         }
 
+        public ActionResult AddProduct()
+        {
+            var competitorController = new CompetitorController();
+
+            var productCategories = GetProductCategories() as JsonResult;
+            var competitors = competitorController.GetCompetitors() as JsonResult;
+
+            var productViewModel = new ProductViewModel
+            {
+                ProductCategories = productCategories.Data as MessageResult<ProductCategoryModel>,
+                Competitors = competitors.Data as MessageResult<CompetitorModel>
+            };
+
+            return View(productViewModel);
+        }
+
+        public ActionResult UpdateProduct(int id)
+        {
+            ViewBag.ProductId = id;
+            var competitorController = new CompetitorController();
+
+            var product = GetProduct(id) as JsonResult;
+            var productCategories = GetProductCategories() as JsonResult;
+            var competitors = competitorController.GetCompetitors() as JsonResult;
+
+            var productViewModel = new ProductViewModel
+            {
+                ProductCategories = productCategories.Data as MessageResult<ProductCategoryModel>,
+                Competitors = competitors.Data as MessageResult<CompetitorModel>,
+                SingleProduct = product.Data as MessageResult<ProductModel>
+            };
+
+            return View(productViewModel);
+        }
+
+        public ActionResult ViewProduct(int id)
+        {
+            var product = GetProduct(id) as JsonResult;
+
+            var productViewModel = new ProductViewModel
+            {
+                SingleProduct = product.Data as MessageResult<ProductModel>
+            };
+
+            return View(productViewModel);
+        }
+
         #region GET METHODS
         [HttpGet]
         public ActionResult GetProductCategories()
