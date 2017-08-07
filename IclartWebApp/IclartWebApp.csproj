@@ -247,6 +247,9 @@
     <Content Include="package.json" />
     <Content Include="webpack.config.js" />
     <Content Include="webpack.helpers.js" />
+    <Content Include="wwwroot\js\app.bundle.js" />
+    <Content Include="wwwroot\js\polyfills.bundle.js" />
+    <Content Include="wwwroot\js\vendor.bundle.js" />
     <Content Include="wwwroot\src\clientManagement\clientDetails\clientDetails.component.html" />
     <Content Include="wwwroot\src\clientManagement\clientForm\clientForm.component.html" />
     <Content Include="wwwroot\src\clientManagement\manageClients.component.html" />
@@ -263,6 +266,7 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -275,7 +279,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

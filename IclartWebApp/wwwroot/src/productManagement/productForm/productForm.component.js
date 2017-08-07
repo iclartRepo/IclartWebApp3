@@ -159,7 +159,6 @@ var ProductFormComponent = (function () {
         this.resultCompetitors.ResultList.forEach(function (item, index) {
             if (item.Id == id) {
                 _this.realListCompetitors.push(item);
-                console.log(_this.realListCompetitors);
                 _this.resultCompetitors.ResultList.splice(index, 1);
             }
         });
