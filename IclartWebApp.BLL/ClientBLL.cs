@@ -77,9 +77,10 @@ namespace IclartWebApp.BLL
             {
 
                 var clientEntity = _repository.Get(i => i.Id == client.Client.Id).First();
-                for (int i = 0; i < clientEntity.CompetitorDiscountSchemes.Count; i++)
+                var discountSchemes = clientEntity.CompetitorDiscountSchemes.ToList();
+                for (int i = 0; i < discountSchemes.Count; i++)
                 {
-                    var competitorDS = clientEntity.CompetitorDiscountSchemes.ToList()[i];
+                    var competitorDS = discountSchemes[i];
                     clientEntity.CompetitorDiscountSchemes.Remove(competitorDS);
                     _dsSchemesRepository.HardDelete(competitorDS);
                 }
