@@ -479,3 +479,72 @@ body {
   #productForm .productForm-group .form-inline .form-group {
     padding-right: 10px; }
 
+/*SOS Management*/
+#sosList .sos-add-button {
+  text-align: right;
+  margin-bottom: 10px; }
+
+#sosList .header-fixed > thead,
+#sosList .header-fixed > tbody,
+#sosList .header-fixed > thead > tr,
+#sosList .header-fixed > tbody > tr,
+#sosList .header-fixed > thead > tr > th,
+#sosList .header-fixed > tbody > tr > td {
+  display: block; }
+
+#sosList .header-fixed > tbody > tr:after,
+#sosList .header-fixed > thead > tr:after {
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  clear: both; }
+
+#sosList .header-fixed > tbody {
+  overflow-y: auto;
+  height: 350px; }
+
+#sosList .header-fixed > tbody > tr > td,
+#sosList .header-fixed > thead > tr > th {
+  width: 20%;
+  float: left; }
+
+#sosForm .modal-dialog {
+  left: 0px !important; }
+
+#sosForm .sos-form-label {
+  margin-top: 0px; }
+
+#sosForm .sosForm-action-buttons {
+  position: absolute;
+  right: 15px;
+  top: 57px; }
+
+#sosForm .sos-client {
+  margin-left: 15px; }
+
+#sosForm .sos-remarks {
+  width: 65%; }
+
+#sosForm .real-sos-form {
+  margin-top: 30px; }
+
+#sosForm .form-group {
+  text-align: left; }
+
+#sosForm .sos-form-identifier {
+  display: inline-block;
+  margin-right: 10px; }
+
+#sosForm .sos-form-selector {
+  display: inline-block; }
+
+#sosForm .new-product-button {
+  display: inline-block;
+  margin-right: 10px; }
+
+#sosForm .orders-table {
+  margin-top: 10px; }
+  #sosForm .orders-table .orders-quantity {
+    margin-left: 5px;
+    margin-right: 5px; }
+

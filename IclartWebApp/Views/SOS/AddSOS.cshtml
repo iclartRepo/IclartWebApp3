@@ -1,0 +1,9 @@
+﻿@using IclartWebApp.Models
+@model SOSViewModel
+@{
+    ViewBag.Title = "New SOS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<sos-form clients="@Json.Encode(Model.ClientList).ToString()" products="@Json.Encode(Model.Products).ToString()" productcategories="@Json.Encode(Model.ProductCategories).ToString()" returnurl="@Request.UrlReferrer"></sos-form>
+

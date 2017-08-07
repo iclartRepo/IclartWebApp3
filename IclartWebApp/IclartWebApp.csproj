@@ -207,6 +207,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SOSController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -229,6 +230,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\SOSViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -259,6 +261,8 @@
     <Content Include="wwwroot\src\productManagement\productDetails\productDetails.component.html" />
     <Content Include="wwwroot\src\productManagement\productForm\productForm.component.html" />
     <Content Include="wwwroot\src\productManagement\productList\productList.component.html" />
+    <Content Include="wwwroot\src\sosManagement\sosForm\sosForm.component.html" />
+    <Content Include="wwwroot\src\sosManagement\sosList\sosList.component.html" />
     <Content Include="wwwroot\styles\bootstrap.min.css" />
     <Content Include="wwwroot\styles\font-awesome.css" />
     <Content Include="wwwroot\styles\fonts.css" />
@@ -357,6 +361,10 @@
     <Content Include="Views\Product\AddProduct.cshtml" />
     <Content Include="wwwroot\styles\productManagement\productForm\productForm.scss" />
     <Content Include="Views\Product\UpdateProduct.cshtml" />
+    <Content Include="Views\SOS\Index.cshtml" />
+    <Content Include="wwwroot\styles\sosManagement\sosList\sosList.scss" />
+    <Content Include="Views\SOS\AddSOS.cshtml" />
+    <Content Include="wwwroot\styles\sosManagement\sosForm\sosForm.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -390,6 +398,10 @@
     <TypeScriptCompile Include="wwwroot\src\services\competitor.service.ts" />
     <TypeScriptCompile Include="wwwroot\src\services\client.service.ts" />
     <TypeScriptCompile Include="wwwroot\src\services\product.service.ts" />
+    <TypeScriptCompile Include="wwwroot\src\services\sos.service.ts" />
+    <TypeScriptCompile Include="wwwroot\src\services\utilities.service.ts" />
+    <TypeScriptCompile Include="wwwroot\src\sosManagement\sosForm\sosForm.component.ts" />
+    <TypeScriptCompile Include="wwwroot\src\sosManagement\sosList\sosList.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

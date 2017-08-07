@@ -1,0 +1,55 @@
+﻿#sosForm {
+    .modal-dialog {
+        left: 0px !important;
+    }
+    .sos-form-label {
+        margin-top: 0px;
+    }
+
+   .sosForm-action-buttons {
+        position:absolute;
+        right:15px;
+        top: 57px;
+    }
+
+   .sos-client {
+       margin-left: 15px;
+   }
+
+   .sos-remarks {
+       width: 65%;
+   }
+
+   .real-sos-form {
+       margin-top: 30px;
+   }
+   
+   .form-group {
+       text-align: left;
+   }
+
+   .sos-form-identifier {
+       display:inline-block;
+       margin-right: 10px;
+       
+   }
+
+   .sos-form-selector {
+       display: inline-block;
+   }
+
+   .new-product-button {
+       display: inline-block;
+       margin-right: 10px;
+   }
+
+   .orders-table {
+       margin-top: 10px;
+
+       .orders-quantity {
+           margin-left: 5px;
+           margin-right: 5px;
+       }
+   }
+
+}

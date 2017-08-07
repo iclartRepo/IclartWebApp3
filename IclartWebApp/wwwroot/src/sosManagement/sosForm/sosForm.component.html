@@ -1,0 +1,153 @@
+﻿<div id="sosForm">
+    <h3 class="sos-form-label">Add/Edit Sales Order Slip</h3>
+    <div class="sosForm-group">
+        <form #sosForm="ngForm" class="real-sos-form" novalidate>
+            <div class="sosForm-action-buttons">
+                <a class="btn btn-default" href="{{returnUrl}}">Cancel</a>
+                <button class="btn btn-success" type="submit" (click)="saveSos()">Save</button>
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <div class="sos-form-identifier">
+                    Client:
+                </div>
+                <div class="sos-form-selector sos-client">
+                    <select [(ngModel)]="selectedClient" name="clientSelect" class="form-control">
+                        <option *ngFor="let client of resultClients.ResultList" [ngValue]="client">
+                            {{client.Name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <div class="sos-form-identifier">
+                    Date:
+                </div>
+                <div class="sos-form-selector">
+                    <input type="date" name="date" class="form-control" placeholder="Date" [(ngModel)]="sosDate" />
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <div class="sos-form-identifier">
+                    Address:
+                </div>
+                <div class="sos-form-selector">
+                    {{selectedClient.Office_Address}}
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <div class="sos-form-identifier">
+                    Pickup:
+                </div>
+                <div class="sos-form-selector">
+                    <input type="checkbox" name="pickup" [(ngModel)]="pickup" />
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <div class="sos-form-identifier">
+                    Remarks:
+                </div>
+                <div class="sos-form-selector sos-remarks">
+                    <input type="text" name="remarks" class="form-control" placeholder="Remarks" [(ngModel)]="remarks" />
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                &nbsp;
+            </div>
+            <div class="col-md-12 col-lg-12">
+                <div class="new-product-button">
+                    <button class="btn btn-primary" [disabled]="selectedClient.Id == null" data-toggle="modal" data-target="#myModal">+ Standard Product</button>
+                </div>
+
+                <div class="new-product-button">
+                    <button class="btn btn-primary" [disabled]="selectedClient.Id == null">+ Custom Product</button>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 orders-table">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Quantity</th>
+                            <th>Item Description</th>
+                            <th>Total Price</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of productsView">
+                            <td>
+                                <div class="inline-block">
+                                    <button class="btn btn-sm btn-success" (click)="subtractQuantity(product.Id, product.Custom)" [disabled]="product.Quantity == 1"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                </div>
+                                <div class="inline-block orders-quantity">
+                                    {{product.Quantity}}
+                                </div>
+                                <div class="inline-block">
+                                    <button class="btn btn-sm btn-success" (click)="addQuantity(product.Id, product.Custom)"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                </div>
+
+                            </td>
+                            <td>{{product.ItemDescription}}</td>
+                            <td>{{product.TotalPrice | number: '1.2-2'}}</td>
+                            <td><button class="btn btn-danger" (click)="removeProduct(product.Id, product.Custom)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal for New Standard Product -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add New Standard Product</h4>
+                </div>
+                <div class="modal-body">
+                    <form #standardProductForm="ngForm" novalidate>
+                        <div class="form-group">
+                            <label for="productCategory">Product Category:</label>
+                            <select [(ngModel)]="selectedProductCategory" name="categorySelect" class="form-control" (ngModelChange)="filterProducts()">
+                                <option *ngFor="let category of resultProductCategories.ResultList" [ngValue]="category.Id">
+                                    {{category.Name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="productName">Product:</label>
+                            <select [(ngModel)]="selectedProduct" [disabled]="selectedProductCategory == null" name="productSelect" class="form-control" (ngModelChange)="getBestStandardPrice()">
+                                <option *ngFor="let product of productList" [ngValue]="product">
+                                    {{product.Name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit">Unit:</label>
+                            <select [(ngModel)]="selectedUnit" [disabled]="selectedProductCategory == null" name="unitSelect" class="form-control">
+                                <option *ngFor="let unit of unitOptions" [ngValue]="unit">
+                                    {{unit}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit">Quantity:</label>
+                            <input type="number" [(ngModel)]="productQuantity" [disabled]="selectedProduct == null" class="form-control" name="productQuantity" />
+                        </div>
+                        <div class="form-group">
+                            <label for="unit">Price:</label>
+                            <input type="number" [(ngModel)]="productPrice" [disabled]="selectedProduct == null" class="form-control" name="unitPrice" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clearStandardProductFields()">Cancel</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" (click)="addStandardProduct()">Add New Product</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

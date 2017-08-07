@@ -1,0 +1,29 @@
+﻿<div id="sosList">
+    <div class="sos-add-button">
+        <a class="btn btn-primary" href="/addsos">New Sales Order Slip</a>
+    </div>
+    <div class="panel panel-primary sos-table">
+        <div class="panel-body">
+            <table class="table table-responsive header-fixed">
+                <thead>
+                    <tr>
+                        <th class="thead-name">SOS #</th>
+                        <th>Client Name</th>
+                        <th>Status</th>
+                        <th>View</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let sos of result.ResultList">
+                        <td>{{sos.Id}}</td>
+                        <td>{{sos.Client.Name}}</td>
+                        <td>{{sos.Status}}</td>
+                        <td><i class="fa fa-pencil" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-pencil" aria-hidden="true"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
