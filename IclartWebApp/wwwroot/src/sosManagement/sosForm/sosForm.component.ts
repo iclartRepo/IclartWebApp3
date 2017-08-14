@@ -47,7 +47,15 @@ export class SOSFormComponent {
         ResultList: null,
         Message: ''
     };
-
+    resultCustomProducts: IMessageResult = {
+        isError: false,
+        Result: null,
+        ResultList: null,
+        Message: ''
+    }
+    editForm: any = {};
+    editFormQuantity: any = {};
+    editFormPrice: any = {};
     productList: any[] = [];
     unitOptions: any[] = [];
     pointerMarker: number = 0;
@@ -57,6 +65,16 @@ export class SOSFormComponent {
         Combine_Items: false
     };
     productsView: any[] = [];
+
+    //for customProduct
+    customItemDescription: string;
+    customQuantity: number;
+    customUnit: string;
+    customPrice: number;
+    customCategory: string;
+    selectedCustom: any;
+
+    //for standardProduct
     selectedProductCategory: any;
     selectedUnit: any;
     productPrice: any;
@@ -131,6 +149,18 @@ export class SOSFormComponent {
     //    }
     //};
 
+    edit(id: number): void {
+        this.editForm[id] = true;
+    }
+    filterPreviousCustomProducts(): void {
+        let product = this.resultCustomProducts.ResultList.filter(i => i.ItemDescription == this.selectedCustom.ItemDescription)[0];
+
+        this.customCategory = product.Category;
+        this.customItemDescription = product.ItemDescription;
+        this.customUnit = product.Unit;
+        this.customQuantity = 1;
+        this.customPrice = product.Price;
+    }
     filterProducts(): void {
         this.productList = [];
         var categoryName = "";
@@ -161,6 +191,23 @@ export class SOSFormComponent {
         this.productPrice = null;
         this.productQuantity = null;
         this.productList = [];
+    }
+
+    clearCustomProductFields(): void {
+        this.customItemDescription = null;
+        this.customCategory = null;
+        this.customPrice = null;
+        this.customQuantity = null;
+        this.customUnit = null;
+
+        this.getCustomProducts(this.selectedClient.Id);
+    }
+
+    getCustomProducts(clientId: number): void {
+        this._sosService.getCustomProducts(clientId)
+            .subscribe(customProducts => {
+                this.resultCustomProducts = customProducts;},
+            error => this.errorMessage = <any>error);
     }
 
     getListClients(): void {
@@ -208,7 +255,7 @@ export class SOSFormComponent {
     addStandardProduct(): void {
         this.pointerMarker += 1;
         var standardProduct = {
-            "Id": this.pointerMarker,
+            "Pointer": this.pointerMarker,
             "ProductId": this.selectedProduct.Id,
             "Quantity": this.productQuantity,
             "Price": this.productPrice
@@ -224,8 +271,41 @@ export class SOSFormComponent {
             "Custom": false
         }
 
+        this.editForm[this.pointerMarker] = false;
+        this.editFormPrice[this.pointerMarker] = this.productPrice;
+        this.editFormQuantity[this.pointerMarker] = this.productQuantity;
+
         this.productsView.push(productView);
-        this.clearStandardProductFields();
+       // this.clearStandardProductFields();
+    }
+
+    addCustomProduct(): void {
+        this.pointerMarker += 1;
+        var customProduct = {
+            "Pointer": this.pointerMarker,
+            "Category": this.customCategory,
+            "Quantity": this.customQuantity,
+            "Price": this.customPrice,
+            "Unit": this.customUnit,
+            "ItemDescription": this.customItemDescription
+        };
+        this.customProducts.push(customProduct);
+
+        var productView = {
+            "Id": this.pointerMarker,
+            "Quantity": this.customQuantity,
+            "ItemDescription": this.customItemDescription,
+            "Price": this.customPrice,
+            "TotalPrice": this.customPrice * this.customQuantity,
+            "Custom": true
+        }
+
+        this.editForm[this.pointerMarker] = false;
+        this.editFormPrice[this.pointerMarker] = this.customPrice;
+        this.editFormQuantity[this.pointerMarker] = this.customQuantity;
+
+        this.productsView.push(productView);
+     //   this.clearCustomProductFields();
     }
 
     addQuantity(id: number, custom: boolean): void {
@@ -235,7 +315,12 @@ export class SOSFormComponent {
         searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
 
         if (custom == false) {
-            let realProductSearch = this.standardProducts.filter(item => item.Id == id)[0];
+            let realProductSearch = this.standardProducts.filter(item => item.Pointer == id)[0];
+            realProductSearch.Quantity += 1;
+        }
+        else
+        {
+            let realProductSearch = this.customProducts.filter(item => item.Pointer == id)[0];
             realProductSearch.Quantity += 1;
         }
     }
@@ -246,7 +331,12 @@ export class SOSFormComponent {
         searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
 
         if (custom == false) {
-            let realProductSearch = this.standardProducts.filter(item => item.Id == id)[0];
+            let realProductSearch = this.standardProducts.filter(item => item.Pointer == id)[0];
+            realProductSearch.Quantity -= 1;
+        }
+        else
+        {
+            let realProductSearch = this.customProducts.filter(item => item.Pointer == id)[0];
             realProductSearch.Quantity -= 1;
         }
     }
@@ -255,9 +345,12 @@ export class SOSFormComponent {
         this.productsView = this.productsView.filter(item => item.Id !== id);
 
         if (custom == false) {
-            this.standardProducts = this.standardProducts.filter(item => item.Id != id);
+            this.standardProducts = this.standardProducts.filter(item => item.Pointer != id);
         }
-
+        else
+        {
+            this.standardProducts = this.customProducts.filter(item => item.Pointer != id);
+        }
     }
 
 

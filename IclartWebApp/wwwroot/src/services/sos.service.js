@@ -24,6 +24,11 @@ var SosService = (function () {
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    SosService.prototype.getCustomProducts = function (clientId) {
+        return this._http.get(this.baseUrl + "GetListCustomProducts?clientId=" + clientId)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     SosService.prototype.addSos = function (sos) {
         var headers = new Headers({ 'Content-Type': 'application/json' });
         var options = new RequestOptions({ headers: headers });

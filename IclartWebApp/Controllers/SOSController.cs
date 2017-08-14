@@ -3,6 +3,7 @@ using IclartWebApp.Common.Entities;
 using IclartWebApp.Common.Models;
 using IclartWebApp.DAL;
 using IclartWebApp.Models;
+using Nelibur.ObjectMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,13 +55,50 @@ namespace IclartWebApp.Controllers
                 {
                     var sosRepository = new GenericRepository<SOSEntity>(context);
 
-                    var testList = context.SalesOrderSlips.ToList();
+                 
                     var sosList = sosRepository.Get().OrderBy(i => i.Status).ThenByDescending(i => i.Sos_Date).Select(i => new SOSModel { Id = i.Id, Status = i.Status, Client = new ClientModel { Name = i.ClientEntity.Name }, Sos_Date = i.Sos_Date, TotalAmount = i.TotalAmount }).ToList();
 
                     var message = new MessageResult<SOSModel>
                     {
                         isError = false,
                         ResultList = sosList,
+                        Message = "Success",
+                        Result = null
+                    };
+                    return Json(message, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                var message = new MessageResult<ClientModel>
+                {
+                    isError = true,
+                    ResultList = null,
+                    Message = "Some error occured. Please contact the administrator.",
+                    Result = null
+                };
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult GetListCustomProducts(int clientId)
+        {
+            try
+            {
+                using (var context = new DBContext())
+                {
+                    var sosRepository = new GenericRepository<SOSEntity>(context);
+
+                    var customProducts = sosRepository.Get(i => i.ClientId == clientId).SelectMany(i => i.CustomOrders.ToList()).ToList();
+
+                    var customProductsModel = customProducts.Where(x => x.Discarded == false).Select(x => new SOSCustomModel { Category = x.Category, ItemDescription = x.ItemDescription, Price = x.Price, Unit = x.Unit }).ToList();
+                    
+
+                    var message = new MessageResult<SOSCustomModel>
+                    {
+                        isError = false,
+                        ResultList = customProductsModel,
                         Message = "Success",
                         Result = null
                     };

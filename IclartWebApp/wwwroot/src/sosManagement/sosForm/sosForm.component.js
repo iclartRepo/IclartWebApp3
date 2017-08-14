@@ -49,6 +49,15 @@ var SOSFormComponent = (function () {
             ResultList: null,
             Message: ''
         };
+        this.resultCustomProducts = {
+            isError: false,
+            Result: null,
+            ResultList: null,
+            Message: ''
+        };
+        this.editForm = {};
+        this.editFormQuantity = {};
+        this.editFormPrice = {};
         this.productList = [];
         this.unitOptions = [];
         this.pointerMarker = 0;
@@ -63,6 +72,18 @@ var SOSFormComponent = (function () {
         this.standardProducts = [];
         this.customProducts = [];
     }
+    SOSFormComponent.prototype.edit = function (id) {
+        this.editForm[id] = true;
+    };
+    SOSFormComponent.prototype.filterPreviousCustomProducts = function () {
+        var _this = this;
+        var product = this.resultCustomProducts.ResultList.filter(function (i) { return i.ItemDescription == _this.selectedCustom.ItemDescription; })[0];
+        this.customCategory = product.Category;
+        this.customItemDescription = product.ItemDescription;
+        this.customUnit = product.Unit;
+        this.customQuantity = 1;
+        this.customPrice = product.Price;
+    };
     SOSFormComponent.prototype.filterProducts = function () {
         this.productList = [];
         var categoryName = "";
@@ -93,6 +114,21 @@ var SOSFormComponent = (function () {
         this.productPrice = null;
         this.productQuantity = null;
         this.productList = [];
+    };
+    SOSFormComponent.prototype.clearCustomProductFields = function () {
+        this.customItemDescription = null;
+        this.customCategory = null;
+        this.customPrice = null;
+        this.customQuantity = null;
+        this.customUnit = null;
+        this.getCustomProducts(this.selectedClient.Id);
+    };
+    SOSFormComponent.prototype.getCustomProducts = function (clientId) {
+        var _this = this;
+        this._sosService.getCustomProducts(clientId)
+            .subscribe(function (customProducts) {
+            _this.resultCustomProducts = customProducts;
+        }, function (error) { return _this.errorMessage = error; });
     };
     SOSFormComponent.prototype.getListClients = function () {
         var _this = this;
@@ -135,7 +171,7 @@ var SOSFormComponent = (function () {
     SOSFormComponent.prototype.addStandardProduct = function () {
         this.pointerMarker += 1;
         var standardProduct = {
-            "Id": this.pointerMarker,
+            "Pointer": this.pointerMarker,
             "ProductId": this.selectedProduct.Id,
             "Quantity": this.productQuantity,
             "Price": this.productPrice
@@ -149,15 +185,45 @@ var SOSFormComponent = (function () {
             "TotalPrice": this.productQuantity * this.productPrice,
             "Custom": false
         };
+        this.editForm[this.pointerMarker] = false;
+        this.editFormPrice[this.pointerMarker] = this.productPrice;
+        this.editFormQuantity[this.pointerMarker] = this.productQuantity;
         this.productsView.push(productView);
-        this.clearStandardProductFields();
+    };
+    SOSFormComponent.prototype.addCustomProduct = function () {
+        this.pointerMarker += 1;
+        var customProduct = {
+            "Pointer": this.pointerMarker,
+            "Category": this.customCategory,
+            "Quantity": this.customQuantity,
+            "Price": this.customPrice,
+            "Unit": this.customUnit,
+            "ItemDescription": this.customItemDescription
+        };
+        this.customProducts.push(customProduct);
+        var productView = {
+            "Id": this.pointerMarker,
+            "Quantity": this.customQuantity,
+            "ItemDescription": this.customItemDescription,
+            "Price": this.customPrice,
+            "TotalPrice": this.customPrice * this.customQuantity,
+            "Custom": true
+        };
+        this.editForm[this.pointerMarker] = false;
+        this.editFormPrice[this.pointerMarker] = this.customPrice;
+        this.editFormQuantity[this.pointerMarker] = this.customQuantity;
+        this.productsView.push(productView);
     };
     SOSFormComponent.prototype.addQuantity = function (id, custom) {
         var searchResult = this.productsView.filter(function (item) { return item.Id == id; })[0];
         searchResult.Quantity += 1;
         searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
         if (custom == false) {
-            var realProductSearch = this.standardProducts.filter(function (item) { return item.Id == id; })[0];
+            var realProductSearch = this.standardProducts.filter(function (item) { return item.Pointer == id; })[0];
+            realProductSearch.Quantity += 1;
+        }
+        else {
+            var realProductSearch = this.customProducts.filter(function (item) { return item.Pointer == id; })[0];
             realProductSearch.Quantity += 1;
         }
     };
@@ -166,14 +232,21 @@ var SOSFormComponent = (function () {
         searchResult.Quantity -= 1;
         searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
         if (custom == false) {
-            var realProductSearch = this.standardProducts.filter(function (item) { return item.Id == id; })[0];
+            var realProductSearch = this.standardProducts.filter(function (item) { return item.Pointer == id; })[0];
+            realProductSearch.Quantity -= 1;
+        }
+        else {
+            var realProductSearch = this.customProducts.filter(function (item) { return item.Pointer == id; })[0];
             realProductSearch.Quantity -= 1;
         }
     };
     SOSFormComponent.prototype.removeProduct = function (id, custom) {
         this.productsView = this.productsView.filter(function (item) { return item.Id !== id; });
         if (custom == false) {
-            this.standardProducts = this.standardProducts.filter(function (item) { return item.Id != id; });
+            this.standardProducts = this.standardProducts.filter(function (item) { return item.Pointer != id; });
+        }
+        else {
+            this.standardProducts = this.customProducts.filter(function (item) { return item.Pointer != id; });
         }
     };
     SOSFormComponent.prototype.saveSos = function () {

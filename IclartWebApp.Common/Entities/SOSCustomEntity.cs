@@ -11,6 +11,7 @@ namespace IclartWebApp.Common.Entities
     {
         public int Id { get; set; }
         public int SOSId { get; set; }
+        public string Category { get; set; }
         public string ItemDescription { get; set; }
         public int Quantity { get; set; }
         public string Unit { get; set; }

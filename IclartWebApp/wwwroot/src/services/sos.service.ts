@@ -22,6 +22,12 @@ export class SosService {
             .catch(this.handleError);
     }
 
+    getCustomProducts(clientId: number): Observable<IMessageResult> {
+        return this._http.get(this.baseUrl + "GetListCustomProducts?clientId=" + clientId)
+            .map((response: Response) => <IMessageResult>response.json())
+            .catch(this.handleError);
+    }
+
     addSos(sos: any): Observable<IMessageResult> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });

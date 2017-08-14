@@ -34030,6 +34030,15 @@ var SOSFormComponent = (function () {
             ResultList: null,
             Message: ''
         };
+        this.resultCustomProducts = {
+            isError: false,
+            Result: null,
+            ResultList: null,
+            Message: ''
+        };
+        this.editForm = {};
+        this.editFormQuantity = {};
+        this.editFormPrice = {};
         this.productList = [];
         this.unitOptions = [];
         this.pointerMarker = 0;
@@ -34044,6 +34053,18 @@ var SOSFormComponent = (function () {
         this.standardProducts = [];
         this.customProducts = [];
     }
+    SOSFormComponent.prototype.edit = function (id) {
+        this.editForm[id] = true;
+    };
+    SOSFormComponent.prototype.filterPreviousCustomProducts = function () {
+        var _this = this;
+        var product = this.resultCustomProducts.ResultList.filter(function (i) { return i.ItemDescription == _this.selectedCustom.ItemDescription; })[0];
+        this.customCategory = product.Category;
+        this.customItemDescription = product.ItemDescription;
+        this.customUnit = product.Unit;
+        this.customQuantity = 1;
+        this.customPrice = product.Price;
+    };
     SOSFormComponent.prototype.filterProducts = function () {
         this.productList = [];
         var categoryName = "";
@@ -34074,6 +34095,21 @@ var SOSFormComponent = (function () {
         this.productPrice = null;
         this.productQuantity = null;
         this.productList = [];
+    };
+    SOSFormComponent.prototype.clearCustomProductFields = function () {
+        this.customItemDescription = null;
+        this.customCategory = null;
+        this.customPrice = null;
+        this.customQuantity = null;
+        this.customUnit = null;
+        this.getCustomProducts(this.selectedClient.Id);
+    };
+    SOSFormComponent.prototype.getCustomProducts = function (clientId) {
+        var _this = this;
+        this._sosService.getCustomProducts(clientId)
+            .subscribe(function (customProducts) {
+            _this.resultCustomProducts = customProducts;
+        }, function (error) { return _this.errorMessage = error; });
     };
     SOSFormComponent.prototype.getListClients = function () {
         var _this = this;
@@ -34116,7 +34152,7 @@ var SOSFormComponent = (function () {
     SOSFormComponent.prototype.addStandardProduct = function () {
         this.pointerMarker += 1;
         var standardProduct = {
-            "Id": this.pointerMarker,
+            "Pointer": this.pointerMarker,
             "ProductId": this.selectedProduct.Id,
             "Quantity": this.productQuantity,
             "Price": this.productPrice
@@ -34130,15 +34166,45 @@ var SOSFormComponent = (function () {
             "TotalPrice": this.productQuantity * this.productPrice,
             "Custom": false
         };
+        this.editForm[this.pointerMarker] = false;
+        this.editFormPrice[this.pointerMarker] = this.productPrice;
+        this.editFormQuantity[this.pointerMarker] = this.productQuantity;
         this.productsView.push(productView);
-        this.clearStandardProductFields();
+    };
+    SOSFormComponent.prototype.addCustomProduct = function () {
+        this.pointerMarker += 1;
+        var customProduct = {
+            "Pointer": this.pointerMarker,
+            "Category": this.customCategory,
+            "Quantity": this.customQuantity,
+            "Price": this.customPrice,
+            "Unit": this.customUnit,
+            "ItemDescription": this.customItemDescription
+        };
+        this.customProducts.push(customProduct);
+        var productView = {
+            "Id": this.pointerMarker,
+            "Quantity": this.customQuantity,
+            "ItemDescription": this.customItemDescription,
+            "Price": this.customPrice,
+            "TotalPrice": this.customPrice * this.customQuantity,
+            "Custom": true
+        };
+        this.editForm[this.pointerMarker] = false;
+        this.editFormPrice[this.pointerMarker] = this.customPrice;
+        this.editFormQuantity[this.pointerMarker] = this.customQuantity;
+        this.productsView.push(productView);
     };
     SOSFormComponent.prototype.addQuantity = function (id, custom) {
         var searchResult = this.productsView.filter(function (item) { return item.Id == id; })[0];
         searchResult.Quantity += 1;
         searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
         if (custom == false) {
-            var realProductSearch = this.standardProducts.filter(function (item) { return item.Id == id; })[0];
+            var realProductSearch = this.standardProducts.filter(function (item) { return item.Pointer == id; })[0];
+            realProductSearch.Quantity += 1;
+        }
+        else {
+            var realProductSearch = this.customProducts.filter(function (item) { return item.Pointer == id; })[0];
             realProductSearch.Quantity += 1;
         }
     };
@@ -34147,14 +34213,21 @@ var SOSFormComponent = (function () {
         searchResult.Quantity -= 1;
         searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
         if (custom == false) {
-            var realProductSearch = this.standardProducts.filter(function (item) { return item.Id == id; })[0];
+            var realProductSearch = this.standardProducts.filter(function (item) { return item.Pointer == id; })[0];
+            realProductSearch.Quantity -= 1;
+        }
+        else {
+            var realProductSearch = this.customProducts.filter(function (item) { return item.Pointer == id; })[0];
             realProductSearch.Quantity -= 1;
         }
     };
     SOSFormComponent.prototype.removeProduct = function (id, custom) {
         this.productsView = this.productsView.filter(function (item) { return item.Id !== id; });
         if (custom == false) {
-            this.standardProducts = this.standardProducts.filter(function (item) { return item.Id != id; });
+            this.standardProducts = this.standardProducts.filter(function (item) { return item.Pointer != id; });
+        }
+        else {
+            this.standardProducts = this.customProducts.filter(function (item) { return item.Pointer != id; });
         }
     };
     SOSFormComponent.prototype.saveSos = function () {
@@ -34314,7 +34387,7 @@ module.exports = "<div id=\"productList\">\r\n    <div class=\"product-filter\">
 /***/ 438:
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"sosForm\">\r\n    <h3 class=\"sos-form-label\">Add/Edit Sales Order Slip</h3>\r\n    <div class=\"sosForm-group\">\r\n        <form #sosForm=\"ngForm\" class=\"real-sos-form\" novalidate>\r\n            <div class=\"sosForm-action-buttons\">\r\n                <a class=\"btn btn-default\" href=\"{{returnUrl}}\">Cancel</a>\r\n                <button class=\"btn btn-success\" type=\"submit\" (click)=\"saveSos()\">Save</button>\r\n            </div>\r\n            <div class=\"form-group col-md-6 col-lg-6\">\r\n                <div class=\"sos-form-identifier\">\r\n                    Client:\r\n                </div>\r\n                <div class=\"sos-form-selector sos-client\">\r\n                    <select [(ngModel)]=\"selectedClient\" name=\"clientSelect\" class=\"form-control\">\r\n                        <option *ngFor=\"let client of resultClients.ResultList\" [ngValue]=\"client\">\r\n                            {{client.Name}}\r\n                        </option>\r\n                    </select>\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group col-md-6 col-lg-6\">\r\n                <div class=\"sos-form-identifier\">\r\n                    Date:\r\n                </div>\r\n                <div class=\"sos-form-selector\">\r\n                    <input type=\"date\" name=\"date\" class=\"form-control\" placeholder=\"Date\" [(ngModel)]=\"sosDate\" />\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group col-md-6 col-lg-6\">\r\n                <div class=\"sos-form-identifier\">\r\n                    Address:\r\n                </div>\r\n                <div class=\"sos-form-selector\">\r\n                    {{selectedClient.Office_Address}}\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group col-md-6 col-lg-6\">\r\n                <div class=\"sos-form-identifier\">\r\n                    Pickup:\r\n                </div>\r\n                <div class=\"sos-form-selector\">\r\n                    <input type=\"checkbox\" name=\"pickup\" [(ngModel)]=\"pickup\" />\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group col-md-6 col-lg-6\">\r\n                <div class=\"sos-form-identifier\">\r\n                    Remarks:\r\n                </div>\r\n                <div class=\"sos-form-selector sos-remarks\">\r\n                    <input type=\"text\" name=\"remarks\" class=\"form-control\" placeholder=\"Remarks\" [(ngModel)]=\"remarks\" />\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group col-md-6 col-lg-6\">\r\n                &nbsp;\r\n            </div>\r\n            <div class=\"col-md-12 col-lg-12\">\r\n                <div class=\"new-product-button\">\r\n                    <button class=\"btn btn-primary\" [disabled]=\"selectedClient.Id == null\" data-toggle=\"modal\" data-target=\"#myModal\">+ Standard Product</button>\r\n                </div>\r\n\r\n                <div class=\"new-product-button\">\r\n                    <button class=\"btn btn-primary\" [disabled]=\"selectedClient.Id == null\">+ Custom Product</button>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-12 col-lg-12 orders-table\">\r\n                <table class=\"table table-bordered\">\r\n                    <thead>\r\n                        <tr>\r\n                            <th>Quantity</th>\r\n                            <th>Item Description</th>\r\n                            <th>Total Price</th>\r\n                            <th>Remove</th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let product of productsView\">\r\n                            <td>\r\n                                <div class=\"inline-block\">\r\n                                    <button class=\"btn btn-sm btn-success\" (click)=\"subtractQuantity(product.Id, product.Custom)\" [disabled]=\"product.Quantity == 1\"><i class=\"fa fa-minus\" aria-hidden=\"true\"></i></button>\r\n                                </div>\r\n                                <div class=\"inline-block orders-quantity\">\r\n                                    {{product.Quantity}}\r\n                                </div>\r\n                                <div class=\"inline-block\">\r\n                                    <button class=\"btn btn-sm btn-success\" (click)=\"addQuantity(product.Id, product.Custom)\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i></button>\r\n                                </div>\r\n\r\n                            </td>\r\n                            <td>{{product.ItemDescription}}</td>\r\n                            <td>{{product.TotalPrice | number: '1.2-2'}}</td>\r\n                            <td><button class=\"btn btn-danger\" (click)=\"removeProduct(product.Id, product.Custom)\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button></td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n        </form>\r\n    </div>\r\n\r\n    <!-- Modal for New Standard Product -->\r\n    <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Add New Standard Product</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <form #standardProductForm=\"ngForm\" novalidate>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"productCategory\">Product Category:</label>\r\n                            <select [(ngModel)]=\"selectedProductCategory\" name=\"categorySelect\" class=\"form-control\" (ngModelChange)=\"filterProducts()\">\r\n                                <option *ngFor=\"let category of resultProductCategories.ResultList\" [ngValue]=\"category.Id\">\r\n                                    {{category.Name}}\r\n                                </option>\r\n                            </select>\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"productName\">Product:</label>\r\n                            <select [(ngModel)]=\"selectedProduct\" [disabled]=\"selectedProductCategory == null\" name=\"productSelect\" class=\"form-control\" (ngModelChange)=\"getBestStandardPrice()\">\r\n                                <option *ngFor=\"let product of productList\" [ngValue]=\"product\">\r\n                                    {{product.Name}}\r\n                                </option>\r\n                            </select>\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"unit\">Unit:</label>\r\n                            <select [(ngModel)]=\"selectedUnit\" [disabled]=\"selectedProductCategory == null\" name=\"unitSelect\" class=\"form-control\">\r\n                                <option *ngFor=\"let unit of unitOptions\" [ngValue]=\"unit\">\r\n                                    {{unit}}\r\n                                </option>\r\n                            </select>\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"unit\">Quantity:</label>\r\n                            <input type=\"number\" [(ngModel)]=\"productQuantity\" [disabled]=\"selectedProduct == null\" class=\"form-control\" name=\"productQuantity\" />\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"unit\">Price:</label>\r\n                            <input type=\"number\" [(ngModel)]=\"productPrice\" [disabled]=\"selectedProduct == null\" class=\"form-control\" name=\"unitPrice\" />\r\n                        </div>\r\n                    </form>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"clearStandardProductFields()\">Cancel</button>\r\n                    <button type=\"button\" class=\"btn btn-success\" data-dismiss=\"modal\" (click)=\"addStandardProduct()\">Add New Product</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div id=\"sosForm\">\r\n    <h3 class=\"sos-form-label\">Add/Edit Sales Order Slip</h3>\r\n    <div class=\"sosForm-group\">\r\n        <form #sosForm=\"ngForm\" class=\"real-sos-form\" novalidate>\r\n            <div class=\"sosForm-action-buttons\">\r\n                <a class=\"btn btn-default\" href=\"{{returnUrl}}\">Cancel</a>\r\n                <button class=\"btn btn-success\" type=\"submit\" (click)=\"saveSos()\">Save</button>\r\n            </div>\r\n            <div class=\"form-group col-md-6 col-lg-6\">\r\n                <div class=\"sos-form-identifier\">\r\n                    Client:\r\n                </div>\r\n                <div class=\"sos-form-selector sos-client\">\r\n                    <select [(ngModel)]=\"selectedClient\" name=\"clientSelect\" class=\"form-control\">\r\n                        <option *ngFor=\"let client of resultClients.ResultList\" [ngValue]=\"client\">\r\n                            {{client.Name}}\r\n                        </option>\r\n                    </select>\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group col-md-6 col-lg-6\">\r\n                <div class=\"sos-form-identifier\">\r\n                    Date:\r\n                </div>\r\n                <div class=\"sos-form-selector\">\r\n                    <input type=\"date\" name=\"date\" class=\"form-control\" placeholder=\"Date\" [(ngModel)]=\"sosDate\" />\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group col-md-6 col-lg-6\">\r\n                <div class=\"sos-form-identifier\">\r\n                    Address:\r\n                </div>\r\n                <div class=\"sos-form-selector\">\r\n                    {{selectedClient.Office_Address}}\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group col-md-6 col-lg-6\">\r\n                <div class=\"sos-form-identifier\">\r\n                    Pickup:\r\n                </div>\r\n                <div class=\"sos-form-selector\">\r\n                    <input type=\"checkbox\" name=\"pickup\" [(ngModel)]=\"pickup\" />\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group col-md-6 col-lg-6\">\r\n                <div class=\"sos-form-identifier\">\r\n                    Remarks:\r\n                </div>\r\n                <div class=\"sos-form-selector sos-remarks\">\r\n                    <input type=\"text\" name=\"remarks\" class=\"form-control\" placeholder=\"Remarks\" [(ngModel)]=\"remarks\" />\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group col-md-6 col-lg-6\">\r\n                &nbsp;\r\n            </div>\r\n            <div class=\"col-md-12 col-lg-12\">\r\n                <div class=\"new-product-button\">\r\n                    <button class=\"btn btn-primary\" [disabled]=\"selectedClient.Id == null\" data-toggle=\"modal\" data-target=\"#myModal\" (click)=\"clearStandardProductFields()\">+ Standard Product</button>\r\n                </div>\r\n\r\n                <div class=\"new-product-button\">\r\n                    <button class=\"btn btn-primary\" [disabled]=\"selectedClient.Id == null\"  data-toggle=\"modal\" data-target=\"#myModalCustom\" (click)=\"clearCustomProductFields()\">+ Custom Product</button>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-12 col-lg-12 orders-table\">\r\n                <table class=\"table table-bordered\">\r\n                    <thead>\r\n                        <tr>\r\n                            <th>Quantity</th>\r\n                            <th>Item Description</th>\r\n                            <th>Unit Price</th>\r\n                            <th>Total Price</th>\r\n                            <th>Edit</th>\r\n                            <th>Remove</th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let product of productsView\">\r\n                            <td>\r\n                                <div class=\"inline-block\">\r\n                                    <button class=\"btn btn-sm btn-success\" (click)=\"subtractQuantity(product.Id, product.Custom)\" [disabled]=\"product.Quantity == 1\"><i class=\"fa fa-minus\" aria-hidden=\"true\"></i></button>\r\n                                </div>\r\n                                <div class=\"inline-block orders-quantity\">\r\n                                    {{product.Quantity}}\r\n                                </div>\r\n                                <div class=\"inline-block\">\r\n                                    <button class=\"btn btn-sm btn-success\" (click)=\"addQuantity(product.Id, product.Custom)\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i></button>\r\n                                </div>\r\n\r\n                            </td>\r\n                            <td>{{product.ItemDescription}}</td>\r\n                            <td>{{product.Price | number: '1.2-2'}}</td>\r\n                            <td>{{product.TotalPrice | number: '1.2-2'}}</td>\r\n                            <td>\r\n                                <div *ngIf=\"editForm[product.Id] == false\">\r\n                                    <button class=\"btn btn-success btn-sm\" (click)=\"edit(product.Id)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>\r\n                                </div>\r\n                                <div *ngIf=\"editForm[product.Id] == true\">\r\n                                    <button class=\"btn btn-success btn-sm\" [disabled]=\"\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i></button>\r\n                                </div>\r\n                            </td>\r\n                            <td><button class=\"btn btn-danger\" (click)=\"removeProduct(product.Id, product.Custom)\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button></td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n        </form>\r\n    </div>\r\n\r\n    <!-- Modal for New Standard Product -->\r\n    <div class=\"modal fade\" aria-hidden=\"true\" id=\"myModal\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Add New Standard Product</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <form #standardProductForm=\"ngForm\" novalidate>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"productCategory\">Product Category:</label>\r\n                            <select [(ngModel)]=\"selectedProductCategory\" name=\"categorySelect\" class=\"form-control\" (ngModelChange)=\"filterProducts()\">\r\n                                <option *ngFor=\"let category of resultProductCategories.ResultList\" [ngValue]=\"category.Id\">\r\n                                    {{category.Name}}\r\n                                </option>\r\n                            </select>\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"productName\">Product:</label>\r\n                            <select [(ngModel)]=\"selectedProduct\" [disabled]=\"selectedProductCategory == null\" name=\"productSelect\" class=\"form-control\" (ngModelChange)=\"getBestStandardPrice()\">\r\n                                <option *ngFor=\"let product of productList\" [ngValue]=\"product\">\r\n                                    {{product.Name}}\r\n                                </option>\r\n                            </select>\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"unit\">Unit:</label>\r\n                            <select [(ngModel)]=\"selectedUnit\" [disabled]=\"selectedProductCategory == null\" name=\"unitSelect\" class=\"form-control\">\r\n                                <option *ngFor=\"let unit of unitOptions\" [ngValue]=\"unit\">\r\n                                    {{unit}}\r\n                                </option>\r\n                            </select>\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"unit\">Quantity:</label>\r\n                            <input type=\"number\" [(ngModel)]=\"productQuantity\" [disabled]=\"selectedProduct == null\" class=\"form-control\" name=\"productQuantity\" />\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"unit\">Price:</label>\r\n                            <input type=\"number\" [(ngModel)]=\"productPrice\" [disabled]=\"selectedProduct == null\" class=\"form-control\" name=\"unitPrice\" />\r\n                        </div>\r\n                    </form>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"clearStandardProductFields()\">Cancel</button>\r\n                    <button type=\"button\" class=\"btn btn-success\" data-dismiss=\"modal\" [disabled]=\"selectedProductCategory == null || selectedProduct == null || selectedUnit == null || productQuantity == null || productPrice == null\" (click)=\"addStandardProduct()\">Add New Product</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n\r\n    <!-- Modal for New Custom Product -->\r\n    <div class=\"modal fade\" id=\"myModalCustom\" aria-hidden=\"true\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Add New Custom Product</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <form #customProductForm=\"ngForm\" novalidate>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"sel2\">Previously Ordered Products:</label>\r\n                            <select size=\"5\" name=\"historyCustomProducts\" [(ngModel)]=\"selectedCustom\" class=\"form-control\" id=\"sel2\" (ngModelChange)=\"filterPreviousCustomProducts()\">\r\n                                <option *ngFor=\"let historyCustom of resultCustomProducts.ResultList\" [ngValue]=\"historyCustom\">\r\n                                    {{historyCustom.ItemDescription}}\r\n                                </option>\r\n                            </select>\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"productCategory\">Product Category:</label>\r\n                            <select [(ngModel)]=\"customCategory\" name=\"categorySelect\" class=\"form-control\" (ngModelChange)=\"filterProducts()\">\r\n                                <option *ngFor=\"let category of resultProductCategories.ResultList\" [ngValue]=\"category.Name\">\r\n                                    {{category.Name}}\r\n                                </option>\r\n                            </select>\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"productName\">Product:</label>\r\n                           <input type=\"text\" [(ngModel)]=\"customItemDescription\" class=\"form-control\" name=\"customProduct\" />\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"unit\">Unit:</label>\r\n                            <select [(ngModel)]=\"customUnit\"  name=\"customUnit\" class=\"form-control\">\r\n                                <option *ngFor=\"let unit of unitOptions\" [ngValue]=\"unit\">\r\n                                    {{unit}}\r\n                                </option>\r\n                            </select>\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"unit\">Quantity:</label>\r\n                            <input type=\"number\" [(ngModel)]=\"customQuantity\"  class=\"form-control\" name=\"productQuantity\" />\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <label for=\"unit\">Price:</label>\r\n                            <input type=\"number\" [(ngModel)]=\"customPrice\" class=\"form-control\" name=\"unitPrice\" />\r\n                        </div>\r\n                    </form>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"clearCustomProductFields()\">Cancel</button>\r\n                    <button type=\"button\" class=\"btn btn-success\" data-dismiss=\"modal\" [disabled]=\"customCategory == null || customItemDescription == null || customUnit == null || customQuantity == null || customPrice == null\" (click)=\"addCustomProduct()\">Add New Product</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -64841,6 +64914,11 @@ var SosService = (function () {
     }
     SosService.prototype.getSosList = function () {
         return this._http.get(this.baseUrl + "GetSOSList")
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    SosService.prototype.getCustomProducts = function (clientId) {
+        return this._http.get(this.baseUrl + "GetListCustomProducts?clientId=" + clientId)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
