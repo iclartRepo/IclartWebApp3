@@ -1,11 +1,14 @@
 ﻿<div id="sosForm">
-    <h3 class="sos-form-label">Add/Edit Sales Order Slip</h3>
+    <div>
+        <h3 class="sos-form-label">Add/Edit Sales Order Slip</h3>
+    </div>    
+    <div class="sosForm-action-buttons">
+        <a class="btn btn-default" href="{{returnUrl}}">Cancel</a>
+        <button class="btn btn-success" type="submit" (click)="saveSos()" [disabled]="selectedClient.Id == null || productsView.length == 0">Save</button>
+    </div>
     <div class="sosForm-group">
         <form #sosForm="ngForm" class="real-sos-form" novalidate>
-            <div class="sosForm-action-buttons">
-                <a class="btn btn-default" href="{{returnUrl}}">Cancel</a>
-                <button class="btn btn-success" type="submit" (click)="saveSos()">Save</button>
-            </div>
+         
             <div class="form-group col-md-6 col-lg-6">
                 <div class="sos-form-identifier">
                     Client:
@@ -77,29 +80,40 @@
                     <tbody>
                         <tr *ngFor="let product of productsView">
                             <td>
-                                <div class="inline-block">
+                                <!--<div class="inline-block">
                                     <button class="btn btn-sm btn-success" (click)="subtractQuantity(product.Id, product.Custom)" [disabled]="product.Quantity == 1"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                </div>
-                                <div class="inline-block orders-quantity">
+                                </div>-->
+                                <div *ngIf="editForm[product.Id] == false">
                                     {{product.Quantity}}
                                 </div>
-                                <div class="inline-block">
-                                    <button class="btn btn-sm btn-success" (click)="addQuantity(product.Id, product.Custom)"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                <div *ngIf="editForm[product.Id] == true">
+                                    <input type="number" name="productQuantity-{{product.Id}}" class="form-control" [(ngModel)]="editFormQuantity[product.Id]" />
                                 </div>
+                                <!--<div class="inline-block">
+                                    <button class="btn btn-sm btn-success" (click)="addQuantity(product.Id, product.Custom)"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                </div>-->
 
                             </td>
                             <td>{{product.ItemDescription}}</td>
-                            <td>{{product.Price | number: '1.2-2'}}</td>
-                            <td>{{product.TotalPrice | number: '1.2-2'}}</td>
                             <td>
+                                <div *ngIf="editForm[product.Id] == false">
+                                    {{product.Price | number: '1.2-2'}}
+                                </div>
+                                <div *ngIf="editForm[product.Id] == true">
+                                    <input type="number" name="productPrice-{{product.Id}}" class="form-control" [(ngModel)]="editFormPrice[product.Id]" />
+                                </div>
+                          
+                            </td>
+                            <td>{{product.TotalPrice | number: '1.2-2'}}</td>
+                            <td class="text-center">
                                 <div *ngIf="editForm[product.Id] == false">
                                     <button class="btn btn-success btn-sm" (click)="edit(product.Id)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                                 </div>
                                 <div *ngIf="editForm[product.Id] == true">
-                                    <button class="btn btn-success btn-sm" [disabled]=""><i class="fa fa-check" aria-hidden="true"></i></button>
+                                    <button class="btn btn-success btn-sm" [disabled]="editFormQuantity[product.Id] == '' || editFormPrice[product.Id] == ''" (click)="updateOrder(product.Id, product.Custom)"><i class="fa fa-check" aria-hidden="true"></i></button>
                                 </div>
                             </td>
-                            <td><button class="btn btn-danger" (click)="removeProduct(product.Id, product.Custom)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                            <td class="text-center"><button class="btn btn-danger" (click)="removeProduct(product.Id, product.Custom)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -121,35 +135,44 @@
                     <form #standardProductForm="ngForm" novalidate>
                         <div class="form-group">
                             <label for="productCategory">Product Category:</label>
-                            <select [(ngModel)]="selectedProductCategory" name="categorySelect" class="form-control" (ngModelChange)="filterProducts()">
+                            <select [(ngModel)]="selectedProductCategory" name="categorySelect" class="form-control" (ngModelChange)="filterProducts()" required>
                                 <option *ngFor="let category of resultProductCategories.ResultList" [ngValue]="category.Id">
                                     {{category.Name}}
                                 </option>
                             </select>
+                          
                         </div>
                         <div class="form-group">
                             <label for="productName">Product:</label>
-                            <select [(ngModel)]="selectedProduct" [disabled]="selectedProductCategory == null" name="productSelect" class="form-control" (ngModelChange)="getBestStandardPrice()">
+                            <select [(ngModel)]="selectedProduct" [disabled]="selectedProductCategory == null" name="productSelect" class="form-control" (ngModelChange)="getBestStandardPrice()" required>
                                 <option *ngFor="let product of productList" [ngValue]="product">
                                     {{product.Name}}
                                 </option>
                             </select>
+                           
                         </div>
                         <div class="form-group">
                             <label for="unit">Unit:</label>
-                            <select [(ngModel)]="selectedUnit" [disabled]="selectedProductCategory == null" name="unitSelect" class="form-control">
+                            <select [(ngModel)]="selectedUnit" [disabled]="selectedProductCategory == null" name="unitSelect" class="form-control" required>
                                 <option *ngFor="let unit of unitOptions" [ngValue]="unit">
                                     {{unit}}
                                 </option>
                             </select>
+                           
                         </div>
                         <div class="form-group">
                             <label for="unit">Quantity:</label>
-                            <input type="number" [(ngModel)]="productQuantity" [disabled]="selectedProduct == null" class="form-control" name="productQuantity" />
+                            <input type="number" [(ngModel)]="productQuantity" [disabled]="selectedProduct == null" class="form-control" name="productQuantity" required/>
+                            <small [hidden]="!standardFormErrors.productQuantity">
+                                {{standardFormErrors.productQuantity}}
+                            </small>
                         </div>
                         <div class="form-group">
                             <label for="unit">Price:</label>
-                            <input type="number" [(ngModel)]="productPrice" [disabled]="selectedProduct == null" class="form-control" name="unitPrice" />
+                            <input type="number" [(ngModel)]="productPrice" [disabled]="selectedProduct == null" class="form-control" name="unitPrice" required />
+                            <small [hidden]="!standardFormErrors.unitPrice">
+                                {{standardFormErrors.unitPrice}}
+                            </small>
                         </div>
                     </form>
                 </div>
@@ -192,7 +215,10 @@
                         </div>
                         <div class="form-group">
                             <label for="productName">Product:</label>
-                           <input type="text" [(ngModel)]="customItemDescription" class="form-control" name="customProduct" />
+                           <input type="text" [(ngModel)]="customItemDescription" class="form-control" name="customProduct" (ngModelChange)="checkProductName()" />
+                            <small [hidden]="!showNameValidation">
+                                Product is required.
+                            </small>
                         </div>
                         <div class="form-group">
                             <label for="unit">Unit:</label>
@@ -205,16 +231,22 @@
                         <div class="form-group">
                             <label for="unit">Quantity:</label>
                             <input type="number" [(ngModel)]="customQuantity"  class="form-control" name="productQuantity" />
+                            <small [hidden]="customQuantity">
+                                Quantity is required.
+                            </small>
                         </div>
                         <div class="form-group">
                             <label for="unit">Price:</label>
-                            <input type="number" [(ngModel)]="customPrice" class="form-control" name="unitPrice" />
+                            <input type="number" [(ngModel)]="customPrice" class="form-control" name="unitPrice" (ngModelChange)="checkCustomPrice()" />
+                            <small [hidden]="!showPriceValidation">
+                                Unit Price is required.
+                            </small>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clearCustomProductFields()">Cancel</button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal" [disabled]="customCategory == null || customItemDescription == null || customUnit == null || customQuantity == null || customPrice == null" (click)="addCustomProduct()">Add New Product</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" [disabled]="customCategory == null || customItemDescription == null || customItemDescription == '' || customUnit == null || customQuantity == null || customPrice == null" (click)="addCustomProduct()">Add New Product</button>
                 </div>
             </div>
 

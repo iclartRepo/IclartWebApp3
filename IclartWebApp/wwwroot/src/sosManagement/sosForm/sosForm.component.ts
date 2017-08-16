@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ElementRef } from '@angular/core';
+﻿import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 
@@ -68,11 +68,13 @@ export class SOSFormComponent {
 
     //for customProduct
     customItemDescription: string;
-    customQuantity: number;
+    customQuantity: number = 1;
     customUnit: string;
     customPrice: number;
     customCategory: string;
     selectedCustom: any;
+    showPriceValidation: boolean = false;
+    showNameValidation: boolean = false;
 
     //for standardProduct
     selectedProductCategory: any;
@@ -89,69 +91,121 @@ export class SOSFormComponent {
     customProducts: any[] = [];
 
     /* Form Validations */
-    sosForm: NgForm;
-    //@ViewChild('sosForm') currentForm: NgForm;
+    //For adding standard products
+    standardProductForm: NgForm;
+    @ViewChild('standardProductForm') currentForm: NgForm;
 
-    //ngAfterViewChecked() {
-    //    this.formChanged();
-    //}
+    ngAfterViewChecked() {
+        this.formChanged();
+    }
 
-    //formChanged() {
-    //    if (this.currentForm === this.clientForm) { return; }
-    //    this.clientForm = this.currentForm;
-    //    if (this.clientForm) {
-    //        this.clientForm.valueChanges
-    //            .subscribe(data => this.onValueChanged(data));
-    //    }
-    //}
+    formChanged() {
+        if (this.currentForm === this.standardProductForm) { return; }
 
-    //onValueChanged(data?: any) {
-    //    if (!this.clientForm) { return; }
-    //    const form = this.clientForm.form;
+        this.standardProductForm = this.currentForm;
+        if (this.standardProductForm) {
+            this.standardProductForm.valueChanges
+                .subscribe(data => this.onValueChanged(data));
+        }
 
-    //    for (const field in this.formErrors) {
-    //        // clear previous error message (if any)
-    //        this.formErrors[field] = '';
-    //        const control = form.get(field);
 
-    //        if (control && control.dirty && !control.valid) {
-    //            const messages = this.validationMessages[field];
-    //            for (const key in control.errors) {
-    //                this.formErrors[field] += messages[key] + ' ';
-    //            }
-    //        }
-    //    }
-    //}
+    }
 
-    //formErrors = {
-    //    'name': '',
-    //    'telephoneNumber': '',
-    //    'discountScheme': '',
-    //    'contactsOrder': '',
-    //    'creditLimit': ''
-    //};
+    onValueChanged(data?: any) {
+        if (!this.standardProductForm) { return; }
 
-    //validationMessages = {
-    //    'name': {
-    //        'required': 'Client Name is required.'
-    //    },
-    //    'telephoneNumber': {
-    //        'required': 'Telephone Number is required.'
-    //    },
-    //    'discountScheme': {
-    //        'required': 'Discount Scheme is required.'
-    //    },
-    //    'contactsOrder': {
-    //        'required': 'Contact Persons from Sales is required.'
-    //    },
-    //    'creditLimit': {
-    //        'required': 'Credit Limit is required.'
-    //    }
-    //};
+        if (this.standardProductForm)
+        {
+            const form = this.standardProductForm.form;
+
+            for (const field in this.standardFormErrors) {
+                // clear previous error message (if any)
+                this.standardFormErrors[field] = '';
+                const control = form.get(field);
+
+                if (control && control.dirty && !control.valid) {
+                    const messages = this.standardValidationMessages[field];
+                    for (const key in control.errors) {
+                        this.standardFormErrors[field] += messages[key] + ' ';
+                    }
+                }
+            }
+        }
+
+       
+    
+    }
+
+    standardFormErrors = {
+        'categorySelect': '',
+        'productSelect': '',
+        'unitSelect': '',
+        'productQuantity': '',
+        'unitPrice': ''
+    };
+
+    standardValidationMessages = {
+        'categorySelect': {
+            'required': 'Product Category is required.'
+        },
+        'productSelect': {
+            'required': 'Product is required.'
+        },
+        'unitSelect': {
+            'required': 'Unit is required.'
+        },
+        'productQuantity': {
+            'required': 'Quantity is required.'
+        },
+        'unitPrice': {
+            'required': 'Unit Price is required.'
+        }
+    };
+
+    checkCustomPrice(): void {
+        if (this.customPrice)
+        {
+            this.showPriceValidation = false;
+        }
+        else
+        {
+            this.showPriceValidation = true;
+        }
+    }
+
+    checkProductName(): void {
+        if (this.customItemDescription) {
+            this.showNameValidation = false;
+        }
+        else {
+            this.showNameValidation = true;
+        }
+    }
+
 
     edit(id: number): void {
         this.editForm[id] = true;
     }
+
+    updateOrder(id: number, custom:boolean): void {
+        let searchResult = this.productsView.filter(item => item.Id == id)[0];
+        searchResult.Quantity = this.editFormQuantity[id];
+        searchResult.Price = this.editFormPrice[id];
+        searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
+
+        if (custom == false) {
+            let realProductSearch = this.standardProducts.filter(item => item.Pointer == id)[0];
+            realProductSearch.Quantity = this.editFormQuantity[id];
+            realProductSearch.Price = this.editFormPrice[id];
+        }
+        else {
+            let realProductSearch = this.customProducts.filter(item => item.Pointer == id)[0];
+            realProductSearch.Quantity = this.editFormQuantity[id];
+            realProductSearch.Price = this.editFormPrice[id];
+        }
+        this.editForm[id] = false;
+    }
+
     filterPreviousCustomProducts(): void {
         let product = this.resultCustomProducts.ResultList.filter(i => i.ItemDescription == this.selectedCustom.ItemDescription)[0];
 
@@ -160,6 +214,9 @@ export class SOSFormComponent {
         this.customUnit = product.Unit;
         this.customQuantity = 1;
         this.customPrice = product.Price;
+
+        this.checkCustomPrice();
+        this.checkProductName();
     }
     filterProducts(): void {
         this.productList = [];
@@ -197,7 +254,7 @@ export class SOSFormComponent {
         this.customItemDescription = null;
         this.customCategory = null;
         this.customPrice = null;
-        this.customQuantity = null;
+        this.customQuantity = 1;
         this.customUnit = null;
 
         this.getCustomProducts(this.selectedClient.Id);
@@ -248,6 +305,7 @@ export class SOSFormComponent {
         this._productService.getPrice(this.selectedClient.Id, this.selectedProduct.Id)
             .subscribe(result => {
                 this.productPrice = result;
+                this.productQuantity = 1;
             },
             error => this.errorMessage = <any>error);
     }
@@ -308,38 +366,38 @@ export class SOSFormComponent {
      //   this.clearCustomProductFields();
     }
 
-    addQuantity(id: number, custom: boolean): void {
+    //addQuantity(id: number, custom: boolean): void {
 
-        let searchResult = this.productsView.filter(item => item.Id == id)[0];
-        searchResult.Quantity += 1;
-        searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
+    //    let searchResult = this.productsView.filter(item => item.Id == id)[0];
+    //    searchResult.Quantity += 1;
+    //    searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
 
-        if (custom == false) {
-            let realProductSearch = this.standardProducts.filter(item => item.Pointer == id)[0];
-            realProductSearch.Quantity += 1;
-        }
-        else
-        {
-            let realProductSearch = this.customProducts.filter(item => item.Pointer == id)[0];
-            realProductSearch.Quantity += 1;
-        }
-    }
+    //    if (custom == false) {
+    //        let realProductSearch = this.standardProducts.filter(item => item.Pointer == id)[0];
+    //        realProductSearch.Quantity += 1;
+    //    }
+    //    else
+    //    {
+    //        let realProductSearch = this.customProducts.filter(item => item.Pointer == id)[0];
+    //        realProductSearch.Quantity += 1;
+    //    }
+    //}
 
-    subtractQuantity(id: number, custom: boolean): void {
-        let searchResult = this.productsView.filter(item => item.Id == id)[0];
-        searchResult.Quantity -= 1;
-        searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
+    //subtractQuantity(id: number, custom: boolean): void {
+    //    let searchResult = this.productsView.filter(item => item.Id == id)[0];
+    //    searchResult.Quantity -= 1;
+    //    searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
 
-        if (custom == false) {
-            let realProductSearch = this.standardProducts.filter(item => item.Pointer == id)[0];
-            realProductSearch.Quantity -= 1;
-        }
-        else
-        {
-            let realProductSearch = this.customProducts.filter(item => item.Pointer == id)[0];
-            realProductSearch.Quantity -= 1;
-        }
-    }
+    //    if (custom == false) {
+    //        let realProductSearch = this.standardProducts.filter(item => item.Pointer == id)[0];
+    //        realProductSearch.Quantity -= 1;
+    //    }
+    //    else
+    //    {
+    //        let realProductSearch = this.customProducts.filter(item => item.Pointer == id)[0];
+    //        realProductSearch.Quantity -= 1;
+    //    }
+    //}
 
     removeProduct(id: number, custom: boolean): void {
         this.productsView = this.productsView.filter(item => item.Id !== id);

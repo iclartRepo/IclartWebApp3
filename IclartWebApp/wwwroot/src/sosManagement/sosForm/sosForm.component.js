@@ -7,7 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { SosService } from '../../services/sos.service';
 import { ClientService } from '../../services/client.service';
 import { ProductService } from '../../services/product.service';
@@ -66,14 +67,106 @@ var SOSFormComponent = (function () {
             Combine_Items: false
         };
         this.productsView = [];
+        this.customQuantity = 1;
+        this.showPriceValidation = false;
+        this.showNameValidation = false;
         this.sosDate = this._utlitiesService.formatDate(new Date());
         this.pickup = false;
         this.remarks = "";
         this.standardProducts = [];
         this.customProducts = [];
+        this.standardFormErrors = {
+            'categorySelect': '',
+            'productSelect': '',
+            'unitSelect': '',
+            'productQuantity': '',
+            'unitPrice': ''
+        };
+        this.standardValidationMessages = {
+            'categorySelect': {
+                'required': 'Product Category is required.'
+            },
+            'productSelect': {
+                'required': 'Product is required.'
+            },
+            'unitSelect': {
+                'required': 'Unit is required.'
+            },
+            'productQuantity': {
+                'required': 'Quantity is required.'
+            },
+            'unitPrice': {
+                'required': 'Unit Price is required.'
+            }
+        };
     }
+    SOSFormComponent.prototype.ngAfterViewChecked = function () {
+        this.formChanged();
+    };
+    SOSFormComponent.prototype.formChanged = function () {
+        var _this = this;
+        if (this.currentForm === this.standardProductForm) {
+            return;
+        }
+        this.standardProductForm = this.currentForm;
+        if (this.standardProductForm) {
+            this.standardProductForm.valueChanges
+                .subscribe(function (data) { return _this.onValueChanged(data); });
+        }
+    };
+    SOSFormComponent.prototype.onValueChanged = function (data) {
+        if (!this.standardProductForm) {
+            return;
+        }
+        if (this.standardProductForm) {
+            var form = this.standardProductForm.form;
+            for (var field in this.standardFormErrors) {
+                this.standardFormErrors[field] = '';
+                var control = form.get(field);
+                if (control && control.dirty && !control.valid) {
+                    var messages = this.standardValidationMessages[field];
+                    for (var key in control.errors) {
+                        this.standardFormErrors[field] += messages[key] + ' ';
+                    }
+                }
+            }
+        }
+    };
+    SOSFormComponent.prototype.checkCustomPrice = function () {
+        if (this.customPrice) {
+            this.showPriceValidation = false;
+        }
+        else {
+            this.showPriceValidation = true;
+        }
+    };
+    SOSFormComponent.prototype.checkProductName = function () {
+        if (this.customItemDescription) {
+            this.showNameValidation = false;
+        }
+        else {
+            this.showNameValidation = true;
+        }
+    };
     SOSFormComponent.prototype.edit = function (id) {
         this.editForm[id] = true;
+    };
+    SOSFormComponent.prototype.updateOrder = function (id, custom) {
+        var searchResult = this.productsView.filter(function (item) { return item.Id == id; })[0];
+        searchResult.Quantity = this.editFormQuantity[id];
+        searchResult.Price = this.editFormPrice[id];
+        searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
+        if (custom == false) {
+            var realProductSearch = this.standardProducts.filter(function (item) { return item.Pointer == id; })[0];
+            realProductSearch.Quantity = this.editFormQuantity[id];
+            realProductSearch.Price = this.editFormPrice[id];
+        }
+        else {
+            var realProductSearch = this.customProducts.filter(function (item) { return item.Pointer == id; })[0];
+            realProductSearch.Quantity = this.editFormQuantity[id];
+            realProductSearch.Price = this.editFormPrice[id];
+        }
+        this.editForm[id] = false;
     };
     SOSFormComponent.prototype.filterPreviousCustomProducts = function () {
         var _this = this;
@@ -83,6 +176,8 @@ var SOSFormComponent = (function () {
         this.customUnit = product.Unit;
         this.customQuantity = 1;
         this.customPrice = product.Price;
+        this.checkCustomPrice();
+        this.checkProductName();
     };
     SOSFormComponent.prototype.filterProducts = function () {
         this.productList = [];
@@ -119,7 +214,7 @@ var SOSFormComponent = (function () {
         this.customItemDescription = null;
         this.customCategory = null;
         this.customPrice = null;
-        this.customQuantity = null;
+        this.customQuantity = 1;
         this.customUnit = null;
         this.getCustomProducts(this.selectedClient.Id);
     };
@@ -166,6 +261,7 @@ var SOSFormComponent = (function () {
         this._productService.getPrice(this.selectedClient.Id, this.selectedProduct.Id)
             .subscribe(function (result) {
             _this.productPrice = result;
+            _this.productQuantity = 1;
         }, function (error) { return _this.errorMessage = error; });
     };
     SOSFormComponent.prototype.addStandardProduct = function () {
@@ -214,32 +310,6 @@ var SOSFormComponent = (function () {
         this.editFormQuantity[this.pointerMarker] = this.customQuantity;
         this.productsView.push(productView);
     };
-    SOSFormComponent.prototype.addQuantity = function (id, custom) {
-        var searchResult = this.productsView.filter(function (item) { return item.Id == id; })[0];
-        searchResult.Quantity += 1;
-        searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
-        if (custom == false) {
-            var realProductSearch = this.standardProducts.filter(function (item) { return item.Pointer == id; })[0];
-            realProductSearch.Quantity += 1;
-        }
-        else {
-            var realProductSearch = this.customProducts.filter(function (item) { return item.Pointer == id; })[0];
-            realProductSearch.Quantity += 1;
-        }
-    };
-    SOSFormComponent.prototype.subtractQuantity = function (id, custom) {
-        var searchResult = this.productsView.filter(function (item) { return item.Id == id; })[0];
-        searchResult.Quantity -= 1;
-        searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
-        if (custom == false) {
-            var realProductSearch = this.standardProducts.filter(function (item) { return item.Pointer == id; })[0];
-            realProductSearch.Quantity -= 1;
-        }
-        else {
-            var realProductSearch = this.customProducts.filter(function (item) { return item.Pointer == id; })[0];
-            realProductSearch.Quantity -= 1;
-        }
-    };
     SOSFormComponent.prototype.removeProduct = function (id, custom) {
         this.productsView = this.productsView.filter(function (item) { return item.Id !== id; });
         if (custom == false) {
@@ -282,6 +352,10 @@ var SOSFormComponent = (function () {
     };
     return SOSFormComponent;
 }());
+__decorate([
+    ViewChild('standardProductForm'),
+    __metadata("design:type", NgForm)
+], SOSFormComponent.prototype, "currentForm", void 0);
 SOSFormComponent = __decorate([
     Component({
         selector: 'sos-form',

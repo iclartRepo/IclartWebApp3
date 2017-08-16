@@ -7,9 +7,9 @@
     }
 
    .sosForm-action-buttons {
-        position:absolute;
-        right:15px;
-        top: 57px;
+        float:right;
+        position:relative;
+        top: -35px;
     }
 
    .sos-client {
@@ -51,5 +51,8 @@
            margin-right: 5px;
        }
    }
+   small {
+        color:red;
+    }
 
 }

@@ -515,9 +515,9 @@ body {
   margin-top: 0px; }
 
 #sosForm .sosForm-action-buttons {
-  position: absolute;
-  right: 15px;
-  top: 57px; }
+  float: right;
+  position: relative;
+  top: -35px; }
 
 #sosForm .sos-client {
   margin-left: 15px; }
@@ -547,4 +547,7 @@ body {
   #sosForm .orders-table .orders-quantity {
     margin-left: 5px;
     margin-right: 5px; }
+
+#sosForm small {
+  color: red; }
 
