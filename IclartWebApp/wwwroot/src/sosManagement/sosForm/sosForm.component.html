@@ -70,6 +70,7 @@
                     <thead>
                         <tr>
                             <th>Quantity</th>
+                            <th>Unit</th>
                             <th>Item Description</th>
                             <th>Unit Price</th>
                             <th>Total Price</th>
@@ -94,6 +95,7 @@
                                 </div>-->
 
                             </td>
+                            <td>{{product.Unit}}</td>
                             <td>{{product.ItemDescription}}</td>
                             <td>
                                 <div *ngIf="editForm[product.Id] == false">

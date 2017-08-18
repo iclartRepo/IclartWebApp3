@@ -14,6 +14,7 @@ import { ProductDetailsComponent } from './productManagement/productDetails/prod
 import { ProductFormComponent } from './productManagement/productForm/productForm.component';
 import { SOSListComponent } from './sosManagement/sosList/sosList.component';
 import { SOSFormComponent } from './sosManagement/sosForm/sosForm.component';
+import { SOSDetailsComponent } from './sosManagement/sosDetails/sosDetails.component';
 
 import { AccountService } from './services/account.service';
 import { ClientService } from './services/client.service';
@@ -24,8 +25,8 @@ import { UtilitiesService } from './services/utilities.service';
 
 @NgModule({
     imports: [BrowserModule, HttpModule, FormsModule],
-    declarations: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent, ProductListComponent, ProductDetailsComponent, ProductFormComponent, SOSListComponent, SOSFormComponent],
-    entryComponents: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent, ProductListComponent, ProductDetailsComponent, ProductFormComponent, SOSListComponent, SOSFormComponent],
+    declarations: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent, ProductListComponent, ProductDetailsComponent, ProductFormComponent, SOSListComponent, SOSFormComponent, SOSDetailsComponent],
+    entryComponents: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent, ProductListComponent, ProductDetailsComponent, ProductFormComponent, SOSListComponent, SOSFormComponent, SOSDetailsComponent],
     providers: [AccountService, ClientService, CompetitorService, ProductService, SosService, UtilitiesService]
 })
 export class AppModule {
@@ -103,8 +104,14 @@ export class AppModule {
             appRef.bootstrap(SOSFormComponent);
         }
         catch (e) {
-            console.log(e);
-        }            
+          
+        }  
+        try {
+            appRef.bootstrap(SOSDetailsComponent);
+        }
+        catch (e) {
+
+        }               
       
     }
 }

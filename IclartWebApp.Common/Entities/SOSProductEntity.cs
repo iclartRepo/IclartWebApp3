@@ -16,6 +16,7 @@ namespace IclartWebApp.Common.Entities
         public double Price { get; set; }
         public int QuantityDelivered { get; set; }
         public bool Discarded { get; set; }
+        public string Unit { get; set; }
         [ForeignKey("SOSId")]
         public virtual SOSEntity SalesOrderSlip { get; set; }
         [ForeignKey("ProductId")]

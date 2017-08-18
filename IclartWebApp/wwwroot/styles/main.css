@@ -551,3 +551,37 @@ body {
 #sosForm small {
   color: red; }
 
+#sosDetails .sos-form-label {
+  margin-top: 0px; }
+
+#sosDetails .sos-client {
+  margin-left: 15px; }
+
+#sosDetails .sosDetails-group {
+  margin-top: 20px; }
+
+#sosDetails .sos-remarks {
+  width: 65%; }
+
+#sosDetails .real-sos-form {
+  margin-top: 30px; }
+
+#sosDetails .sos-form-identifier {
+  display: inline-block;
+  margin-right: 10px; }
+
+#sosDetails .sos-form-selector {
+  display: inline-block; }
+
+#sosDetails .orders-table {
+  margin-top: 10px; }
+  #sosDetails .orders-table .orders-quantity {
+    margin-left: 5px;
+    margin-right: 5px; }
+
+#sosDetails small {
+  color: red; }
+
+#sosDetails .sos-data {
+  margin-bottom: 15px; }
+

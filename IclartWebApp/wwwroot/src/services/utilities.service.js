@@ -31,6 +31,29 @@ var UtilitiesService = (function () {
         }
         return year + "-" + monthString + "-" + dayString;
     };
+    UtilitiesService.prototype.convertJsonDate = function (date) {
+        var dateString = date.substr(6);
+        var currentTime = new Date(parseInt(dateString));
+        var month = currentTime.getMonth() + 1;
+        var monthString = "";
+        if (month < 10) {
+            monthString = "0" + month.toString();
+        }
+        else {
+            monthString = month.toString();
+        }
+        var day = currentTime.getDate();
+        var dayString = "";
+        if (day < 10) {
+            dayString = "0" + day.toString();
+        }
+        else {
+            dayString = day.toString();
+        }
+        var year = currentTime.getFullYear();
+        var date = year + "-" + monthString + "-" + dayString;
+        return date;
+    };
     return UtilitiesService;
 }());
 UtilitiesService = __decorate([

@@ -45,6 +45,52 @@ namespace IclartWebApp.Controllers
             return View(sosModel);
         }
 
+        public ActionResult ViewSOS(int id)
+        {
+            using (var context = new DBContext())
+            {
+                var sosRepository = new GenericRepository<SOSEntity>(context);
+
+                var sos = sosRepository.Get(i => i.Id == id)
+                    .Select(x => new SOSModel
+                    {
+                        Id = x.Id,
+                        Pickup = x.Pickup,
+                        Sos_Date = x.Sos_Date,
+                        Client = new ClientModel { Name = x.ClientEntity.Name, Office_Address = x.ClientEntity.Office_Address},
+                        Remarks = x.Remarks,
+                        Orders = x.Orders.Where(y => y.Discarded == false)
+                                .Select(y => new SOSProductModel {
+                                     Quantity = y.Quantity,
+                                     QuantityDelivered = y.QuantityDelivered,
+                                     Price = y.Price,
+                                     Product = new ProductModel { Name = y.Product.Name },
+                                     Unit = y.Unit,
+                                     Id = y.Id
+                                    
+                                }).ToList(),
+                        CustomOrders = x.CustomOrders.Where(y => y.Discarded == false)
+                                .Select(y => new SOSCustomModel
+                                {
+                                    Quantity = y.Quantity,
+                                    QuantityDelivered = y.QuantityDelivered,
+                                    ItemDescription = y.ItemDescription,
+                                    Unit = y.Unit,
+                                    Price = y.Price,
+                                    Id = y.Id
+                                }).ToList()
+                    }).FirstOrDefault();
+
+                var sosViewModel = new SOSViewModel
+                {
+                    SingleSOS = sos
+                };
+
+                return View(sosViewModel);
+            }
+           
+        }
+
         #region GET METHODS 
         [HttpGet]
         public ActionResult GetSOSList()

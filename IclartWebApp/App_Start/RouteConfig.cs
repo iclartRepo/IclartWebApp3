@@ -111,6 +111,12 @@ namespace IclartWebApp
            new { controller = "SOS", action = "AddSOS" }
             );
 
+            routes.MapRoute(
+             "ViewSOS",
+             "sosdetails/{id}",
+             new { controller = "SOS", action = "ViewSOS", id = UrlParameter.Optional }
+              );
+
 
             routes.MapRoute(
                 name: "Default",

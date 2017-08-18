@@ -316,7 +316,8 @@ export class SOSFormComponent {
             "Pointer": this.pointerMarker,
             "ProductId": this.selectedProduct.Id,
             "Quantity": this.productQuantity,
-            "Price": this.productPrice
+            "Price": this.productPrice,
+            "Unit": this.selectedUnit
         };
         this.standardProducts.push(standardProduct);
 
@@ -326,6 +327,7 @@ export class SOSFormComponent {
             "ItemDescription": this.selectedProduct.Name,
             "Price": this.productPrice,
             "TotalPrice": this.productQuantity * this.productPrice,
+            "Unit": this.selectedUnit,
             "Custom": false
         }
 
@@ -355,6 +357,7 @@ export class SOSFormComponent {
             "ItemDescription": this.customItemDescription,
             "Price": this.customPrice,
             "TotalPrice": this.customPrice * this.customQuantity,
+            "Unit": this.customUnit,
             "Custom": true
         }
 

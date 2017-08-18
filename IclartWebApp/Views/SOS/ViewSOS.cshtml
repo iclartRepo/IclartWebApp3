@@ -1,0 +1,9 @@
+﻿@using IclartWebApp.Models
+@model SOSViewModel
+@{
+    ViewBag.Title = "View SOS Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<sos-details sos="@Json.Encode(Model.SingleSOS).ToString()" sosdate="@Model.SingleSOS.Sos_Date.ToString("yyyy-MM-dd")"></sos-details>
+

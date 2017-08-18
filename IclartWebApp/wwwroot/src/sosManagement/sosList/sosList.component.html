@@ -16,7 +16,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let sos of result.ResultList">
-                        <td>{{sos.Id}}</td>
+                        <td><a href="/sosdetails/{{sos.Id}}">{{sos.Id}}</a></td>
                         <td>{{sos.Client.Name}}</td>
                         <td>{{sos.Status}}</td>
                         <td><i class="fa fa-pencil" aria-hidden="true"></i></td>

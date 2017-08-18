@@ -261,6 +261,7 @@
     <Content Include="wwwroot\src\productManagement\productDetails\productDetails.component.html" />
     <Content Include="wwwroot\src\productManagement\productForm\productForm.component.html" />
     <Content Include="wwwroot\src\productManagement\productList\productList.component.html" />
+    <Content Include="wwwroot\src\sosManagement\sosDetails\sosDetails.component.html" />
     <Content Include="wwwroot\src\sosManagement\sosForm\sosForm.component.html" />
     <Content Include="wwwroot\src\sosManagement\sosList\sosList.component.html" />
     <Content Include="wwwroot\styles\bootstrap.min.css" />
@@ -365,6 +366,8 @@
     <Content Include="wwwroot\styles\sosManagement\sosList\sosList.scss" />
     <Content Include="Views\SOS\AddSOS.cshtml" />
     <Content Include="wwwroot\styles\sosManagement\sosForm\sosForm.scss" />
+    <Content Include="Views\SOS\ViewSOS.cshtml" />
+    <Content Include="wwwroot\styles\sosManagement\sosDetails\sosDetails.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -400,6 +403,7 @@
     <TypeScriptCompile Include="wwwroot\src\services\product.service.ts" />
     <TypeScriptCompile Include="wwwroot\src\services\sos.service.ts" />
     <TypeScriptCompile Include="wwwroot\src\services\utilities.service.ts" />
+    <TypeScriptCompile Include="wwwroot\src\sosManagement\sosDetails\sosDetails.component.ts" />
     <TypeScriptCompile Include="wwwroot\src\sosManagement\sosForm\sosForm.component.ts" />
     <TypeScriptCompile Include="wwwroot\src\sosManagement\sosList\sosList.component.ts" />
   </ItemGroup>
