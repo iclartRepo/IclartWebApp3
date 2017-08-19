@@ -291,7 +291,9 @@ body {
     overflow-x: hidden;
     overflow-y: scroll;
     height: 75vh;
-    width: 100%; }
+    width: 100%;
+    position: relative;
+    top: -25px; }
   #clientForm .client-name {
     width: 100%; }
     #clientForm .client-name .name {
@@ -478,4 +480,129 @@ body {
     color: red; }
   #productForm .productForm-group .form-inline .form-group {
     padding-right: 10px; }
+
+/*SOS Management*/
+#sosList .sos-add-button {
+  float: right; }
+
+#sosList .input-group {
+  width: 100%; }
+
+#sosList .filters {
+  height: 85px; }
+
+#sosList .form-inline {
+  margin-top: 10px; }
+
+#sosList .sos-filter {
+  float: left;
+  width: 28%; }
+
+#sosList .header-fixed > thead,
+#sosList .header-fixed > tbody,
+#sosList .header-fixed > thead > tr,
+#sosList .header-fixed > tbody > tr,
+#sosList .header-fixed > thead > tr > th,
+#sosList .header-fixed > tbody > tr > td {
+  display: block; }
+
+#sosList .header-fixed > tbody > tr:after,
+#sosList .header-fixed > thead > tr:after {
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  clear: both; }
+
+#sosList .header-fixed > tbody {
+  overflow-y: auto;
+  height: 350px; }
+
+#sosList .header-fixed > tbody > tr > td,
+#sosList .header-fixed > thead > tr > th {
+  width: 25%;
+  float: left; }
+
+#sosForm .modal-dialog {
+  left: 0px !important; }
+
+#sosForm .sos-form-label {
+  margin-top: 0px; }
+
+#sosForm .sosForm-action-buttons {
+  float: right;
+  position: relative;
+  top: -35px; }
+
+#sosForm .sos-client {
+  margin-left: 15px; }
+
+#sosForm .sos-remarks {
+  width: 65%; }
+
+#sosForm .real-sos-form {
+  margin-top: 30px; }
+
+#sosForm .form-group {
+  text-align: left; }
+
+#sosForm .sos-form-identifier {
+  display: inline-block;
+  margin-right: 10px; }
+
+#sosForm .sos-form-selector {
+  display: inline-block; }
+
+#sosForm .new-product-button {
+  display: inline-block;
+  margin-right: 10px; }
+
+#sosForm .orders-table {
+  margin-top: 10px; }
+  #sosForm .orders-table .orders-quantity {
+    margin-left: 5px;
+    margin-right: 5px; }
+
+#sosForm small {
+  color: red; }
+
+#sosDetails .sos-form-label {
+  margin-top: 0px; }
+
+#sosDetails .sos-client {
+  margin-left: 15px; }
+
+#sosDetails .sosForm-action-buttons {
+  padding-left: 15px; }
+
+#sosDetails .discard-buttons {
+  float: right;
+  margin-right: 15px; }
+
+#sosDetails .sosDetails-group {
+  margin-top: 20px; }
+
+#sosDetails .sos-remarks {
+  width: 65%; }
+
+#sosDetails .real-sos-form {
+  margin-top: 30px; }
+
+#sosDetails .sos-form-identifier {
+  display: inline-block;
+  margin-right: 10px; }
+
+#sosDetails .sos-form-selector {
+  display: inline-block; }
+
+#sosDetails .orders-table {
+  margin-top: 10px; }
+  #sosDetails .orders-table .orders-quantity {
+    margin-left: 5px;
+    margin-right: 5px; }
+
+#sosDetails small {
+  color: red; }
+
+#sosDetails .sos-data {
+  margin-bottom: 15px; }
 

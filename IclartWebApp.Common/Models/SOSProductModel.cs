@@ -15,6 +15,7 @@ namespace IclartWebApp.Common.Models
         public double Price { get; set; }
         public int QuantityDelivered { get; set; }
         public bool Discarded { get; set; }
+        public string Unit { get; set; }
         public SOSModel SalesOrderSlip { get; set; }
         public ProductModel Product { get; set; }
     }

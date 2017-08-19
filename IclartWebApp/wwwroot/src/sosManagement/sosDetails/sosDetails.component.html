@@ -1,0 +1,95 @@
+﻿<div id="sosDetails">
+    <div>
+        <h3 class="sos-details-label">View Sales Order Slip</h3>
+    </div>
+ 
+    <div class="sosDetails-group">
+        <div class="sos-data col-md-6 col-lg-6">
+            <div class="sos-form-identifier">
+                SOS #:
+            </div>
+            <div class="sos-form-selector sos-client">
+                {{sosDetail.Id}}
+            </div>
+        </div>
+        <div class="sos-data col-md-6 col-lg-6">
+            &nbsp;
+        </div>
+        <div class="sos-data col-md-6 col-lg-6">
+            <div class="sos-form-identifier">
+                Client:
+            </div>
+            <div class="sos-form-selector sos-client">
+                {{sosDetail.Client.Name}}
+            </div>
+        </div>
+        <div class="sos-data col-md-6 col-lg-6">
+            <div class="sos-form-identifier">
+                Date:
+            </div>
+            <div class="sos-form-selector">
+                {{sosDate}}
+            </div>
+        </div>
+        <div class="sos-data col-md-6 col-lg-6">
+            <div class="sos-form-identifier">
+                Address:
+            </div>
+            <div class="sos-form-selector">
+                {{sosDetail.Client.Office_Address}}
+            </div>
+        </div>
+        <div class="sos-data col-md-6 col-lg-6">
+            <div class="sos-form-identifier">
+                Pickup:
+            </div>
+            <div class="sos-form-selector">
+                <input type="checkbox" name="pickup" [(ngModel)]="sosDetail.Pickup" disabled />
+            </div>
+        </div>
+        <div class="sos-data col-md-6 col-lg-6">
+            <div class="sos-form-identifier">
+                Remarks:
+            </div>
+            <div class="sos-form-selector sos-remarks">
+                {{sosDetail.Remarks}}
+            </div>
+        </div>
+        <div class="form-group col-md-6 col-lg-6">
+            &nbsp;
+        </div>
+        <div class="col-md-12 col-lg-12 orders-table">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Quantity</th>
+                        <th>Unit</th>
+                        <th>Item Description</th>
+                        <th>Unit Price</th>
+                        <th>Total Price</th>
+                        <th>Quantity Delivered</th>
+                        <th>Discarded</th>
+                        <th>Discard Order?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of productsView">
+                        <td>{{product.Quantity}}</td>
+                        <td>{{product.Unit}}</td>
+                        <td>{{product.Name}}</td>
+                        <td class="text-right">{{product.Price | number:'1.2-2'}}</td>
+                        <td class="text-right">{{product.TotalPrice | number: '1.2-2'}}</td>
+                        <td class="text-right">{{product.QuantityDelivered}}</td>
+                        <td class="text-center">{{product.Discarded == true ? 'Yes' : 'No'}}</td>
+                        <td class="text-center"><input type="checkbox" name="discard" [(ngModel)]="product.Discard" [disabled]="product.Discarded == true" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="sosForm-action-buttons">
+            <a class="btn btn-primary" href="/sos">Back</a>
+            <button class="discard-buttons btn btn-danger" (click)="discardOrders()" [disabled]="isDisabled()">Discard</button>
+        </div>
+           
+    </div>
+</div>

@@ -1,0 +1,9 @@
+﻿@using IclartWebApp.Models
+@model SOSViewModel
+@{
+    ViewBag.Title = "SOS Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<sos-list sos="@Json.Encode(Model.SOSList).ToString()" clients="@Json.Encode(Model.ClientList).ToString()"></sos-list>
+

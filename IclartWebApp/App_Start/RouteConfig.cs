@@ -98,6 +98,33 @@ namespace IclartWebApp
        new { controller = "Product", action = "UpdateProduct", id = UrlParameter.Optional }
         );
 
+            /*SOS Management */
+            routes.MapRoute(
+             "ManageSOS",
+             "sos",
+             new { controller = "SOS", action = "Index" }
+              );
+
+            routes.MapRoute(
+           "AddSOS",
+           "addsos",
+           new { controller = "SOS", action = "AddSOS" }
+            );
+
+            routes.MapRoute(
+             "ViewSOS",
+             "sosdetails/{id}",
+             new { controller = "SOS", action = "ViewSOS", id = UrlParameter.Optional }
+              );
+
+            routes.MapRoute(
+           "UpdateSOS",
+           "updatesos/{id}",
+           new { controller = "SOS", action = "UpdateSOS", id = UrlParameter.Optional }
+            );
+
+
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

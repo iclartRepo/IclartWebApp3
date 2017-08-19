@@ -12,17 +12,22 @@ import { ProductCategoryComponent } from './productManagement/productCategory/pr
 import { ProductListComponent } from './productManagement/productList/productList.component';
 import { ProductDetailsComponent } from './productManagement/productDetails/productDetails.component';
 import { ProductFormComponent } from './productManagement/productForm/productForm.component';
+import { SOSListComponent } from './sosManagement/sosList/sosList.component';
+import { SOSFormComponent } from './sosManagement/sosForm/sosForm.component';
+import { SOSDetailsComponent } from './sosManagement/sosDetails/sosDetails.component';
 
 import { AccountService } from './services/account.service';
 import { ClientService } from './services/client.service';
 import { CompetitorService } from './services/competitor.service';
 import { ProductService } from './services/product.service';
+import { SosService } from './services/sos.service';
+import { UtilitiesService } from './services/utilities.service';
 
 @NgModule({
     imports: [BrowserModule, HttpModule, FormsModule],
-    declarations: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent, ProductListComponent, ProductDetailsComponent, ProductFormComponent],
-    entryComponents: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent, ProductListComponent, ProductDetailsComponent, ProductFormComponent],
-    providers: [AccountService, ClientService, CompetitorService, ProductService]
+    declarations: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent, ProductListComponent, ProductDetailsComponent, ProductFormComponent, SOSListComponent, SOSFormComponent, SOSDetailsComponent],
+    entryComponents: [ManageLoginComponent, ManageClientsComponent, CompetitorAdminComponent, ClientFormComponent, ClientViewComponent, ProductCategoryComponent, ProductListComponent, ProductDetailsComponent, ProductFormComponent, SOSListComponent, SOSFormComponent, SOSDetailsComponent],
+    providers: [AccountService, ClientService, CompetitorService, ProductService, SosService, UtilitiesService]
 })
 export class AppModule {
     ngDoBootstrap(appRef: ApplicationRef)
@@ -88,7 +93,25 @@ export class AppModule {
         }
         catch (e) {
 
-        }          
+        }    
+        try {
+            appRef.bootstrap(SOSListComponent);
+        }
+        catch (e) {
+
+        }  
+        try {
+            appRef.bootstrap(SOSFormComponent);
+        }
+        catch (e) {
+          
+        }  
+        try {
+            appRef.bootstrap(SOSDetailsComponent);
+        }
+        catch (e) {
+
+        }               
       
     }
 }

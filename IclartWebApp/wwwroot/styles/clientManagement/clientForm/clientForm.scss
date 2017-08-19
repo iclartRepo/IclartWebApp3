@@ -45,6 +45,8 @@
             overflow-y:scroll;
             height:75vh;
             width: 100%;
+            position:relative;
+            top: -25px;
         }
     }
     .client-name {
