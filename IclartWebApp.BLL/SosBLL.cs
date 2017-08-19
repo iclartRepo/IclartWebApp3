@@ -2,6 +2,7 @@
 using IclartWebApp.Common.Entities;
 using IclartWebApp.Common.Models;
 using IclartWebApp.DAL;
+using IclartWebApp.DAL.Interfaces;
 using Nelibur.ObjectMapper;
 using System;
 using System.Collections.Generic;
@@ -11,23 +12,28 @@ using System.Threading.Tasks;
 
 namespace IclartWebApp.BLL
 {
-    public class SosBLL
+    public class SosBLL : ISosBLL
     {
-        private GenericRepository<SOSEntity> _repository;
-        private GenericRepository<ProductEntity> _productRepository;
-        private GenericRepository<ClientEntity> _clientRepository;
-        private GenericRepository<SOSProductEntity> _orderRepository;
-        private GenericRepository<SOSCustomEntity> _customOrderRepository;
-        private DBContext context;
+        private readonly IGenericRepository<SOSEntity> _repository;
+        private readonly IGenericRepository<ProductEntity> _productRepository;
+        private readonly IGenericRepository<ClientEntity> _clientRepository;
+        private readonly IGenericRepository<SOSProductEntity> _orderRepository;
+        private readonly IGenericRepository<SOSCustomEntity> _customOrderRepository;
+        private ITrackerContext _context;
 
-        public SosBLL()
+        public SosBLL(IGenericRepository<SOSEntity> repository,
+            IGenericRepository<ProductEntity> productRepository,
+            IGenericRepository<ClientEntity> clientRepository,
+            IGenericRepository<SOSProductEntity> orderRepository,
+            IGenericRepository<SOSCustomEntity> customOrderRepository,
+            ITrackerContext context)
         {
-            context = new DBContext();
-            _repository = new GenericRepository<SOSEntity>(context);
-            _productRepository = new GenericRepository<ProductEntity>(context);
-            _clientRepository = new GenericRepository<ClientEntity>(context);
-            _orderRepository = new GenericRepository<SOSProductEntity>(context);
-            _customOrderRepository = new GenericRepository<SOSCustomEntity>(context);
+            _context = context;
+            _repository = repository;
+            _productRepository = productRepository;
+            _clientRepository = clientRepository;
+            _orderRepository = orderRepository;
+            _customOrderRepository = customOrderRepository;
         }
 
         public void AddSos(SOSFormModel model)
@@ -64,6 +70,7 @@ namespace IclartWebApp.BLL
                     }
                     orderEntity.SalesOrderSlip = sosEntity;
                     sosEntity.Orders.Add(orderEntity);
+                    
                 }
             }
 
@@ -100,6 +107,7 @@ namespace IclartWebApp.BLL
             }
 
             _repository.Insert(sosEntity);
+            _context.SaveChanges();
         }
         public void DiscardOrders(int sosId, List<int> orderIds, List<int> customOrderIds)
         {
@@ -148,7 +156,7 @@ namespace IclartWebApp.BLL
                 }
             }
 
-
+            _context.SaveChanges();
 
         }
         public void UpdateSOS(SOSFormModel model)
@@ -230,6 +238,7 @@ namespace IclartWebApp.BLL
                 sosEntity.TotalAmount = total_amount;
 
                 _repository.Update(sosEntity);
+                _context.SaveChanges();
             }
         }
     }

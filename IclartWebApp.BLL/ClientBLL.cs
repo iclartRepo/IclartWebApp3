@@ -2,6 +2,7 @@
 using IclartWebApp.Common.Entities;
 using IclartWebApp.Common.Models;
 using IclartWebApp.DAL;
+using IclartWebApp.DAL.Interfaces;
 using Nelibur.ObjectMapper;
 using System;
 using System.Collections.Generic;
@@ -11,19 +12,19 @@ using System.Threading.Tasks;
 
 namespace IclartWebApp.BLL
 {
-    public class ClientBLL
+    public class ClientBLL : IClientBLL
     {
-        private GenericRepository<ClientEntity> _repository;
-        private GenericRepository<CompetitorEntity> _competitorRepository;
-        private GenericRepository<CompetitorDiscountSchemesEntity> _dsSchemesRepository;
-        private DBContext context;
+        private readonly ITrackerContext _context;
+        private readonly IGenericRepository<ClientEntity> _repository;
+        private readonly IGenericRepository<CompetitorEntity> _competitorRepository;
+        private readonly IGenericRepository<CompetitorDiscountSchemesEntity> _dsSchemesRepository;
 
-        public ClientBLL()
+        public ClientBLL(IGenericRepository<ClientEntity> repository, IGenericRepository<CompetitorEntity> competitorRepository, IGenericRepository<CompetitorDiscountSchemesEntity> dsSchemesRepository, ITrackerContext context)
         {
-            context = new DBContext();
-            _repository = new GenericRepository<ClientEntity>(context);
-            _competitorRepository = new GenericRepository<CompetitorEntity>(context);
-            _dsSchemesRepository = new GenericRepository<CompetitorDiscountSchemesEntity>(context);
+            _repository = repository;
+            _competitorRepository = competitorRepository;
+            _dsSchemesRepository = dsSchemesRepository;
+            _context = context;
         }
         /// <summary>
         /// Adding new Client into Database
@@ -55,6 +56,7 @@ namespace IclartWebApp.BLL
                 }
 
                 _repository.Insert(clientEntity);
+                _context.SaveChanges();
             }
             else if (complete == false)
             {
@@ -103,6 +105,7 @@ namespace IclartWebApp.BLL
                 }
 
                 _repository.Update(clientEntity);
+                _context.SaveChanges();
             }
             else if (complete == false)
             {
@@ -123,13 +126,14 @@ namespace IclartWebApp.BLL
             clientEntity.IsDeleted = !clientEntity.IsDeleted;
             clientEntity.Modified_Date = DateTime.Now;
             _repository.SoftDelete(clientEntity);
+            _context.SaveChanges();
         }
         /// <summary>
         /// Add Validation Function for incomplete fields
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>
-        public bool ValidateCompleteFields(ClientModel client)
+        private bool ValidateCompleteFields(ClientModel client)
         {
             var complete = true;
             if (client.Name == "" || client.Name == null)
@@ -151,7 +155,7 @@ namespace IclartWebApp.BLL
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>
-        public bool ValidateIfExists(ClientModel client)
+        private bool ValidateIfExists(ClientModel client)
         {
             var clients = _repository.Get();
             var clientCheck = (from c in clients

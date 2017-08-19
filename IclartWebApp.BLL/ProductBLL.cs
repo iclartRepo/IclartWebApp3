@@ -2,6 +2,7 @@
 using IclartWebApp.Common.Entities;
 using IclartWebApp.Common.Models;
 using IclartWebApp.DAL;
+using IclartWebApp.DAL.Interfaces;
 using Nelibur.ObjectMapper;
 using System;
 using System.Collections.Generic;
@@ -11,23 +12,29 @@ using System.Threading.Tasks;
 
 namespace IclartWebApp.BLL
 {
-    public class ProductBLL
+    public class ProductBLL : IProductBLL
     {
-        private GenericRepository<ProductCategoryEntity> _categoryRepository;
-        private GenericRepository<ProductEntity> _productRepository;
-        private GenericRepository<CompetitorEntity> _competitorRepository;
-        private GenericRepository<CompetitorPricesEntity> _competitorPricesRepository;
-        private GenericRepository<ClientEntity> _clientRepository;
-        private DBContext context;
+        private IGenericRepository<ProductCategoryEntity> _categoryRepository;
+        private IGenericRepository<ProductEntity> _productRepository;
+        private IGenericRepository<CompetitorEntity> _competitorRepository;
+        private IGenericRepository<CompetitorPricesEntity> _competitorPricesRepository;
+        private IGenericRepository<ClientEntity> _clientRepository;
+        private readonly ITrackerContext _context;
 
-        public ProductBLL()
+
+        public ProductBLL(IGenericRepository<ProductCategoryEntity> categoryRepository,
+            IGenericRepository<ProductEntity> productRepository,
+            IGenericRepository<CompetitorEntity> competitorRepository,
+            IGenericRepository<CompetitorPricesEntity> competitorPricesRepository,
+            IGenericRepository<ClientEntity> clientRepository,
+            ITrackerContext context)
         {
-            context = new DBContext();
-            _categoryRepository = new GenericRepository<ProductCategoryEntity>(context);
-            _productRepository = new GenericRepository<ProductEntity>(context);
-            _competitorPricesRepository = new GenericRepository<CompetitorPricesEntity>(context);
-            _competitorRepository = new GenericRepository<CompetitorEntity>(context);
-            _clientRepository = new GenericRepository<ClientEntity>(context);
+            _context = context;
+            _categoryRepository = categoryRepository;
+            _productRepository = productRepository;
+            _competitorPricesRepository = competitorPricesRepository;
+            _competitorRepository = competitorRepository;
+            _clientRepository = clientRepository;
         }
         #region Product Category
         public void AddProductCategory(string name)
@@ -40,6 +47,7 @@ namespace IclartWebApp.BLL
                     CreatedDate = DateTime.Now
                 };
                 _categoryRepository.Insert(newCategory);
+                _context.SaveChanges();
             }
             else
             {
@@ -54,6 +62,7 @@ namespace IclartWebApp.BLL
                 categoryToUpdate.Name = name;
                 categoryToUpdate.ModifiedDate = DateTime.Now;
                 _categoryRepository.Update(categoryToUpdate);
+                _context.SaveChanges();
             }
         }
         public void DeleteProductCategory(int id)
@@ -64,6 +73,7 @@ namespace IclartWebApp.BLL
                 category.IsDeleted = true;
                 category.ModifiedDate = DateTime.Now;
                 _categoryRepository.SoftDelete(category);
+                _context.SaveChanges();
             }
             else
             {
@@ -100,6 +110,7 @@ namespace IclartWebApp.BLL
                 }
 
                 _productRepository.Insert(productEntity);
+                _context.SaveChanges();
             }
             else
             {
@@ -141,6 +152,7 @@ namespace IclartWebApp.BLL
                 }
 
                 _productRepository.Update(productEntity);
+                _context.SaveChanges();
             }
             else
             {
@@ -155,6 +167,7 @@ namespace IclartWebApp.BLL
                 productEntity.IsDeleted = true;
                 productEntity.ModifiedDate = DateTime.Now;
                 _productRepository.SoftDelete(productEntity);
+                _context.SaveChanges();
             }
         }
         public double GetBestPrice(int clientId, int productId)
