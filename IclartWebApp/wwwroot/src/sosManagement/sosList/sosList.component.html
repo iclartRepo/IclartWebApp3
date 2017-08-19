@@ -10,7 +10,6 @@
                         <th class="thead-name">SOS #</th>
                         <th>Client Name</th>
                         <th>Status</th>
-                        <th>View</th>
                         <th>Edit</th>
                     </tr>
                 </thead>
@@ -18,8 +17,7 @@
                     <tr *ngFor="let sos of result.ResultList">
                         <td><a href="/sosdetails/{{sos.Id}}">{{sos.Id}}</a></td>
                         <td>{{sos.Client.Name}}</td>
-                        <td>{{sos.Status}}</td>
-                        <td><i class="fa fa-pencil" aria-hidden="true"></i></td>
+                        <td>{{sos.Status == true ? 'Served' : 'Pending'}}</td>
                         <td><i class="fa fa-pencil" aria-hidden="true"></i></td>
                     </tr>
                 </tbody>

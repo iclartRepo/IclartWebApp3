@@ -101,7 +101,56 @@ namespace IclartWebApp.BLL
 
             _repository.Insert(sosEntity);
         }
+        public void DiscardOrders(int sosId, List<int> orderIds, List<int> customOrderIds)
+        {
+            if (orderIds != null)
+            {
+                for (int i=0; i<orderIds.Count; i++)
+                {
+                    var id = orderIds[i];
+                    var order = _orderRepository.Get(x => x.Id == id).FirstOrDefault();
 
+                    if (order != null)
+                    {
+                        order.Discarded = true;
+                    }
+
+                    _orderRepository.Update(order);
+                }
+            }
+            if (customOrderIds != null)
+            {
+                for (int i = 0; i < customOrderIds.Count; i++)
+                {
+                    var id = orderIds[i];
+                    var order = _customOrderRepository.Get(x => x.Id == id).FirstOrDefault();
+
+                    if (order != null)
+                    {
+                        order.Discarded = true;
+                    }
+
+                    _customOrderRepository.Update(order);
+                }
+            }
+
+            var checkSos = _repository.Get(i => i.Id == sosId).FirstOrDefault();
+
+            if (checkSos != null)
+            {
+                var checkStandard = checkSos.Orders.Where(x => x.Discarded == false).ToList();
+                var checkCustom = checkSos.CustomOrders.Where(x => x.Discarded == false).ToList();
+
+                if (checkStandard.Count == 0 && checkCustom.Count == 0)
+                {
+                    checkSos.Status = true;
+                    _repository.Update(checkSos);
+                }
+            }
+
+
+
+        }
         public void UpdateSOS(SOSFormModel model)
         {
             var sosEntity = _repository.Get(i => i.Id == model.Sos.Id).FirstOrDefault();

@@ -24,6 +24,11 @@ var SosService = (function () {
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    SosService.prototype.getSosDetail = function (id) {
+        return this._http.get(this.baseUrl + "GetSOSDetail?id=" + id)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     SosService.prototype.getCustomProducts = function (clientId) {
         return this._http.get(this.baseUrl + "GetListCustomProducts?clientId=" + clientId)
             .map(function (response) { return response.json(); })
@@ -33,6 +38,14 @@ var SosService = (function () {
         var headers = new Headers({ 'Content-Type': 'application/json' });
         var options = new RequestOptions({ headers: headers });
         return this._http.post(this.baseUrl + "AddSos", { model: sos }, options)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    SosService.prototype.discardSos = function (sosId, orderIds, customOrderIds) {
+        var headers = new Headers({ 'Content-Type': 'application/json' });
+        var options = new RequestOptions({ headers: headers });
+        return this._http.post(this.baseUrl + "DiscardOrders", { sosId: sosId, orderIds: orderIds, customOrderIds: customOrderIds }, options)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);

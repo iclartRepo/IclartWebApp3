@@ -14,8 +14,6 @@ var SOSDetailsComponent = (function () {
         this._sosService = _sosService;
         this.elementRef = elementRef;
         this.productsView = [];
-        this.discardOrder = {};
-        this.discardType = {};
         this.result = {
             isError: false,
             Result: null,
@@ -23,10 +21,46 @@ var SOSDetailsComponent = (function () {
             Message: ''
         };
     }
-    SOSDetailsComponent.prototype.ngOnInit = function () {
-        this.sosDetail = JSON.parse(this.elementRef.nativeElement.getAttribute('sos'));
-        this.sosDate = this.elementRef.nativeElement.getAttribute('sosdate');
-        for (var _i = 0, _a = this.sosDetail.Orders; _i < _a.length; _i++) {
+    SOSDetailsComponent.prototype.isDisabled = function () {
+        var disabled = true;
+        for (var _i = 0, _a = this.productsView; _i < _a.length; _i++) {
+            var entry = _a[_i];
+            if (entry.Discard == true) {
+                disabled = false;
+            }
+        }
+        return disabled;
+    };
+    SOSDetailsComponent.prototype.discardOrders = function () {
+        var _this = this;
+        var orderIds = [];
+        var customOrderIds = [];
+        for (var _i = 0, _a = this.productsView; _i < _a.length; _i++) {
+            var entry = _a[_i];
+            if (entry.Custom == false && entry.Discard == true) {
+                orderIds.push(entry.Id);
+            }
+            if (entry.Custom == true && entry.Discard == true) {
+                customOrderIds.push(entry.Id);
+            }
+        }
+        this._sosService.discardSos(this.sosId, orderIds, customOrderIds)
+            .subscribe(function (result) {
+            if (result.isError == false) {
+                _this.getSosDetail();
+            }
+        }, function (error) { return _this.errorMessage = error; });
+    };
+    SOSDetailsComponent.prototype.getSosDetail = function () {
+        var _this = this;
+        this._sosService.getSosDetail(this.sosId)
+            .subscribe(function (result) {
+            _this.prepareView(result.Result);
+        }, function (error) { return _this.errorMessage = error; });
+    };
+    SOSDetailsComponent.prototype.prepareView = function (sosModel) {
+        this.productsView = [];
+        for (var _i = 0, _a = sosModel.Orders; _i < _a.length; _i++) {
             var entry = _a[_i];
             var productView = {
                 "Id": entry.Id,
@@ -36,13 +70,13 @@ var SOSDetailsComponent = (function () {
                 "Name": entry.Product.Name,
                 "Unit": entry.Unit,
                 "TotalPrice": entry.Price * entry.Quantity,
-                "Custom": false
+                "Custom": false,
+                "Discarded": entry.Discarded,
+                "Discard": false
             };
-            this.discardOrder[entry.Id] = false;
-            this.discardType[entry.Id] = 'standard';
             this.productsView.push(productView);
         }
-        for (var _b = 0, _c = this.sosDetail.CustomOrders; _b < _c.length; _b++) {
+        for (var _b = 0, _c = sosModel.CustomOrders; _b < _c.length; _b++) {
             var entry = _c[_b];
             var productView = {
                 "Id": entry.Id,
@@ -52,12 +86,18 @@ var SOSDetailsComponent = (function () {
                 "Name": entry.ItemDescription,
                 "Unit": entry.Unit,
                 "TotalPrice": entry.Price * entry.Quantity,
-                "Custom": true
+                "Custom": true,
+                "Discarded": entry.Discarded,
+                "Discard": false
             };
-            this.discardOrder[entry.Id] = false;
-            this.discardType[entry.Id] = 'custom';
             this.productsView.push(productView);
         }
+    };
+    SOSDetailsComponent.prototype.ngOnInit = function () {
+        this.sosDetail = JSON.parse(this.elementRef.nativeElement.getAttribute('sos'));
+        this.sosId = this.sosDetail.Id;
+        this.sosDate = this.elementRef.nativeElement.getAttribute('sosdate');
+        this.prepareView(this.sosDetail);
     };
     return SOSDetailsComponent;
 }());

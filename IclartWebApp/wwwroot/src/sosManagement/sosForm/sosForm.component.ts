@@ -56,6 +56,7 @@ export class SOSFormComponent {
     editForm: any = {};
     editFormQuantity: any = {};
     editFormPrice: any = {};
+    editFormName: any = {};
     productList: any[] = [];
     unitOptions: any[] = [];
     pointerMarker: number = 0;
@@ -192,6 +193,7 @@ export class SOSFormComponent {
         searchResult.Quantity = this.editFormQuantity[id];
         searchResult.Price = this.editFormPrice[id];
         searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
+        searchResult.ItemDescription = this.editFormName[id];
 
         if (custom == false) {
             let realProductSearch = this.standardProducts.filter(item => item.Pointer == id)[0];
@@ -202,6 +204,7 @@ export class SOSFormComponent {
             let realProductSearch = this.customProducts.filter(item => item.Pointer == id)[0];
             realProductSearch.Quantity = this.editFormQuantity[id];
             realProductSearch.Price = this.editFormPrice[id];
+            realProductSearch.ItemDescription = this.editFormName[id];
         }
         this.editForm[id] = false;
     }
@@ -310,7 +313,7 @@ export class SOSFormComponent {
             error => this.errorMessage = <any>error);
     }
 
-    addStandardProduct(): void {
+    addStandard(): void {
         this.pointerMarker += 1;
         var standardProduct = {
             "Pointer": this.pointerMarker,
@@ -336,7 +339,36 @@ export class SOSFormComponent {
         this.editFormQuantity[this.pointerMarker] = this.productQuantity;
 
         this.productsView.push(productView);
-       // this.clearStandardProductFields();
+    }
+
+    addStandardProduct(): void {
+        if (this.selectedClient.Combine_Items == false)
+        {
+            this.addStandard();
+        }
+        else
+        {
+            let searchResult = this.productsView.filter(item => item.ItemDescription == this.selectedProduct.Name && item.Custom == false)[0];
+
+            if (searchResult == null)
+            {
+                this.addStandard();
+            }
+            else
+            {
+                searchResult.Quantity = searchResult.Quantity + this.productQuantity;
+                searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
+
+                let realProductSearch = this.standardProducts.filter(item => item.ProductId == this.selectedProduct.Id)[0];
+                realProductSearch.Quantity = realProductSearch.Quantity + this.productQuantity;
+
+                this.editFormQuantity[searchResult.Id] = searchResult.Quantity;
+            }
+
+           
+        }
+
+     
     }
 
     addCustomProduct(): void {
@@ -364,43 +396,11 @@ export class SOSFormComponent {
         this.editForm[this.pointerMarker] = false;
         this.editFormPrice[this.pointerMarker] = this.customPrice;
         this.editFormQuantity[this.pointerMarker] = this.customQuantity;
+        this.editFormName[this.pointerMarker] = this.customItemDescription;
 
         this.productsView.push(productView);
      //   this.clearCustomProductFields();
     }
-
-    //addQuantity(id: number, custom: boolean): void {
-
-    //    let searchResult = this.productsView.filter(item => item.Id == id)[0];
-    //    searchResult.Quantity += 1;
-    //    searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
-
-    //    if (custom == false) {
-    //        let realProductSearch = this.standardProducts.filter(item => item.Pointer == id)[0];
-    //        realProductSearch.Quantity += 1;
-    //    }
-    //    else
-    //    {
-    //        let realProductSearch = this.customProducts.filter(item => item.Pointer == id)[0];
-    //        realProductSearch.Quantity += 1;
-    //    }
-    //}
-
-    //subtractQuantity(id: number, custom: boolean): void {
-    //    let searchResult = this.productsView.filter(item => item.Id == id)[0];
-    //    searchResult.Quantity -= 1;
-    //    searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
-
-    //    if (custom == false) {
-    //        let realProductSearch = this.standardProducts.filter(item => item.Pointer == id)[0];
-    //        realProductSearch.Quantity -= 1;
-    //    }
-    //    else
-    //    {
-    //        let realProductSearch = this.customProducts.filter(item => item.Pointer == id)[0];
-    //        realProductSearch.Quantity -= 1;
-    //    }
-    //}
 
     removeProduct(id: number, custom: boolean): void {
         this.productsView = this.productsView.filter(item => item.Id !== id);

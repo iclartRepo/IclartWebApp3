@@ -96,7 +96,15 @@
 
                             </td>
                             <td>{{product.Unit}}</td>
-                            <td>{{product.ItemDescription}}</td>
+                            <td>
+                                <div *ngIf="editForm[product.Id] == false">
+                                    {{product.ItemDescription}}
+                                </div>
+                                <div *ngIf="editForm[product.Id] == true && product.Custom == true">
+                                    <input type="number" name="productName-{{product.Id}}" class="form-control" [(ngModel)]="editFormName[product.Id]" />
+                                </div>                            
+                            
+                            </td>
                             <td>
                                 <div *ngIf="editForm[product.Id] == false">
                                     {{product.Price | number: '1.2-2'}}
@@ -112,7 +120,7 @@
                                     <button class="btn btn-success btn-sm" (click)="edit(product.Id)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                                 </div>
                                 <div *ngIf="editForm[product.Id] == true">
-                                    <button class="btn btn-success btn-sm" [disabled]="editFormQuantity[product.Id] == '' || editFormPrice[product.Id] == ''" (click)="updateOrder(product.Id, product.Custom)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                    <button class="btn btn-success btn-sm" [disabled]="editFormQuantity[product.Id] == '' || editFormPrice[product.Id] == '' || editFormName[product.Id] == ''" (click)="updateOrder(product.Id, product.Custom)"><i class="fa fa-check" aria-hidden="true"></i></button>
                                 </div>
                             </td>
                             <td class="text-center"><button class="btn btn-danger" (click)="removeProduct(product.Id, product.Custom)"><i class="fa fa-times" aria-hidden="true"></i></button></td>

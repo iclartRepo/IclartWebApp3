@@ -59,6 +59,7 @@ var SOSFormComponent = (function () {
         this.editForm = {};
         this.editFormQuantity = {};
         this.editFormPrice = {};
+        this.editFormName = {};
         this.productList = [];
         this.unitOptions = [];
         this.pointerMarker = 0;
@@ -156,6 +157,7 @@ var SOSFormComponent = (function () {
         searchResult.Quantity = this.editFormQuantity[id];
         searchResult.Price = this.editFormPrice[id];
         searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
+        searchResult.ItemDescription = this.editFormName[id];
         if (custom == false) {
             var realProductSearch = this.standardProducts.filter(function (item) { return item.Pointer == id; })[0];
             realProductSearch.Quantity = this.editFormQuantity[id];
@@ -165,6 +167,7 @@ var SOSFormComponent = (function () {
             var realProductSearch = this.customProducts.filter(function (item) { return item.Pointer == id; })[0];
             realProductSearch.Quantity = this.editFormQuantity[id];
             realProductSearch.Price = this.editFormPrice[id];
+            realProductSearch.ItemDescription = this.editFormName[id];
         }
         this.editForm[id] = false;
     };
@@ -264,7 +267,7 @@ var SOSFormComponent = (function () {
             _this.productQuantity = 1;
         }, function (error) { return _this.errorMessage = error; });
     };
-    SOSFormComponent.prototype.addStandardProduct = function () {
+    SOSFormComponent.prototype.addStandard = function () {
         this.pointerMarker += 1;
         var standardProduct = {
             "Pointer": this.pointerMarker,
@@ -287,6 +290,25 @@ var SOSFormComponent = (function () {
         this.editFormPrice[this.pointerMarker] = this.productPrice;
         this.editFormQuantity[this.pointerMarker] = this.productQuantity;
         this.productsView.push(productView);
+    };
+    SOSFormComponent.prototype.addStandardProduct = function () {
+        var _this = this;
+        if (this.selectedClient.Combine_Items == false) {
+            this.addStandard();
+        }
+        else {
+            var searchResult = this.productsView.filter(function (item) { return item.ItemDescription == _this.selectedProduct.Name && item.Custom == false; })[0];
+            if (searchResult == null) {
+                this.addStandard();
+            }
+            else {
+                searchResult.Quantity = searchResult.Quantity + this.productQuantity;
+                searchResult.TotalPrice = searchResult.Quantity * searchResult.Price;
+                var realProductSearch = this.standardProducts.filter(function (item) { return item.ProductId == _this.selectedProduct.Id; })[0];
+                realProductSearch.Quantity = realProductSearch.Quantity + this.productQuantity;
+                this.editFormQuantity[searchResult.Id] = searchResult.Quantity;
+            }
+        }
     };
     SOSFormComponent.prototype.addCustomProduct = function () {
         this.pointerMarker += 1;
@@ -311,6 +333,7 @@ var SOSFormComponent = (function () {
         this.editForm[this.pointerMarker] = false;
         this.editFormPrice[this.pointerMarker] = this.customPrice;
         this.editFormQuantity[this.pointerMarker] = this.customQuantity;
+        this.editFormName[this.pointerMarker] = this.customItemDescription;
         this.productsView.push(productView);
     };
     SOSFormComponent.prototype.removeProduct = function (id, custom) {

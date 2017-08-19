@@ -2,6 +2,7 @@
     <div>
         <h3 class="sos-details-label">View Sales Order Slip</h3>
     </div>
+ 
     <div class="sosDetails-group">
         <div class="sos-data col-md-6 col-lg-6">
             <div class="sos-form-identifier">
@@ -67,7 +68,8 @@
                         <th>Unit Price</th>
                         <th>Total Price</th>
                         <th>Quantity Delivered</th>
-                        <th>Discard?</th>
+                        <th>Discarded</th>
+                        <th>Discard Order?</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,10 +80,15 @@
                         <td class="text-right">{{product.Price | number:'1.2-2'}}</td>
                         <td class="text-right">{{product.TotalPrice | number: '1.2-2'}}</td>
                         <td class="text-right">{{product.QuantityDelivered}}</td>
-                        <td class="text-center"><input type="checkbox" name="discard" [(ngModel)]="discardOrder[product.Id]" /></td>
+                        <td class="text-center">{{product.Discarded == true ? 'Yes' : 'No'}}</td>
+                        <td class="text-center"><input type="checkbox" name="discard" [(ngModel)]="product.Discard" [disabled]="product.Discarded == true" /></td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="sosForm-action-buttons">
+            <a class="btn btn-primary" href="/sos">Back</a>
+            <button class="discard-buttons btn btn-danger" (click)="discardOrders()" [disabled]="isDisabled()">Discard</button>
         </div>
            
     </div>

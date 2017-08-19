@@ -250,6 +250,7 @@
     <Content Include="webpack.config.js" />
     <Content Include="webpack.helpers.js" />
     <Content Include="wwwroot\js\app.bundle.js" />
+    <Content Include="wwwroot\js\bootstrap.min.js" />
     <Content Include="wwwroot\js\polyfills.bundle.js" />
     <Content Include="wwwroot\js\vendor.bundle.js" />
     <Content Include="wwwroot\src\clientManagement\clientDetails\clientDetails.component.html" />

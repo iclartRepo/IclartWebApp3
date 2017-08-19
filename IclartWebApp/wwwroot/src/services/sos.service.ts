@@ -22,6 +22,12 @@ export class SosService {
             .catch(this.handleError);
     }
 
+    getSosDetail(id: number): Observable<IMessageResult> {
+        return this._http.get(this.baseUrl + "GetSOSDetail?id=" + id)
+            .map((response: Response) => <IMessageResult>response.json())
+            .catch(this.handleError);
+    }
+
     getCustomProducts(clientId: number): Observable<IMessageResult> {
         return this._http.get(this.baseUrl + "GetListCustomProducts?clientId=" + clientId)
             .map((response: Response) => <IMessageResult>response.json())
@@ -32,6 +38,15 @@ export class SosService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this._http.post(this.baseUrl + "AddSos", { model: sos }, options)
+            .map((response: Response) => <IMessageResult>response.json())
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    discardSos(sosId:number, orderIds: number[], customOrderIds: number[]): Observable<IMessageResult> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this._http.post(this.baseUrl + "DiscardOrders", { sosId: sosId, orderIds: orderIds, customOrderIds: customOrderIds }, options)
             .map((response: Response) => <IMessageResult>response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
