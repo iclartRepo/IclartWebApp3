@@ -11,22 +11,17 @@ namespace IclartWebApp.DAL
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
-        private DBContext context;
-        private DbSet<TEntity> _dbSet;
+        private readonly ITrackerContext _context;
+        private IDbSet<TEntity> _dbSet;
 
         public GenericRepository()
         {
-            _dbSet = context.Set<TEntity>();
-        }
-        public GenericRepository(DBContext contextInitial)
-        {
-            context = contextInitial;
-            _dbSet = context.Set<TEntity>();
-        }
 
-        public DBContext GetContext()
+        }
+        public GenericRepository(ITrackerContext context)
         {
-            return context;
+            _context = context;
+            _dbSet = _context.Set<TEntity>();
         }
 
         public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
@@ -46,27 +41,32 @@ namespace IclartWebApp.DAL
         public void HardDelete(TEntity entity)
         {
             _dbSet.Remove(entity);
-            context.SaveChanges();
+          
         }
 
         public void Insert(TEntity entity)
         {
             _dbSet.Add(entity);
-            context.SaveChanges();
+         
         }
 
         public void SoftDelete(TEntity entity)
         {
             _dbSet.Attach(entity);
-            context.Entry(entity).State = EntityState.Modified;
-            context.SaveChanges();
+            _context.Entry(entity).State = EntityState.Modified;
+   
         }
 
         public void Update(TEntity entity)
         {
             _dbSet.Attach(entity);
-            context.Entry(entity).State = EntityState.Modified;
-            context.SaveChanges();
+            _context.Entry(entity).State = EntityState.Modified;
+
+        }
+
+        public int Commit()
+        {
+            return _context.SaveChanges();
         }
     }
 }

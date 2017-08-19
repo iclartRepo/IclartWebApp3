@@ -1,14 +1,16 @@
 ﻿using IclartWebApp.Common.Entities;
+using IclartWebApp.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace IclartWebApp.DAL
 {
-    public class DBContext : DbContext
+    public class DBContext : DbContext, ITrackerContext
     {
         public DBContext() : base("DefaultConnection")
         {
@@ -23,8 +25,10 @@ namespace IclartWebApp.DAL
         public DbSet<PasswordExpiryEntity> PasswordExpiry { get; set; }
         public DbSet<SOSEntity> SalesOrderSlips { get; set; }
         public DbSet<SOSProductEntity> SOSOrders { get; set; }
-        public DbSet<SOSCustomEntity> SOSCustomOrders { get; set; }
+        public DbSet<SOSCustomEntity> SOSCustomOrders { get; set; }      
     }
+
+  
 
     public class IclartDBInitializer : CreateDatabaseIfNotExists<DBContext>
     {

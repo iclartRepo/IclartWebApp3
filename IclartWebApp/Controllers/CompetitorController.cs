@@ -2,6 +2,7 @@
 using IclartWebApp.Common.Entities;
 using IclartWebApp.Common.Models;
 using IclartWebApp.DAL;
+using IclartWebApp.DAL.Interfaces;
 using IclartWebApp.Models;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,16 @@ namespace IclartWebApp.Controllers
 {
     public class CompetitorController : Controller
     {
+        private readonly IGenericRepository<CompetitorEntity> _competitorRepository;
+        private readonly ICompetitorBLL _competitorBLL;
+        public CompetitorController(IGenericRepository<CompetitorEntity> competitorRepository, ICompetitorBLL competitorBLL)
+        {
+            this._competitorRepository = competitorRepository;
+            this._competitorBLL = competitorBLL;
+        }
+
+      
+
         // GET: Competitor
         public ActionResult Index()
         {
@@ -30,23 +41,16 @@ namespace IclartWebApp.Controllers
         {
             try
             {
-                using (var context = new DBContext())
+                var competitors = _competitorRepository.Get().OrderBy(i => i.Name).Select(i => new CompetitorModel { Id = i.Id, Name = i.Name }).ToList();
+
+                var message = new MessageResult<CompetitorModel>
                 {
-                    var competitorRepository = new GenericRepository<CompetitorEntity>(context);
-
-                    var competitors = competitorRepository.Get().OrderBy(i => i.Name).Select(i => new CompetitorModel { Id = i.Id, Name = i.Name }).ToList();
-
-                    var message = new MessageResult<CompetitorModel>
-                    {
-                        isError = false,
-                        ResultList = competitors,
-                        Message = "Success",
-                        Result = null
-                    };
-                    return Json(message, JsonRequestBehavior.AllowGet);
-
-                }
-
+                    isError = false,
+                    ResultList = competitors,
+                    Message = "Success",
+                    Result = null
+                };
+                return Json(message, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -70,8 +74,7 @@ namespace IclartWebApp.Controllers
                     Name = name,
                     CreatedDate = DateTime.Now
                 };
-                var competitorBLL = new CompetitorBLL();
-                competitorBLL.AddCompetitor(competitor);
+                _competitorBLL.AddCompetitor(competitor);
                 var message = new MessageResult<CompetitorModel>
                 {
                     isError = false,
@@ -103,8 +106,7 @@ namespace IclartWebApp.Controllers
                     Id = id,
                     Name = name
                 };
-                var competitorBLL = new CompetitorBLL();
-                competitorBLL.UpdateCompetitor(competitor);
+                _competitorBLL.UpdateCompetitor(competitor);
                 var message = new MessageResult<CompetitorModel>
                 {
                     isError = false,
@@ -131,9 +133,7 @@ namespace IclartWebApp.Controllers
         {
             try
             {
-
-                var competitorBLL = new CompetitorBLL();
-                competitorBLL.DeleteCompetitor(id);
+                _competitorBLL.DeleteCompetitor(id);
                 var message = new MessageResult<CompetitorModel>
                 {
                     isError = false,

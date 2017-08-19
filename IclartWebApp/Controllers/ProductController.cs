@@ -2,6 +2,7 @@
 using IclartWebApp.Common.Entities;
 using IclartWebApp.Common.Models;
 using IclartWebApp.DAL;
+using IclartWebApp.DAL.Interfaces;
 using IclartWebApp.Models;
 using Nelibur.ObjectMapper;
 using System;
@@ -11,9 +12,22 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace IclartWebApp.Controllers
-{
+{ 
+
     public class ProductController : Controller
     {
+        private readonly IGenericRepository<ProductCategoryEntity> _productCategoryRepository;
+        private readonly IGenericRepository<ProductEntity> _productRepository;
+        private readonly IGenericRepository<CompetitorEntity> _competitorRepository;
+        private readonly IProductBLL _productBLL;
+
+        public ProductController(IGenericRepository<ProductCategoryEntity> productCategoryRepository, IGenericRepository<ProductEntity> productRepository, IProductBLL productBLL, IGenericRepository<CompetitorEntity> competitorRepository)
+        {
+            _productCategoryRepository = productCategoryRepository;
+            _productRepository = productRepository;
+            _productBLL = productBLL;
+            _competitorRepository = competitorRepository;
+        }
         // GET: Product
         public ActionResult Index(int id)
         {
@@ -44,15 +58,23 @@ namespace IclartWebApp.Controllers
 
         public ActionResult AddProduct()
         {
-            var competitorController = new CompetitorController();
+          
 
             var productCategories = GetProductCategories() as JsonResult;
-            var competitors = competitorController.GetCompetitors() as JsonResult;
+            var competitors = _competitorRepository.Get().OrderBy(i => i.Name).Select(i => new CompetitorModel { Id = i.Id, Name = i.Name }).ToList();
+
+            var competitorMessage = new MessageResult<CompetitorModel>
+            {
+                isError = false,
+                ResultList = competitors,
+                Message = "Success",
+                Result = null
+            };
 
             var productViewModel = new ProductViewModel
             {
                 ProductCategories = productCategories.Data as MessageResult<ProductCategoryModel>,
-                Competitors = competitors.Data as MessageResult<CompetitorModel>
+                Competitors = competitorMessage
             };
 
             return View(productViewModel);
@@ -61,16 +83,24 @@ namespace IclartWebApp.Controllers
         public ActionResult UpdateProduct(int id)
         {
             ViewBag.ProductId = id;
-            var competitorController = new CompetitorController();
+           
 
             var product = GetProduct(id) as JsonResult;
             var productCategories = GetProductCategories() as JsonResult;
-            var competitors = competitorController.GetCompetitors() as JsonResult;
+            var competitors = _competitorRepository.Get().OrderBy(i => i.Name).Select(i => new CompetitorModel { Id = i.Id, Name = i.Name }).ToList();
+
+            var competitorMessage = new MessageResult<CompetitorModel>
+            {
+                isError = false,
+                ResultList = competitors,
+                Message = "Success",
+                Result = null
+            };
 
             var productViewModel = new ProductViewModel
             {
                 ProductCategories = productCategories.Data as MessageResult<ProductCategoryModel>,
-                Competitors = competitors.Data as MessageResult<CompetitorModel>,
+                Competitors = competitorMessage,
                 SingleProduct = product.Data as MessageResult<ProductModel>
             };
 
@@ -95,25 +125,22 @@ namespace IclartWebApp.Controllers
         {
             try
             {
-                using (var context = new DBContext())
+                var categories = _productCategoryRepository.Get(i => i.IsDeleted == false).OrderBy(i => i.Name).ToList();
+
+                TinyMapper.Bind<List<ProductCategoryEntity>, List<ProductCategoryModel>>();
+
+                var categoriesModel = TinyMapper.Map<List<ProductCategoryModel>>(categories);
+
+                var message = new MessageResult<ProductCategoryModel>
                 {
-                    var repository = new GenericRepository<ProductCategoryEntity>(context);
+                    isError = false,
+                    ResultList = categoriesModel,
+                    Message = "Success",
+                    Result = null
+                };
+                return Json(message, JsonRequestBehavior.AllowGet);
 
-                    var categories = repository.Get(i => i.IsDeleted == false).OrderBy(i => i.Name).ToList();
 
-                    TinyMapper.Bind<List<ProductCategoryEntity>, List<ProductCategoryModel>>();
-
-                    var categoriesModel = TinyMapper.Map<List<ProductCategoryModel>>(categories);
-
-                    var message = new MessageResult<ProductCategoryModel>
-                    {
-                        isError = false,
-                        ResultList = categoriesModel,
-                        Message = "Success",
-                        Result = null
-                    };
-                    return Json(message, JsonRequestBehavior.AllowGet);
-                }
             }
             catch (Exception ex)
             {
@@ -134,24 +161,16 @@ namespace IclartWebApp.Controllers
         {
             try
             {
-                using (var context = new DBContext())
+                var productEntities = _productRepository.Get(i => i.IsDeleted == false).OrderBy(i => i.ProductCategory.Name).ThenBy(i => i.Name).Select(x => new ProductModel { Id = x.Id, Name = x.Name, ProductCategory = new ProductCategoryModel { Name = x.ProductCategory.Name, Id = x.ProductCategory.Id } }).ToList();
+
+                var message = new MessageResult<ProductModel>
                 {
-                    var productRepository = new GenericRepository<ProductEntity>(context);
-
-                    var productEntities = productRepository.Get(i => i.IsDeleted == false).OrderBy(i => i.ProductCategory.Name).ThenBy(i => i.Name).Select(x => new ProductModel { Id = x.Id, Name = x.Name, ProductCategory = new ProductCategoryModel { Name = x.ProductCategory.Name, Id = x.ProductCategory.Id } }).ToList();
-
-
-
-                    var message = new MessageResult<ProductModel>
-                    {
-                        isError = false,
-                        ResultList = productEntities,
-                        Message = "Success",
-                        Result = null
-                    };
-                    return Json(message, JsonRequestBehavior.AllowGet);
-                }
-
+                    isError = false,
+                    ResultList = productEntities,
+                    Message = "Success",
+                    Result = null
+                };
+                return Json(message, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -171,22 +190,18 @@ namespace IclartWebApp.Controllers
         {
             try
             {
-                using (var context = new DBContext())
+                var productEntities = _productRepository.Get(i => i.IsDeleted == false && i.Name.Contains(name)).OrderBy(i => i.Name).Select(x => new ProductModel { Id = x.Id, Name = x.Name, ProductCategory = new ProductCategoryModel { Name = x.ProductCategory.Name } }).ToList();
+
+
+                var message = new MessageResult<ProductModel>
                 {
-                    var productRepository = new GenericRepository<ProductEntity>(context);
+                    isError = false,
+                    ResultList = productEntities,
+                    Message = "Success",
+                    Result = null
+                };
+                return Json(message, JsonRequestBehavior.AllowGet);
 
-                    var productEntities = productRepository.Get(i => i.IsDeleted == false && i.Name.Contains(name)).OrderBy(i => i.Name).Select(x => new ProductModel { Id = x.Id, Name = x.Name, ProductCategory = new ProductCategoryModel { Name = x.ProductCategory.Name } }).ToList();
-
-
-                    var message = new MessageResult<ProductModel>
-                    {
-                        isError = false,
-                        ResultList = productEntities,
-                        Message = "Success",
-                        Result = null
-                    };
-                    return Json(message, JsonRequestBehavior.AllowGet);
-                }
 
             }
             catch (Exception ex)
@@ -208,12 +223,9 @@ namespace IclartWebApp.Controllers
             try
             {
                 using (var context = new DBContext())
-                {
-                    var productRepository = new GenericRepository<ProductEntity>(context);
+                {                
 
-                    var productEntities = productRepository.Get(i => i.IsDeleted == false && i.ProductCategory.Name == name).OrderBy(i => i.Name).Select(x => new ProductModel { Id = x.Id, Name = x.Name, ProductCategory = new ProductCategoryModel { Name = x.ProductCategory.Name } }).ToList();
-
-
+                    var productEntities = _productRepository.Get(i => i.IsDeleted == false && i.ProductCategory.Name == name).OrderBy(i => i.Name).Select(x => new ProductModel { Id = x.Id, Name = x.Name, ProductCategory = new ProductCategoryModel { Name = x.ProductCategory.Name } }).ToList();
 
                     var message = new MessageResult<ProductModel>
                     {
@@ -244,11 +256,10 @@ namespace IclartWebApp.Controllers
         {
             try
             {
-                using (var context = new DBContext())
-                {
-                    var productRepository = new GenericRepository<ProductEntity>(context);
+              
+                   
 
-                    var productEntity = productRepository.Get(i => i.Id == id).First();
+                    var productEntity = _productRepository.Get(i => i.Id == id).First();
 
                     TinyMapper.Bind<ProductEntity, ProductModel>();
                     var productModel = TinyMapper.Map<ProductModel>(productEntity);
@@ -261,7 +272,7 @@ namespace IclartWebApp.Controllers
                         Result = productModel
                     };
                     return Json(message, JsonRequestBehavior.AllowGet);
-                }
+                
 
             }
             catch (Exception ex)
@@ -282,9 +293,9 @@ namespace IclartWebApp.Controllers
         {
             try
             {
-                var productBLL = new ProductBLL();
+                
 
-                var leastPrice = productBLL.GetBestPrice(clientId, productId);
+                var leastPrice = _productBLL.GetBestPrice(clientId, productId);
 
                 return Json(leastPrice, JsonRequestBehavior.AllowGet);
 
@@ -309,8 +320,7 @@ namespace IclartWebApp.Controllers
         {
             try
             {
-                var productBLL = new ProductBLL();
-                productBLL.AddProductCategory(name);
+                _productBLL.AddProductCategory(name);
                 var message = new MessageResult<ProductCategoryModel>
                 {
                     isError = false,
@@ -337,8 +347,7 @@ namespace IclartWebApp.Controllers
         {
             try
             {
-                var productBLL = new ProductBLL();
-                productBLL.AddProduct(newProduct);
+                _productBLL.AddProduct(newProduct);
                 var message = new MessageResult<ProductFormModel>
                 {
                     isError = false,
@@ -369,8 +378,7 @@ namespace IclartWebApp.Controllers
         {
             try
             {
-                var productBLL = new ProductBLL();
-                productBLL.UpdateProductCategory(id, name);
+                _productBLL.UpdateProductCategory(id, name);
                 var message = new MessageResult<ProductCategoryModel>
                 {
                     isError = false,
@@ -397,8 +405,7 @@ namespace IclartWebApp.Controllers
         {
             try
             {
-                var productBLL = new ProductBLL();
-                productBLL.UpdateProduct(id, product);
+                _productBLL.UpdateProduct(id, product);
                 var message = new MessageResult<ProductModel>
                 {
                     isError = false,
@@ -428,8 +435,7 @@ namespace IclartWebApp.Controllers
         {
             try
             {
-                var productBLL = new ProductBLL();
-                productBLL.DeleteProductCategory(id);
+                _productBLL.DeleteProductCategory(id);
                 var message = new MessageResult<ProductCategoryModel>
                 {
                     isError = false,
@@ -456,8 +462,7 @@ namespace IclartWebApp.Controllers
         {
             try
             {
-                var productBLL = new ProductBLL();
-                productBLL.DeleteProduct(id);
+                _productBLL.DeleteProduct(id);
                 var message = new MessageResult<ProductCategoryModel>
                 {
                     isError = false,

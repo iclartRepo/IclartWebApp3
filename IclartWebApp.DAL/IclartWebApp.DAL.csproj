@@ -51,7 +51,9 @@
   <ItemGroup>
     <Compile Include="DBContext.cs" />
     <Compile Include="GenericRepository.cs" />
+    <Compile Include="Interfaces\IDBContext.cs" />
     <Compile Include="Interfaces\IGenericRepository.cs" />
+    <Compile Include="Interfaces\ITrackerContext.cs" />
     <Compile Include="Migrations\201707111249342_Initial.cs" />
     <Compile Include="Migrations\201707111249342_Initial.Designer.cs">
       <DependentUpon>201707111249342_Initial.cs</DependentUpon>

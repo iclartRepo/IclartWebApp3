@@ -2,6 +2,7 @@
 using IclartWebApp.Common.Entities;
 using IclartWebApp.Common.Models;
 using IclartWebApp.DAL;
+using IclartWebApp.DAL.Interfaces;
 using Nelibur.ObjectMapper;
 using System;
 using System.Collections.Generic;
@@ -11,16 +12,15 @@ using System.Threading.Tasks;
 
 namespace IclartWebApp.BLL
 {
-    public class CompetitorBLL
+    public class CompetitorBLL : ICompetitorBLL
     {
-        private GenericRepository<CompetitorEntity> _repository;
-        private DBContext context;
+        private readonly ITrackerContext _context;
+        private readonly IGenericRepository<CompetitorEntity> _repository;
 
-
-        public CompetitorBLL()
+        public CompetitorBLL(IGenericRepository<CompetitorEntity> repository, ITrackerContext context)
         {
-            context = new DBContext();
-            _repository = new GenericRepository<CompetitorEntity>(context);
+            this._repository = repository;
+            _context = context;
         }
         public void AddCompetitor(CompetitorModel competitor)
         {
@@ -29,6 +29,7 @@ namespace IclartWebApp.BLL
                 TinyMapper.Bind<CompetitorModel, CompetitorEntity>();
                 var competitorEntity = TinyMapper.Map<CompetitorEntity>(competitor);
                 _repository.Insert(competitorEntity);
+                _context.SaveChanges();
             }
             else
             {
@@ -44,6 +45,7 @@ namespace IclartWebApp.BLL
                 Mapper.Map(competitor, competitorEntity);
                 competitorEntity.ModifiedDate = DateTime.Now;
                 _repository.Update(competitorEntity);
+                _context.SaveChanges();
             }
             else
             {
@@ -54,6 +56,7 @@ namespace IclartWebApp.BLL
         {
             var competitor = _repository.Get(i => i.Id == id).First();
             _repository.HardDelete(competitor);
+            _context.SaveChanges();
         }
         public bool ValidateCompetitorExists(CompetitorModel competitor)
         {
