@@ -348,6 +348,7 @@ var SOSFormComponent = (function () {
     SOSFormComponent.prototype.saveSos = function () {
         var _this = this;
         var sosModel = {
+            "Id": this.sosId,
             "ClientId": this.selectedClient.Id,
             "Sos_Date": this.sosDate,
             "Remarks": this.remarks,
@@ -360,21 +361,95 @@ var SOSFormComponent = (function () {
             "StandardOrders": this.standardProducts,
             "CustomOrders": this.customProducts
         };
-        this._sosService.addSos(dataModel)
-            .subscribe(function (result) {
-            _this.resultOperation = result;
-            if (_this.resultOperation.isError == false) {
-                window.location.href = _this.returnUrl;
-            }
-        }, function (error) { return _this.errorMessage = error; });
+        if (this.sosId == '0') {
+            this._sosService.addSos(dataModel)
+                .subscribe(function (result) {
+                _this.resultOperation = result;
+                if (_this.resultOperation.isError == false) {
+                    window.location.href = _this.returnUrl;
+                }
+            }, function (error) { return _this.errorMessage = error; });
+        }
+        else {
+            this._sosService.updateSos(dataModel)
+                .subscribe(function (result) {
+                _this.resultOperation = result;
+                if (_this.resultOperation.isError == false) {
+                    window.location.href = _this.returnUrl;
+                }
+            }, function (error) { return _this.errorMessage = error; });
+        }
     };
     SOSFormComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.initializeUnits();
         this.resultClients = JSON.parse(this.elementRef.nativeElement.getAttribute('clients'));
         this.resultProducts = JSON.parse(this.elementRef.nativeElement.getAttribute('products'));
         this.resultProductCategories = JSON.parse(this.elementRef.nativeElement.getAttribute('productcategories'));
         this.returnUrl = this.elementRef.nativeElement.getAttribute('returnurl');
-        this.selectedClient.Office_Address = "";
+        this.sosId = this.elementRef.nativeElement.getAttribute('sosid');
+        if (this.sosId == '0') {
+            this.selectedClient.Office_Address = "";
+        }
+        else {
+            this.sosModel = JSON.parse(this.elementRef.nativeElement.getAttribute('sosdetail'));
+            var client = this.resultClients.ResultList.filter(function (item) { return item.Id == _this.sosModel.Client.Id; })[0];
+            this.selectedClient = client;
+            this.sosDate = this.elementRef.nativeElement.getAttribute('sosdate');
+            this.pickup = this.sosModel.Pickup;
+            this.remarks = this.sosModel.Remarks;
+            for (var _i = 0, _a = this.sosModel.Orders; _i < _a.length; _i++) {
+                var entry = _a[_i];
+                this.pointerMarker += 1;
+                var standardProduct = {
+                    "Pointer": this.pointerMarker,
+                    "ProductId": entry.Product.Id,
+                    "Quantity": entry.Quantity,
+                    "Price": entry.Price,
+                    "Unit": entry.Unit
+                };
+                this.standardProducts.push(standardProduct);
+                var productView = {
+                    "Id": this.pointerMarker,
+                    "Quantity": entry.Quantity,
+                    "ItemDescription": entry.Product.Name,
+                    "Price": entry.Price,
+                    "TotalPrice": entry.Price * entry.Quantity,
+                    "Unit": entry.Unit,
+                    "Custom": false
+                };
+                this.editForm[this.pointerMarker] = false;
+                this.editFormPrice[this.pointerMarker] = entry.Price;
+                this.editFormQuantity[this.pointerMarker] = entry.Quantity;
+                this.productsView.push(productView);
+            }
+            for (var _b = 0, _c = this.sosModel.CustomOrders; _b < _c.length; _b++) {
+                var entry = _c[_b];
+                this.pointerMarker += 1;
+                var customProduct = {
+                    "Pointer": this.pointerMarker,
+                    "Category": entry.Category,
+                    "Quantity": entry.Quantity,
+                    "Price": entry.Price,
+                    "Unit": entry.Unit,
+                    "ItemDescription": entry.ItemDescription
+                };
+                this.customProducts.push(customProduct);
+                var productView = {
+                    "Id": this.pointerMarker,
+                    "Quantity": entry.Quantity,
+                    "ItemDescription": entry.ItemDescription,
+                    "Price": entry.Price,
+                    "TotalPrice": entry.Price * entry.Quantity,
+                    "Unit": entry.Unit,
+                    "Custom": true
+                };
+                this.editForm[this.pointerMarker] = false;
+                this.editFormPrice[this.pointerMarker] = entry.Price;
+                this.editFormQuantity[this.pointerMarker] = entry.Quantity;
+                this.productsView.push(productView);
+            }
+        }
     };
     return SOSFormComponent;
 }());

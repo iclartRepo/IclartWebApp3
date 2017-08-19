@@ -1,0 +1,10 @@
+﻿@using IclartWebApp.Models
+@model SOSViewModel
+@{
+    ViewBag.Title = "Update SOS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<sos-form clients="@Json.Encode(Model.ClientList).ToString()" products="@Json.Encode(Model.Products).ToString()" productcategories="@Json.Encode(Model.ProductCategories).ToString()" returnurl="@Request.UrlReferrer" sosid="@Model.SingleSOS.Id" sosdetail="@Json.Encode(Model.SingleSOS).ToString()" sosdate="@Model.SingleSOS.Sos_Date.ToString("yyyy-MM-dd")"></sos-form>
+
+

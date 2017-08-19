@@ -17,6 +17,8 @@ export class SOSFormComponent {
 
     constructor(private _sosService: SosService, private _clientService: ClientService, private _productService: ProductService, private _utlitiesService: UtilitiesService, private elementRef: ElementRef) { }
     returnUrl: string;
+    sosId: string;
+    sosModel: any;
     result: IMessageResult = {
         isError: false,
         Result: null,
@@ -419,6 +421,7 @@ export class SOSFormComponent {
     saveSos(): void {
 
         var sosModel = {
+            "Id": this.sosId,
             "ClientId": this.selectedClient.Id,
             "Sos_Date": this.sosDate,
             "Remarks": this.remarks,
@@ -432,14 +435,29 @@ export class SOSFormComponent {
             "CustomOrders": this.customProducts
         };
 
-        this._sosService.addSos(dataModel)
-            .subscribe(result => {
-                this.resultOperation = result;
-                if (this.resultOperation.isError == false) {
-                    window.location.href = this.returnUrl;
-                }
-            },
-            error => this.errorMessage = <any>error);
+        if (this.sosId == '0') {
+            this._sosService.addSos(dataModel)
+                .subscribe(result => {
+                    this.resultOperation = result;
+                    if (this.resultOperation.isError == false) {
+                        window.location.href = this.returnUrl;
+                    }
+                },
+                error => this.errorMessage = <any>error);
+        }
+        else
+        {
+            this._sosService.updateSos(dataModel)
+                .subscribe(result => {
+                    this.resultOperation = result;
+                    if (this.resultOperation.isError == false) {
+                        window.location.href = this.returnUrl;
+                    }
+                },
+                error => this.errorMessage = <any>error);
+        }
+
+       
 
     }
 
@@ -451,10 +469,80 @@ export class SOSFormComponent {
         this.resultProducts = JSON.parse(this.elementRef.nativeElement.getAttribute('products'));
         this.resultProductCategories = JSON.parse(this.elementRef.nativeElement.getAttribute('productcategories'));
         this.returnUrl = this.elementRef.nativeElement.getAttribute('returnurl');
-        //this.getListClients();
-        //this.getProducts();
-       // this.getProductCategories();
+        this.sosId = this.elementRef.nativeElement.getAttribute('sosid');
+     
 
-        this.selectedClient.Office_Address = "";
+        if (this.sosId == '0')
+        {
+            this.selectedClient.Office_Address = "";
+        }
+        else
+        {
+            this.sosModel = JSON.parse(this.elementRef.nativeElement.getAttribute('sosdetail'));
+            let client = this.resultClients.ResultList.filter(item => item.Id == this.sosModel.Client.Id)[0];
+            this.selectedClient = client;
+            this.sosDate = this.elementRef.nativeElement.getAttribute('sosdate');
+            this.pickup = this.sosModel.Pickup;
+            this.remarks = this.sosModel.Remarks;
+
+            for (let entry of this.sosModel.Orders)
+            {
+                this.pointerMarker += 1;
+                var standardProduct = {
+                    "Pointer": this.pointerMarker,
+                    "ProductId": entry.Product.Id,
+                    "Quantity": entry.Quantity,
+                    "Price": entry.Price,
+                    "Unit": entry.Unit
+                };
+                this.standardProducts.push(standardProduct);
+
+                var productView = {
+                    "Id": this.pointerMarker,
+                    "Quantity": entry.Quantity,
+                    "ItemDescription": entry.Product.Name,
+                    "Price": entry.Price,
+                    "TotalPrice": entry.Price * entry.Quantity,
+                    "Unit": entry.Unit,
+                    "Custom": false
+                }
+
+                this.editForm[this.pointerMarker] = false;
+                this.editFormPrice[this.pointerMarker] = entry.Price;
+                this.editFormQuantity[this.pointerMarker] = entry.Quantity;
+
+                this.productsView.push(productView);
+            }
+
+            for (let entry of this.sosModel.CustomOrders) {
+                this.pointerMarker += 1;
+                var customProduct = {
+                    "Pointer": this.pointerMarker,
+                    "Category": entry.Category,
+                    "Quantity": entry.Quantity,
+                    "Price": entry.Price,
+                    "Unit": entry.Unit,
+                    "ItemDescription": entry.ItemDescription
+                };
+                this.customProducts.push(customProduct);
+
+                var productView = {
+                    "Id": this.pointerMarker,
+                    "Quantity": entry.Quantity,
+                    "ItemDescription": entry.ItemDescription,
+                    "Price": entry.Price,
+                    "TotalPrice": entry.Price * entry.Quantity,
+                    "Unit": entry.Unit,
+                    "Custom": true
+                }
+
+                this.editForm[this.pointerMarker] = false;
+                this.editFormPrice[this.pointerMarker] = entry.Price;
+                this.editFormQuantity[this.pointerMarker] = entry.Quantity;
+
+                this.productsView.push(productView);
+            }
+        }
+       
     }
 }

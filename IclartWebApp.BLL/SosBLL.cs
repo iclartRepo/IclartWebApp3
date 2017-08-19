@@ -161,18 +161,20 @@ namespace IclartWebApp.BLL
             }
             else
             {
+                var standardOrders = sosEntity.Orders.ToList();
+                var customOrders = sosEntity.CustomOrders.ToList();
                 //Standard Orders
-                for (int i = 0; i < sosEntity.Orders.Count; i++)
-                {
-                    var order = sosEntity.Orders.ToList()[i];
+                for (int i = 0; i < standardOrders.Count; i++)
+                {               
+                    var order = standardOrders[i];
                     sosEntity.Orders.Remove(order);
                     _orderRepository.HardDelete(order);
                 }
 
                 //Custom Orders
-                for (int j = 0; j < sosEntity.CustomOrders.Count; j++)
-                {
-                    var order = sosEntity.CustomOrders.ToList()[j];
+                for (int j = 0; j < customOrders.Count; j++)
+                {                   
+                    var order = customOrders[j];                   
                     sosEntity.CustomOrders.Remove(order);
                     _customOrderRepository.HardDelete(order);
                 }

@@ -19,9 +19,35 @@ var SOSListComponent = (function () {
             ResultList: null,
             Message: ''
         };
+        this.resultClients = {
+            isError: false,
+            Result: null,
+            ResultList: null,
+            Message: ''
+        };
     }
+    SOSListComponent.prototype.searchSOS = function () {
+        var _this = this;
+        this._sosService.getSosListByName(this.clientName)
+            .subscribe(function (result) {
+            _this.result = result;
+            _this.clientName = "";
+        }, function (error) { return _this.errorMessage = error; });
+    };
+    SOSListComponent.prototype.filterStatus = function () {
+        this.getSosListByStatus(this.status);
+    };
+    SOSListComponent.prototype.getSosListByStatus = function (status) {
+        var _this = this;
+        this._sosService.getSosList(this.status)
+            .subscribe(function (result) {
+            _this.result = result;
+        }, function (error) { return _this.errorMessage = error; });
+    };
     SOSListComponent.prototype.ngOnInit = function () {
         this.result = JSON.parse(this.elementRef.nativeElement.getAttribute('sos'));
+        this.resultClients = JSON.parse(this.elementRef.nativeElement.getAttribute('clients'));
+        this.status = false;
     };
     return SOSListComponent;
 }());

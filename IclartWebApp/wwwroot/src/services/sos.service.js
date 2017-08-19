@@ -19,8 +19,13 @@ var SosService = (function () {
         this._http = _http;
         this.baseUrl = "/SOS/";
     }
-    SosService.prototype.getSosList = function () {
-        return this._http.get(this.baseUrl + "GetSOSList")
+    SosService.prototype.getSosList = function (status) {
+        return this._http.get(this.baseUrl + "GetSOSList?status=" + status)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    SosService.prototype.getSosListByName = function (clientName) {
+        return this._http.get(this.baseUrl + "GetSOSListByClient?name=" + clientName)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
@@ -46,6 +51,14 @@ var SosService = (function () {
         var headers = new Headers({ 'Content-Type': 'application/json' });
         var options = new RequestOptions({ headers: headers });
         return this._http.post(this.baseUrl + "DiscardOrders", { sosId: sosId, orderIds: orderIds, customOrderIds: customOrderIds }, options)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    SosService.prototype.updateSos = function (sos) {
+        var headers = new Headers({ 'Content-Type': 'application/json' });
+        var options = new RequestOptions({ headers: headers });
+        return this._http.put(this.baseUrl + "UpdateSOS", { model: sos }, options)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);

@@ -16,8 +16,14 @@ export class SosService {
     constructor(private _http: Http) {
     }
 
-    getSosList(): Observable<IMessageResult> {
-        return this._http.get(this.baseUrl + "GetSOSList")
+    getSosList(status:boolean): Observable<IMessageResult> {
+        return this._http.get(this.baseUrl + "GetSOSList?status=" + status)
+            .map((response: Response) => <IMessageResult>response.json())
+            .catch(this.handleError);
+    }
+
+    getSosListByName(clientName: string): Observable<IMessageResult> {
+        return this._http.get(this.baseUrl + "GetSOSListByClient?name=" + clientName)
             .map((response: Response) => <IMessageResult>response.json())
             .catch(this.handleError);
     }
@@ -47,6 +53,15 @@ export class SosService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this._http.post(this.baseUrl + "DiscardOrders", { sosId: sosId, orderIds: orderIds, customOrderIds: customOrderIds }, options)
+            .map((response: Response) => <IMessageResult>response.json())
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    updateSos(sos: any): Observable<IMessageResult> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this._http.put(this.baseUrl + "UpdateSOS", { model: sos }, options)
             .map((response: Response) => <IMessageResult>response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);

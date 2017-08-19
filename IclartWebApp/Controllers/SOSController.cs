@@ -17,11 +17,15 @@ namespace IclartWebApp.Controllers
         // GET: SOS
         public ActionResult Index()
         {
-            var sosList = GetSOSList() as JsonResult;
+            var clientController = new ClientController();
+
+            var clientList = clientController.GetClientList() as JsonResult;
+            var sosList = GetSOSList(false) as JsonResult;
 
             var sosModel = new SOSViewModel
             {
-                SOSList = sosList.Data as MessageResult<SOSModel>
+                SOSList = sosList.Data as MessageResult<SOSModel>,
+                ClientList = clientList.Data as MessageResult<ClientModel>
             };
             return View(sosModel);
         }
@@ -59,9 +63,30 @@ namespace IclartWebApp.Controllers
            
         }
 
+        public ActionResult UpdateSOS(int id)
+        {
+            var clientController = new ClientController();
+            var productController = new ProductController();
+
+            var clientList = clientController.GetClientList() as JsonResult;
+            var products = productController.GetProducts() as JsonResult;
+            var productCategories = productController.GetProductCategories() as JsonResult;
+            var sosDetail = GetSOSDetail(id) as JsonResult;
+            var sos = sosDetail.Data as MessageResult<SOSModel>;
+
+            var sosModel = new SOSViewModel
+            {
+                ClientList = clientList.Data as MessageResult<ClientModel>,
+                Products = products.Data as MessageResult<ProductModel>,
+                ProductCategories = productCategories.Data as MessageResult<ProductCategoryModel>,
+                SingleSOS = sos.Result
+            };
+            return View(sosModel);
+        }
+
         #region GET METHODS 
         [HttpGet]
-        public ActionResult GetSOSList()
+        public ActionResult GetSOSList(bool status)
         {
             try
             {
@@ -70,7 +95,54 @@ namespace IclartWebApp.Controllers
                     var sosRepository = new GenericRepository<SOSEntity>(context);
 
                  
-                    var sosList = sosRepository.Get(i => i.Status == false).OrderByDescending(i => i.Id).Select(i => new SOSModel { Id = i.Id, Status = i.Status, Client = new ClientModel { Name = i.ClientEntity.Name }, Sos_Date = i.Sos_Date, TotalAmount = i.TotalAmount }).ToList();
+                    var sosList = sosRepository.Get(i => i.Status == status).OrderByDescending(i => i.Id)
+                        .Select(i => new SOSModel { Id = i.Id, Status = i.Status, Client = new ClientModel { Name = i.ClientEntity.Name }, Sos_Date = i.Sos_Date, TotalAmount = i.TotalAmount, Orders = i.Orders.Where(x => x.Discarded == true).ToList().Count == 0 ? new List<SOSProductModel>() : null, CustomOrders = i.CustomOrders.Where(x => x.Discarded == true).ToList().Count == 0 ? new List<SOSCustomModel>() : null }).ToList();
+
+                    var message = new MessageResult<SOSModel>
+                    {
+                        isError = false,
+                        ResultList = sosList,
+                        Message = "Success",
+                        Result = null
+                    };
+                    return Json(message, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                var message = new MessageResult<ClientModel>
+                {
+                    isError = true,
+                    ResultList = null,
+                    Message = "Some error occured. Please contact the administrator.",
+                    Result = null
+                };
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult GetSOSListByClient(string name)
+        {
+            try
+            {
+                using (var context = new DBContext())
+                {
+                    var sosRepository = new GenericRepository<SOSEntity>(context);
+
+                    var sosList = new List<SOSModel>();
+
+                    if (String.IsNullOrEmpty(name))
+                    {
+                         sosList = sosRepository.Get(i => i.Status == false).OrderByDescending(i => i.Id)
+                      .Select(i => new SOSModel { Id = i.Id, Status = i.Status, Client = new ClientModel { Name = i.ClientEntity.Name }, Sos_Date = i.Sos_Date, TotalAmount = i.TotalAmount, Orders = i.Orders.Where(x => x.Discarded == true).ToList().Count == 0 ? new List<SOSProductModel>() : null, CustomOrders = i.CustomOrders.Where(x => x.Discarded == true).ToList().Count == 0 ? new List<SOSCustomModel>() : null }).ToList();
+                    }
+                    else
+                    {
+                         sosList = sosRepository.Get(i => i.ClientEntity.Name == name).OrderByDescending(i => i.Id)
+                      .Select(i => new SOSModel { Id = i.Id, Status = i.Status, Client = new ClientModel { Name = i.ClientEntity.Name }, Sos_Date = i.Sos_Date, TotalAmount = i.TotalAmount, Orders = i.Orders.Where(x => x.Discarded == true).ToList().Count == 0 ? new List<SOSProductModel>() : null, CustomOrders = i.CustomOrders.Where(x => x.Discarded == true).ToList().Count == 0 ? new List<SOSCustomModel>() : null }).ToList();
+                    }
+                  
 
                     var message = new MessageResult<SOSModel>
                     {
@@ -110,7 +182,7 @@ namespace IclartWebApp.Controllers
                             Id = x.Id,
                             Pickup = x.Pickup,
                             Sos_Date = x.Sos_Date,
-                            Client = new ClientModel { Name = x.ClientEntity.Name, Office_Address = x.ClientEntity.Office_Address },
+                            Client = new ClientModel { Id = x.ClientEntity.Id,Name = x.ClientEntity.Name, Office_Address = x.ClientEntity.Office_Address },
                             Remarks = x.Remarks,
                             Orders = x.Orders
                                     .Select(y => new SOSProductModel
@@ -118,7 +190,7 @@ namespace IclartWebApp.Controllers
                                         Quantity = y.Quantity,
                                         QuantityDelivered = y.QuantityDelivered,
                                         Price = y.Price,
-                                        Product = new ProductModel { Name = y.Product.Name },
+                                        Product = new ProductModel { Id = y.ProductId, Name = y.Product.Name },
                                         Unit = y.Unit,
                                         Id = y.Id,
                                         Discarded = y.Discarded
@@ -133,7 +205,8 @@ namespace IclartWebApp.Controllers
                                         Unit = y.Unit,
                                         Price = y.Price,
                                         Id = y.Id,
-                                        Discarded = y.Discarded
+                                        Discarded = y.Discarded,
+                                        Category = y.Category
                                     }).ToList()
                         }).FirstOrDefault();
 
@@ -259,6 +332,39 @@ namespace IclartWebApp.Controllers
                 return Json(message, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
+
+        #region PUT METHODS
+        [HttpPut]
+        public ActionResult UpdateSOS(SOSFormModel model)
+        {
+            try
+            {
+                var sosBLL = new SosBLL();
+                sosBLL.UpdateSOS(model);
+
+                var message = new MessageResult<SOSFormModel>
+                {
+                    isError = false,
+                    ResultList = null,
+                    Message = "SOS Updated Succesfully!",
+                    Result = null
+                };
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                var message = new MessageResult<SOSFormModel>
+                {
+                    isError = true,
+                    ResultList = null,
+                    Message = "Some error occured. Please contact the administrator.",
+                    Result = null
+                };
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         #endregion
     }
 }

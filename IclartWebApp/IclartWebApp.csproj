@@ -369,6 +369,7 @@
     <Content Include="wwwroot\styles\sosManagement\sosForm\sosForm.scss" />
     <Content Include="Views\SOS\ViewSOS.cshtml" />
     <Content Include="wwwroot\styles\sosManagement\sosDetails\sosDetails.scss" />
+    <Content Include="Views\SOS\UpdateSOS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

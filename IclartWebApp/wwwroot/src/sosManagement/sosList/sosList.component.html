@@ -1,7 +1,32 @@
 ﻿<div id="sosList">
-    <div class="sos-add-button">
-        <a class="btn btn-primary" href="/addsos">New Sales Order Slip</a>
+    <div class="filters">
+        <div class="sos-filter">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Filter by client..." [(ngModel)]="clientName" (keyup.enter)="searchSOS()" list="suggestions">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" (click)="searchSOS()"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </span>
+                <datalist id="suggestions">
+                   <option *ngFor="let client of resultClients.ResultList" [ngValue]="client.Name">
+                       {{client.Name}}
+                   </option>
+                </datalist>
+            </div>
+            <div class="form-inline">
+                <div class="form-group">
+                    <label for="status">Filter by Status:</label>
+                    <select class="form-control" name="status" [(ngModel)]="status" (ngModelChange)="filterStatus()">
+                        <option [ngValue]="false">Pending</option>
+                        <option [ngValue]="true">Served</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="sos-add-button">
+            <a class="btn btn-primary" href="/addsos">New Sales Order Slip</a>
+        </div>
     </div>
+  
     <div class="panel panel-primary sos-table">
         <div class="panel-body">
             <table class="table table-responsive header-fixed">
@@ -18,7 +43,7 @@
                         <td><a href="/sosdetails/{{sos.Id}}">{{sos.Id}}</a></td>
                         <td>{{sos.Client.Name}}</td>
                         <td>{{sos.Status == true ? 'Served' : 'Pending'}}</td>
-                        <td><i class="fa fa-pencil" aria-hidden="true"></i></td>
+                        <td><a class="btn btn-sm btn-success" href="/updatesos/{{sos.Id}}" [class.disabled]="sos.Status == true || sos.Orders == null || sos.CustomOrders == null"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                     </tr>
                 </tbody>
             </table>

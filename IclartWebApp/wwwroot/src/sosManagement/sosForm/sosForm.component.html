@@ -14,7 +14,7 @@
                     Client:
                 </div>
                 <div class="sos-form-selector sos-client">
-                    <select [(ngModel)]="selectedClient" name="clientSelect" class="form-control">
+                    <select [(ngModel)]="selectedClient" name="clientSelect" class="form-control" [disabled]="sosId != '0'">
                         <option *ngFor="let client of resultClients.ResultList" [ngValue]="client">
                             {{client.Name}}
                         </option>

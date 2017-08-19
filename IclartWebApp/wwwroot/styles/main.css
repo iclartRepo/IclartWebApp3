@@ -483,8 +483,20 @@ body {
 
 /*SOS Management*/
 #sosList .sos-add-button {
-  text-align: right;
-  margin-bottom: 10px; }
+  float: right; }
+
+#sosList .input-group {
+  width: 100%; }
+
+#sosList .filters {
+  height: 85px; }
+
+#sosList .form-inline {
+  margin-top: 10px; }
+
+#sosList .sos-filter {
+  float: left;
+  width: 28%; }
 
 #sosList .header-fixed > thead,
 #sosList .header-fixed > tbody,
